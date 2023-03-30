@@ -1,0 +1,2 @@
+# YooAsset-Doc
+YooAsset-Doc

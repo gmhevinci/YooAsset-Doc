@@ -6,7 +6,7 @@
 
 该资源版本可以通过YooAssets提供的接口来更新，也可以通过HTTP访问游戏服务器来获取。
 
-````c#
+````csharp
 private IEnumerator UpdatePackageVersion()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
@@ -31,7 +31,7 @@ private IEnumerator UpdatePackageVersion()
 
 对于联机运行模式，在获取到资源版本号之后，就可以更新资源清单了。
 
-````c#
+````csharp
 private IEnumerator UpdatePackageManifest()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
@@ -70,7 +70,7 @@ private IEnumerator UpdatePackageManifest()
 
   用于下载更新指定的资源列表依赖的资源包文件。
 
-````c#
+````csharp
 IEnumerator Download()
 {
     int downloadingMaxNum = 10;

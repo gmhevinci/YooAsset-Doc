@@ -20,13 +20,13 @@ Tab键对齐（可以在VS里设置）
 
 [规则1-3] 不要采用下划线命名法。
 
-```C#
+```csharp
 int car_type //错误：下划线命名。 
 ```
 
 [规则1-4] 常量、静态字段、类、结构体、非私有字段、方法等名称采用**大驼峰式命名法**
 
-```C#
+```csharp
 public const float MaxSpeed = 100f; //常量
 public static float MaxSpeed = 100f; //静态字段
 public class GameClass; //类
@@ -40,7 +40,7 @@ public void SendMessage(string message) {} //方法
 
 注意：私有字段以下划线开头
 
-```C#
+```csharp
 private string _firstName; //私有字段
 public void FindByFirstName(string firstName) {} //方法参数
 string firstName; //局部变量
@@ -50,7 +50,7 @@ string firstName; //局部变量
 
 注意：接口以大写字母I开头
 
-```C#
+```csharp
 public interface IState; //接口
 ```
 
@@ -58,7 +58,7 @@ public interface IState; //接口
 
 注意：枚举以大写字母E开头
 
-```C#
+```csharp
 public enum EGameType {Simple, Hard}//枚举及枚举值
 ```
 
@@ -66,14 +66,14 @@ public enum EGameType {Simple, Hard}//枚举及枚举值
 
 [规则2-1] 声明变量时，一行只声明一个变量。
 
-```C#
+```csharp
 private string _firstName;
 private string _lastName;
 ```
 
 [规则2-2] 类的字段声明统一放置于类的最前端。
 
-```C#
+```csharp
 public class Student 
 {
 	private string _firstName;
@@ -94,7 +94,7 @@ public class Student
 
 注意：私有方法可以不用注释。
 
-```C#
+```csharp
 /// <summary>
 /// 设置场景名称
 /// </summary>
@@ -109,7 +109,7 @@ public bool SetSceneName(string sceneName)
 
 注意：私有字段可以不用注释。
 
-```C#
+```csharp
 public class SceneManager
 {
     /// <summary>
@@ -121,7 +121,7 @@ public class SceneManager
 
 [规则3-3] 私有字段注释，注释位于代码后面，中间Space键隔开。
 
-```C#
+```csharp
 public class Student
 {
    	private string _firstName; //姓氏
@@ -131,7 +131,7 @@ public class Student
 
 [规则3-4] 方法内的代码块注释。
 
-```C#
+```csharp
 public void UpdateHost
 {
     // 和服务器通信

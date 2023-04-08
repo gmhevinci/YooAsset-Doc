@@ -8,7 +8,7 @@
 
 ### Jenkins支持
 
-```c#
+```csharp
 public static void CollectSVC()
 {
     string savePath = ShaderVariantCollectorSettingData.Setting.SavePath;  
@@ -33,7 +33,7 @@ public static void CollectSVC()
 }
 ```
 
-```c#
+```csharp
 // 命令行调用
 %Projects_UnityEngine_Path% -batchmode -projectPath %Projects_UnityProject_Path% -executeMethod ET.CIHelper.CollectSVC -logFile %Projects_UnityProject_Path%/Logs/CIBuildSVC.log
 ```

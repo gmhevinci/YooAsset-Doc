@@ -78,7 +78,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/tuyoogame',
+            href: 'https://github.com/tuyoogame/YooAsset',
             label: 'GitHub',
             position: 'right',
           },

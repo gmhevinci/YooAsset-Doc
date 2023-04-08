@@ -42,7 +42,7 @@
 
   - DisableGroup 禁用分组。
 
-  ````c#
+  ````csharp
   //自定义扩展范例
   public class DisableGroup : IActiveRule
   {
@@ -96,7 +96,7 @@
   - AddressByGrouperAndFileName 以分组名+文件名为定位地址。
   - AddressByFolderAndFileName 以文件夹名+文件名为定位地址。
   
-  ````c#
+  ````csharp
   //自定义扩展范例
   public class AddressByFileName : IAddressRule
   {
@@ -118,7 +118,7 @@
   - PackGroup 以分组名称作为资源包名，收集的所有文件打进一个资源包。
   - PackRawFile 目录下的资源文件会被处理为原生资源包。
 
-  ````c#
+  ````csharp
   //自定义扩展范例
   public class PackDirectory : IPackRule
   {
@@ -145,7 +145,7 @@
   - CollectPrefab 只收集目录下的预制体文件
   - CollectSprite 只收集目录下的精灵类型的文件
 
-  ````c#
+  ````csharp
   //自定义扩展范例
   public class CollectScene : IFilterRule
   {

@@ -2,7 +2,7 @@
 
 初始化资源系统
 
-```c#
+```csharp
 // 初始化资源系统
 YooAssets.Initialize();
 
@@ -21,7 +21,7 @@ YooAssets.SetDefaultPackage(package);
 
 注意：该模式只在编辑器下起效
 
-````c#
+````csharp
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new EditorSimulateModeParameters();
@@ -36,7 +36,7 @@ private IEnumerator InitializeYooAsset()
 
 注意：该模式需要构建资源包
 
-````c#
+````csharp
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new OfflinePlayModeParameters();
@@ -58,7 +58,7 @@ private IEnumerator InitializeYooAsset()
 
 - FallbackHostServer : 备用的资源服务器IP地址。
 
-````c#
+````csharp
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new HostPlayModeParameters();

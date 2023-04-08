@@ -100,7 +100,7 @@
 
 使用内置构建管线来构建资源包。
 
-````c#
+````csharp
 private static void BuildInternal(BuildTarget buildTarget)
 {
     Debug.Log($"开始构建 : {buildTarget}");

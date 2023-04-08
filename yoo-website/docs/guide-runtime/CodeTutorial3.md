@@ -16,14 +16,14 @@
 
 - 在未开启可寻址模式下，location代表的是资源对象的完整路径。
 
-```c#
+```csharp
 // 以工程内的音频文件为例："Assets/GameRes/Audio/bgMusic.mp3" 
 package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic");
 ```
 
 - 在开启可寻址模式下，location代表的是资源对象可寻址地址。
 
-````c#
+````csharp
 // 以工程内的音频文件为例："Assets/GameRes/Audio/bgMusic.mp3" 
 // 需要在资源配置界面启用可寻址功能（Enable Addressable）。
 // 配置界面的可寻址规则为AddressByFileName，那么资源定位地址填写文件名称："bgMusic"
@@ -32,7 +32,7 @@ package.LoadAssetAsync<AudioClip>("bgMusic");
 
 ### 加载路径的匹配
 
-````C#
+````csharp
 // 不带扩展名的模糊匹配
 package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic");
 
@@ -42,7 +42,7 @@ package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
 
 ### 异步加载范例
 
-````C#
+````csharp
 // 委托加载方式
 void Start()
 {
@@ -54,7 +54,7 @@ void Handle_Completed(AssetOperationHandle handle)
     AudioClip audioClip = handle.AssetObject as AudioClip;
 }
 ````
-````C#
+````csharp
 // 协程加载方式
 IEnumerator Start()
 {
@@ -63,7 +63,7 @@ IEnumerator Start()
     AudioClip audioClip = handle.AssetObject as AudioClip;
 }
 ````
-````C#
+````csharp
 // Task加载方式
 async void Start()
 {
@@ -75,7 +75,7 @@ async void Start()
 
 ### 资源卸载范例
 
-````C#
+````csharp
 IEnumerator Start()
 {
     AssetOperationHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
@@ -91,7 +91,7 @@ IEnumerator Start()
 
 注意：只有调用资源释放方法，资源对象才会在内存里被移除。
 
-````c#
+````csharp
 private void UnloadAssets()
 {
     var package = YooAssets.GetAssetsPackage("DefaultPackage");
@@ -101,7 +101,7 @@ private void UnloadAssets()
 
 ### 预制体加载范例
 
-````C#
+````csharp
 IEnumerator Start()
 {
     AssetOperationHandle handle = package.LoadAssetAsync<GameObject>("Assets/GameRes/Panel/login.prefab");
@@ -115,7 +115,7 @@ IEnumerator Start()
 
 例如：通过TexturePacker创建的图集，如果需要访问图集的精灵对象，可以通过子对象加载接口。
 
-````c#
+````csharp
 IEnumerator Start()
 {
     SubAssetsOperationHandle handle = package.LoadSubAssetsAsync<Sprite>(location);
@@ -129,7 +129,7 @@ IEnumerator Start()
 
 注意：当加载新的主场景的时候，会自动释放之前加载的主场景以及附加场景。
 
-````c#
+````csharp
 IEnumerator Start()
 {
     string location = "Assets/GameRes/Scene/Login";
@@ -145,7 +145,7 @@ IEnumerator Start()
 
 例如：wwise的初始化文件
 
-````c#
+````csharp
 IEnumerator Start()
 {
     string location = "Assets/GameRes/wwise/init.bnk";
@@ -161,7 +161,7 @@ IEnumerator Start()
 
 通过资源标签来获取资源信息列表。
 
-````c#
+````csharp
 void GetAssetInfosByTag(string tag)
 {
     AssetInfo[] assetInfos = package.GetAssetInfos(tag);

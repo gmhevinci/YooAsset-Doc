@@ -47,7 +47,7 @@ YooAsset分俩部分，编辑器代码和运行时代码。因为工具界面是
 
 1. 资源包收集工具替代方案
 
-````C#
+````csharp
 // 推荐直接手动编辑资源收集配置文件，在Sample工程里可以找到AssetBundleCollectorConfig.xml的文件，我们直接拿过来做模板。
 // 然后通过以下代码来导入配置文件，成功之后AssetBundleCollectorSetting.asset文件会被刷新，就可以运行游戏了。
 // 注意：每次修改完XML文件，都需要导入配置文件。
@@ -56,19 +56,19 @@ AssetBundleCollectorConfig.ImportXmlConfig("C://Demo//Assets//AssetBundleCollect
 
 2. 资源包构建工具替代方案
 
-````c#
+````csharp
 // 资源包构建可以直接参考教程文档，在文档的最下面有Jenkins支持介绍。
 ````
 
 3. 资源包报告工具替代方案
 
-````c#
+````csharp
 // 我们可以使用Unity2019或更高版本来创建一个包含YooAsset的工程查看构建报告。
 ````
 
 4. 资源包调试工具替代方案
 
-````c#
+````csharp
 // YooAsset支持真机远程调试，我们可以使用Unity2019或更高版本来创建一个包含YooAsset的工程调试。
 // 如果想在编辑器下调试，可以仿照编写一个调试界面。
 ````

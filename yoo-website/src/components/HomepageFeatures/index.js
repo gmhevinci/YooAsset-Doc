@@ -4,32 +4,29 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: '易于上手',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        不需要复杂的界面配置，专注于中国开发者的使用体验，可以帮助研发团队快速部署和交付游戏。
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: '功能强大',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        可以满足商业化游戏的各类需求，十大系统特点助力研发团队提高产品品质。
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: '永久免费',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        秉持开源精神，无论是公司或者个人可以永久免费使用。
       </>
     ),
   },

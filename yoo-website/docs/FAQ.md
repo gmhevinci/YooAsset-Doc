@@ -39,6 +39,14 @@ WebGL平台不支持资源文件加密。在构建选项里，可以将加密方
 
 检查下手机沙盒内容是否存储在SD卡里。
 
+### 问题：太空战机DEMO报错：Exception：AndroidJavaException: java.lang.NoSuchMethodError: no non-static method with name='CheckAssetExist' 
+
+可以搜索相关源代码：StreamingAssetsHelperEditor.cs 
+
+该脚本主要作用是在安卓平台下构建APK的时候，自动注入一段代码。该段代码的作用是用于查询StreamingAssets文件夹内是否包括某个文件。如果提示错误说明注入失败了，需要自己排查原因。
+
+另外一个解决方案就是记录StreamingAssets目录下的文件名称，然后生成一个清单。在游戏初始化的时候加载该清单，然后配合修改该脚本StreamingAssetsHelper.cs
+
 ### 问题：YooAsset支持Unity2018吗
 
 YooAsset分俩部分，编辑器代码和运行时代码。因为工具界面是使用UIElements编写的，所以在Unity2019以前的版本是使用不了界面化工具。但是这并没有影响我们使用YooAsset，以下提供一种解决方案。

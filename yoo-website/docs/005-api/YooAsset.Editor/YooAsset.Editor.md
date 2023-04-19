@@ -18,8 +18,6 @@
 
 ### [AssetBundleBuilderTools](../YooAsset.Editor/AssetBundleBuilderTools.md)
 
-### [AssetBundleBuilderWindow](../YooAsset.Editor/AssetBundleBuilderWindow.md)
-
 ### [AssetBundleCollector](../YooAsset.Editor/AssetBundleCollector.md)
 
 ### [AssetBundleCollectorConfig](../YooAsset.Editor/AssetBundleCollectorConfig.md)
@@ -32,15 +30,9 @@
 
 ### [AssetBundleCollectorSettingData](../YooAsset.Editor/AssetBundleCollectorSettingData.md)
 
-### [AssetBundleCollectorWindow](../YooAsset.Editor/AssetBundleCollectorWindow.md)
-
-### [AssetBundleDebuggerWindow](../YooAsset.Editor/AssetBundleDebuggerWindow.md)
-
 ### [AssetBundleInspector](../YooAsset.Editor/AssetBundleInspector.md)
 
 ### [AssetBundleRecorder](../YooAsset.Editor/AssetBundleRecorder.md)
-
-### [AssetBundleReporterWindow](../YooAsset.Editor/AssetBundleReporterWindow.md)
 
 ### [AssetBundleSimulateBuilder](../YooAsset.Editor/AssetBundleSimulateBuilder.md)
 
@@ -57,15 +49,15 @@
 ### [BuildMapContext](../YooAsset.Editor/BuildMapContext.md)
 
 ### [BuildParameters](../YooAsset.Editor/BuildParameters.md)
-
+构建参数
 ### [BuildParameters.SBPBuildParameters](../YooAsset.Editor/BuildParameters.SBPBuildParameters.md)
-
+SBP构建参数
 ### [BuildParametersContext](../YooAsset.Editor/BuildParametersContext.md)
 
 ### [BuildReport](../YooAsset.Editor/BuildReport.md)
-
+构建报告
 ### [BuildResult](../YooAsset.Editor/BuildResult.md)
-
+构建结果
 ### [BuildRunner](../YooAsset.Editor/BuildRunner.md)
 
 ### [CollectAll](../YooAsset.Editor/CollectAll.md)
@@ -91,11 +83,11 @@
 ### [DisableGroup](../YooAsset.Editor/DisableGroup.md)
 
 ### [DisplayNameAttribute](../YooAsset.Editor/DisplayNameAttribute.md)
-
+编辑器显示名字
 ### [DisplayNameAttributeHelper](../YooAsset.Editor/DisplayNameAttributeHelper.md)
 
 ### [EditorTools](../YooAsset.Editor/EditorTools.md)
-
+编辑器工具类
 ### [EnableGroup](../YooAsset.Editor/EnableGroup.md)
 
 ### [EncryptionNone](../YooAsset.Editor/EncryptionNone.md)
@@ -103,19 +95,31 @@
 ### [ManifestContext](../YooAsset.Editor/ManifestContext.md)
 
 ### [PackCollector](../YooAsset.Editor/PackCollector.md)
-
+以收集器路径作为资源包名
+注意：收集的所有文件打进一个资源包
 ### [PackDirectory](../YooAsset.Editor/PackDirectory.md)
-
+以父类文件夹路径作为资源包名
+注意：文件夹下所有文件打进一个资源包
+例如：&quot;Assets/UIPanel/Shop/Image/backgroud.png&quot; --&gt; &quot;assets_uipanel_shop_image.bundle&quot;
+例如：&quot;Assets/UIPanel/Shop/View/main.prefab&quot; --&gt; &quot;assets_uipanel_shop_view.bundle&quot;
 ### [PackGroup](../YooAsset.Editor/PackGroup.md)
-
+以分组名称作为资源包名
+注意：收集的所有文件打进一个资源包
 ### [PackRawFile](../YooAsset.Editor/PackRawFile.md)
-
+打包原生文件
 ### [PackSeparately](../YooAsset.Editor/PackSeparately.md)
-
+以文件路径作为资源包名
+注意：每个文件独自打资源包
+例如：&quot;Assets/UIPanel/Shop/Image/backgroud.png&quot; --&gt; &quot;assets_uipanel_shop_image_backgroud.bundle&quot;
+例如：&quot;Assets/UIPanel/Shop/View/main.prefab&quot; --&gt; &quot;assets_uipanel_shop_view_main.bundle&quot;
 ### [PackShaderVariants](../YooAsset.Editor/PackShaderVariants.md)
-
+打包着色器变种集合
 ### [PackTopDirectory](../YooAsset.Editor/PackTopDirectory.md)
-
+以收集器路径下顶级文件夹为资源包名
+注意：文件夹下所有文件打进一个资源包
+例如：收集器路径为 &quot;Assets/UIPanel&quot;
+例如：&quot;Assets/UIPanel/Shop/Image/backgroud.png&quot; --&gt; &quot;assets_uipanel_shop.bundle&quot;
+例如：&quot;Assets/UIPanel/Shop/View/main.prefab&quot; --&gt; &quot;assets_uipanel_shop.bundle&quot;
 ### [ReportAssetInfo](../YooAsset.Editor/ReportAssetInfo.md)
 
 ### [ReportBundleInfo](../YooAsset.Editor/ReportBundleInfo.md)
@@ -139,12 +143,6 @@
 ### [ShaderVariantCollectorSetting](../YooAsset.Editor/ShaderVariantCollectorSetting.md)
 
 ### [ShaderVariantCollectorSettingData](../YooAsset.Editor/ShaderVariantCollectorSettingData.md)
-
-### [ShaderVariantCollectorWindow](../YooAsset.Editor/ShaderVariantCollectorWindow.md)
-
-### [SplitView](../YooAsset.Editor/SplitView.md)
-
-### [SplitView.UxmlFactory](../YooAsset.Editor/SplitView.UxmlFactory.md)
 
 ### [TaskAttribute](../YooAsset.Editor/TaskAttribute.md)
 
@@ -178,8 +176,6 @@
 
 ### [TaskVerifyBuildResult_SBP](../YooAsset.Editor/TaskVerifyBuildResult_SBP.md)
 
-### [UxmlLoader](../YooAsset.Editor/UxmlLoader.md)
-
 ### [WindowsDefine](../YooAsset.Editor/WindowsDefine.md)
 
 ## Structs
@@ -193,31 +189,31 @@
 
 ## Interfaces
 ### [IActiveRule](../YooAsset.Editor/IActiveRule.md)
-
+资源分组激活规则接口
 ### [IAddressRule](../YooAsset.Editor/IAddressRule.md)
-
+寻址规则接口
 ### [IBuildTask](../YooAsset.Editor/IBuildTask.md)
 
 ### [IContextObject](../YooAsset.Editor/IContextObject.md)
 
 ### [IFilterRule](../YooAsset.Editor/IFilterRule.md)
-
+资源过滤规则接口
 ### [IPackRule](../YooAsset.Editor/IPackRule.md)
-
+资源打包规则接口
 ## Enums
 ### [EAssetFileExtension](../YooAsset.Editor/EAssetFileExtension.md)
-
+资源文件格式
 ### [EAssetSearchType](../YooAsset.Editor/EAssetSearchType.md)
-
+资源搜索类型
 ### [EBuildMode](../YooAsset.Editor/EBuildMode.md)
-
+资源包流水线的构建模式
 ### [EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md)
-
+构建管线类型
 ### [ECollectorType](../YooAsset.Editor/ECollectorType.md)
 
 ### [ECompressOption](../YooAsset.Editor/ECompressOption.md)
-
+AssetBundle压缩选项
 ### [ECopyBuildinFileOption](../YooAsset.Editor/ECopyBuildinFileOption.md)
-
+首包资源文件的拷贝方式
 ### [EOutputNameStyle](../YooAsset.Editor/EOutputNameStyle.md)
-
+输出文件名称的样式

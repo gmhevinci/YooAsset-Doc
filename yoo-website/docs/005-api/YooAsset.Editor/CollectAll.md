@@ -6,7 +6,7 @@ sidebar_label: CollectAll
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L25)
 ```csharp title="Declaration"
 [DisplayName("收集所有资源")]
 public class CollectAll : IFilterRule
@@ -14,7 +14,7 @@ public class CollectAll : IFilterRule
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L28)
 ```csharp title="Declaration"
 public bool IsCollectAsset(FilterRuleData data)
 ```

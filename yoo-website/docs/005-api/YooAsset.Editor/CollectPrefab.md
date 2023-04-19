@@ -6,7 +6,7 @@ sidebar_label: CollectPrefab
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L43)
 ```csharp title="Declaration"
 [DisplayName("收集预制体")]
 public class CollectPrefab : IFilterRule
@@ -14,7 +14,7 @@ public class CollectPrefab : IFilterRule
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L46)
 ```csharp title="Declaration"
 public bool IsCollectAsset(FilterRuleData data)
 ```

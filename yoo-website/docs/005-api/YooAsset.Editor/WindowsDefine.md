@@ -6,14 +6,7 @@ sidebar_label: WindowsDefine
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorDefine.cs#L5)
 ```csharp title="Declaration"
 public class WindowsDefine
-```
-## Fields
-### DockedWindowTypes
-
-
-```csharp title="Declaration"
-public static readonly Type[] DockedWindowTypes
 ```

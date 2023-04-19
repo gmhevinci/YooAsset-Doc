@@ -6,45 +6,45 @@ sidebar_label: AssetBundleCollectorSettingData
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L10)
 ```csharp title="Declaration"
 public class AssetBundleCollectorSettingData
 ```
 ## Properties
 ### IsDirty
-
-
+配置数据是否被修改
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L27)
 ```csharp title="Declaration"
 public static bool IsDirty { get; }
 ```
 ### Setting
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L135)
 ```csharp title="Declaration"
 public static AssetBundleCollectorSetting Setting { get; }
 ```
 ## Methods
 ### SaveFile()
-
-
+存储配置文件
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L148)
 ```csharp title="Declaration"
 public static void SaveFile()
 ```
 ### FixFile()
-
-
+修复配置文件
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L162)
 ```csharp title="Declaration"
 public static void FixFile()
 ```
 ### ClearAll()
-
-
+清空所有数据
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L174)
 ```csharp title="Declaration"
 public static void ClearAll()
 ```
 ### GetActiveRuleNames()
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L180)
 ```csharp title="Declaration"
 public static List<RuleDisplayName> GetActiveRuleNames()
 ```
@@ -54,7 +54,7 @@ public static List<RuleDisplayName> GetActiveRuleNames()
 `System.Collections.Generic.List<YooAsset.Editor.RuleDisplayName>`
 ### GetAddressRuleNames()
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L192)
 ```csharp title="Declaration"
 public static List<RuleDisplayName> GetAddressRuleNames()
 ```
@@ -64,7 +64,7 @@ public static List<RuleDisplayName> GetAddressRuleNames()
 `System.Collections.Generic.List<YooAsset.Editor.RuleDisplayName>`
 ### GetPackRuleNames()
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L204)
 ```csharp title="Declaration"
 public static List<RuleDisplayName> GetPackRuleNames()
 ```
@@ -74,7 +74,7 @@ public static List<RuleDisplayName> GetPackRuleNames()
 `System.Collections.Generic.List<YooAsset.Editor.RuleDisplayName>`
 ### GetFilterRuleNames()
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L216)
 ```csharp title="Declaration"
 public static List<RuleDisplayName> GetFilterRuleNames()
 ```
@@ -84,7 +84,7 @@ public static List<RuleDisplayName> GetFilterRuleNames()
 `System.Collections.Generic.List<YooAsset.Editor.RuleDisplayName>`
 ### HasActiveRuleName(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L237)
 ```csharp title="Declaration"
 public static bool HasActiveRuleName(string ruleName)
 ```
@@ -101,7 +101,7 @@ public static bool HasActiveRuleName(string ruleName)
 
 ### HasAddressRuleName(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L241)
 ```csharp title="Declaration"
 public static bool HasAddressRuleName(string ruleName)
 ```
@@ -118,7 +118,7 @@ public static bool HasAddressRuleName(string ruleName)
 
 ### HasPackRuleName(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L245)
 ```csharp title="Declaration"
 public static bool HasPackRuleName(string ruleName)
 ```
@@ -135,7 +135,7 @@ public static bool HasPackRuleName(string ruleName)
 
 ### HasFilterRuleName(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L249)
 ```csharp title="Declaration"
 public static bool HasFilterRuleName(string ruleName)
 ```
@@ -152,7 +152,7 @@ public static bool HasFilterRuleName(string ruleName)
 
 ### GetActiveRuleInstance(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L254)
 ```csharp title="Declaration"
 public static IActiveRule GetActiveRuleInstance(string ruleName)
 ```
@@ -169,7 +169,7 @@ public static IActiveRule GetActiveRuleInstance(string ruleName)
 
 ### GetAddressRuleInstance(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L271)
 ```csharp title="Declaration"
 public static IAddressRule GetAddressRuleInstance(string ruleName)
 ```
@@ -186,7 +186,7 @@ public static IAddressRule GetAddressRuleInstance(string ruleName)
 
 ### GetPackRuleInstance(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L288)
 ```csharp title="Declaration"
 public static IPackRule GetPackRuleInstance(string ruleName)
 ```
@@ -203,7 +203,7 @@ public static IPackRule GetPackRuleInstance(string ruleName)
 
 ### GetFilterRuleInstance(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L305)
 ```csharp title="Declaration"
 public static IFilterRule GetFilterRuleInstance(string ruleName)
 ```
@@ -220,7 +220,7 @@ public static IFilterRule GetFilterRuleInstance(string ruleName)
 
 ### ModifyPackageView(bool)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L324)
 ```csharp title="Declaration"
 public static void ModifyPackageView(bool showPackageView)
 ```
@@ -233,7 +233,7 @@ public static void ModifyPackageView(bool showPackageView)
 
 ### ModifyAddressable(bool)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L329)
 ```csharp title="Declaration"
 public static void ModifyAddressable(bool enableAddressable)
 ```
@@ -246,7 +246,7 @@ public static void ModifyAddressable(bool enableAddressable)
 
 ### ModifyUniqueBundleName(bool)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L334)
 ```csharp title="Declaration"
 public static void ModifyUniqueBundleName(bool uniqueBundleName)
 ```
@@ -259,7 +259,7 @@ public static void ModifyUniqueBundleName(bool uniqueBundleName)
 
 ### ModifyShowEditorAlias(bool)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L339)
 ```csharp title="Declaration"
 public static void ModifyShowEditorAlias(bool showAlias)
 ```
@@ -272,7 +272,7 @@ public static void ModifyShowEditorAlias(bool showAlias)
 
 ### CreatePackage(string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L346)
 ```csharp title="Declaration"
 public static AssetBundleCollectorPackage CreatePackage(string packageName)
 ```
@@ -289,7 +289,7 @@ public static AssetBundleCollectorPackage CreatePackage(string packageName)
 
 ### RemovePackage(AssetBundleCollectorPackage)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L354)
 ```csharp title="Declaration"
 public static void RemovePackage(AssetBundleCollectorPackage package)
 ```
@@ -302,7 +302,7 @@ public static void RemovePackage(AssetBundleCollectorPackage package)
 
 ### ModifyPackage(AssetBundleCollectorPackage)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L365)
 ```csharp title="Declaration"
 public static void ModifyPackage(AssetBundleCollectorPackage package)
 ```
@@ -315,7 +315,7 @@ public static void ModifyPackage(AssetBundleCollectorPackage package)
 
 ### CreateGroup(AssetBundleCollectorPackage, string)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L374)
 ```csharp title="Declaration"
 public static AssetBundleCollectorGroup CreateGroup(AssetBundleCollectorPackage package, string groupName)
 ```
@@ -333,7 +333,7 @@ public static AssetBundleCollectorGroup CreateGroup(AssetBundleCollectorPackage 
 
 ### RemoveGroup(AssetBundleCollectorPackage, AssetBundleCollectorGroup)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L382)
 ```csharp title="Declaration"
 public static void RemoveGroup(AssetBundleCollectorPackage package, AssetBundleCollectorGroup group)
 ```
@@ -347,7 +347,7 @@ public static void RemoveGroup(AssetBundleCollectorPackage package, AssetBundleC
 
 ### ModifyGroup(AssetBundleCollectorPackage, AssetBundleCollectorGroup)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L393)
 ```csharp title="Declaration"
 public static void ModifyGroup(AssetBundleCollectorPackage package, AssetBundleCollectorGroup group)
 ```
@@ -361,7 +361,7 @@ public static void ModifyGroup(AssetBundleCollectorPackage package, AssetBundleC
 
 ### CreateCollector(AssetBundleCollectorGroup, AssetBundleCollector)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L402)
 ```csharp title="Declaration"
 public static void CreateCollector(AssetBundleCollectorGroup group, AssetBundleCollector collector)
 ```
@@ -375,7 +375,7 @@ public static void CreateCollector(AssetBundleCollectorGroup group, AssetBundleC
 
 ### RemoveCollector(AssetBundleCollectorGroup, AssetBundleCollector)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L407)
 ```csharp title="Declaration"
 public static void RemoveCollector(AssetBundleCollectorGroup group, AssetBundleCollector collector)
 ```
@@ -389,7 +389,7 @@ public static void RemoveCollector(AssetBundleCollectorGroup group, AssetBundleC
 
 ### ModifyCollector(AssetBundleCollectorGroup, AssetBundleCollector)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L418)
 ```csharp title="Declaration"
 public static void ModifyCollector(AssetBundleCollectorGroup group, AssetBundleCollector collector)
 ```
@@ -402,8 +402,8 @@ public static void ModifyCollector(AssetBundleCollectorGroup group, AssetBundleC
 | [YooAsset.Editor.AssetBundleCollector](../YooAsset.Editor/AssetBundleCollector.md) | *collector* |
 
 ### GetPackageAllTags(string)
-
-
+获取所有的资源标签
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSettingData.cs#L429)
 ```csharp title="Declaration"
 public static string GetPackageAllTags(string packageName)
 ```

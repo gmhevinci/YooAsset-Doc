@@ -6,7 +6,7 @@ sidebar_label: TaskUpdateBundleInfo
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskUpdateBundleInfo.cs#L9)
 ```csharp title="Declaration"
 [Task("更新资源包信息")]
 public class TaskUpdateBundleInfo : IBuildTask

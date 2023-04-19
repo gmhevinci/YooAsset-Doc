@@ -6,7 +6,7 @@ sidebar_label: CollectSprite
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L52)
 ```csharp title="Declaration"
 [DisplayName("收集精灵类型的纹理")]
 public class CollectSprite : IFilterRule
@@ -14,7 +14,7 @@ public class CollectSprite : IFilterRule
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultFilterRule.cs#L55)
 ```csharp title="Declaration"
 public bool IsCollectAsset(FilterRuleData data)
 ```

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docfx docfx.json
+docfx metadata
 
 dotnet ../../tools/docfx/DocfxEx.dll

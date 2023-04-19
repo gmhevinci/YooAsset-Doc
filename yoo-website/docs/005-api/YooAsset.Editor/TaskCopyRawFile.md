@@ -6,7 +6,7 @@ sidebar_label: TaskCopyRawFile
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskCopyRawFile.cs#L8)
 ```csharp title="Declaration"
 [Task("拷贝原生文件")]
 public class TaskCopyRawFile : IBuildTask

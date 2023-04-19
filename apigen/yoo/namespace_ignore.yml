@@ -1,0 +1,4 @@
+apiRules:
+- exclude:
+    uidRegex: UnityEditor.Build.Pipeline.Tasks
+    type: Namespace

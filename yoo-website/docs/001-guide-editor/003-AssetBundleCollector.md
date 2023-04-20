@@ -122,7 +122,7 @@
   //自定义扩展范例
   public class PackDirectory : IPackRule
   {
-      PackRuleResult IPackRule.GetBundleName(PackRuleData data)
+      PackRuleResult IPackRule.GetPackRuleResult(PackRuleData data)
       {
           //"Assets/Config/test.txt" --> "Assets/Config"
           string bundleName = Path.GetDirectoryName(data.AssetPath);

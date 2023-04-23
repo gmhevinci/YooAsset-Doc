@@ -18,13 +18,6 @@ description: "以父类文件夹路径作为资源包名
 [DisplayName("资源包名: 父类文件夹路径")]
 public class PackDirectory : IPackRule
 ```
-## Fields
-### StaticPackRule
-
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultPackRule.cs#L63)
-```csharp title="Declaration"
-public static PackDirectory StaticPackRule
-```
 
 ## Implements
 

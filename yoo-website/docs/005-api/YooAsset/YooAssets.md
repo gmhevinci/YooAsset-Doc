@@ -684,7 +684,7 @@ public static ResourcePackage CreatePackage(string packageName)
 
 ### GetPackage(string)
 获取资源包
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L111)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L112)
 ```csharp title="Declaration"
 public static ResourcePackage GetPackage(string packageName)
 ```
@@ -701,7 +701,7 @@ public static ResourcePackage GetPackage(string packageName)
 
 ### TryGetPackage(string)
 尝试获取资源包
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L123)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L124)
 ```csharp title="Declaration"
 public static ResourcePackage TryGetPackage(string packageName)
 ```
@@ -716,9 +716,22 @@ public static ResourcePackage TryGetPackage(string packageName)
 |:--- |:--- |:--- |
 | `System.String` | *packageName* | 资源包名称 |
 
+### DestroyPackage(string)
+销毁资源包
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L144)
+```csharp title="Declaration"
+public static void DestroyPackage(string packageName)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+|:--- |:--- |:--- |
+| `System.String` | *packageName* | 资源包名称 |
+
 ### HasPackage(string)
 检测资源包是否存在
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L143)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L159)
 ```csharp title="Declaration"
 public static bool HasPackage(string packageName)
 ```
@@ -735,7 +748,7 @@ public static bool HasPackage(string packageName)
 
 ### StartOperation(GameAsyncOperation)
 开启一个异步操作
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L160)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L176)
 ```csharp title="Declaration"
 public static void StartOperation(GameAsyncOperation operation)
 ```
@@ -748,7 +761,7 @@ public static void StartOperation(GameAsyncOperation operation)
 
 ### SetDownloadSystemBreakpointResumeFileSize(int)
 设置下载系统参数，启用断点续传功能文件的最小字节数
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L169)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L185)
 ```csharp title="Declaration"
 public static void SetDownloadSystemBreakpointResumeFileSize(int fileBytes)
 ```
@@ -761,7 +774,7 @@ public static void SetDownloadSystemBreakpointResumeFileSize(int fileBytes)
 
 ### SetDownloadSystemClearFileResponseCode(List&lt;long&gt;)
 设置下载系统参数，下载失败后清理文件的HTTP错误码
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L177)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L193)
 ```csharp title="Declaration"
 public static void SetDownloadSystemClearFileResponseCode(List<long> codes)
 ```
@@ -774,7 +787,7 @@ public static void SetDownloadSystemClearFileResponseCode(List<long> codes)
 
 ### SetDownloadSystemCertificateHandler(CertificateHandler)
 设置下载系统参数，自定义的证书认证实例
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L185)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L201)
 ```csharp title="Declaration"
 public static void SetDownloadSystemCertificateHandler(CertificateHandler instance)
 ```
@@ -787,7 +800,7 @@ public static void SetDownloadSystemCertificateHandler(CertificateHandler instan
 
 ### SetDownloadSystemUnityWebRequest(DownloadRequestDelegate)
 设置下载系统参数，自定义下载请求
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L193)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L209)
 ```csharp title="Declaration"
 public static void SetDownloadSystemUnityWebRequest(DownloadRequestDelegate requestDelegate)
 ```
@@ -800,7 +813,7 @@ public static void SetDownloadSystemUnityWebRequest(DownloadRequestDelegate requ
 
 ### SetOperationSystemMaxTimeSlice(long)
 设置异步系统参数，每帧执行消耗的最大时间切片（单位：毫秒）
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L201)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L217)
 ```csharp title="Declaration"
 public static void SetOperationSystemMaxTimeSlice(long milliseconds)
 ```
@@ -813,7 +826,7 @@ public static void SetOperationSystemMaxTimeSlice(long milliseconds)
 
 ### SetCacheSystemCachedFileVerifyLevel(EVerifyLevel)
 设置缓存系统参数，已经缓存文件的校验等级
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L214)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L230)
 ```csharp title="Declaration"
 public static void SetCacheSystemCachedFileVerifyLevel(EVerifyLevel verifyLevel)
 ```
@@ -826,7 +839,7 @@ public static void SetCacheSystemCachedFileVerifyLevel(EVerifyLevel verifyLevel)
 
 ### GetStreamingAssetBuildinFolderName()
 获取内置文件夹名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L224)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L240)
 ```csharp title="Declaration"
 public static string GetStreamingAssetBuildinFolderName()
 ```
@@ -836,7 +849,7 @@ public static string GetStreamingAssetBuildinFolderName()
 `System.String`
 ### GetSandboxRoot()
 获取沙盒的根路径
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L232)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L248)
 ```csharp title="Declaration"
 public static string GetSandboxRoot()
 ```
@@ -845,8 +858,8 @@ public static string GetSandboxRoot()
 
 `System.String`
 ### ClearSandbox()
-清空沙盒目录
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L240)
+清空沙盒目录（需要重启APP）
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/YooAssets.cs#L256)
 ```csharp title="Declaration"
 public static void ClearSandbox()
 ```

@@ -24,11 +24,11 @@ public bool Success
 ```csharp title="Declaration"
 public string FailedTask
 ```
-### FailedInfo
+### ErrorInfo
 构建失败的信息
 ###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildSystem/BuildResult.cs#L22)
 ```csharp title="Declaration"
-public string FailedInfo
+public string ErrorInfo
 ```
 ### OutputPackageDirectory
 输出的补丁包目录

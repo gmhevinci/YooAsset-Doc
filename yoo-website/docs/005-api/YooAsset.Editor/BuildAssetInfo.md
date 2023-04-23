@@ -132,17 +132,18 @@ public void AddReferenceBundleName(string bundleName)
 |:--- |:--- |
 | `System.String` | *bundleName* |
 
-### CalculateShareBundleName(bool, string, string)
+### CalculateShareBundleName(IShareAssetPackRule, bool, string, string)
 计算共享资源包的完整包名
 ###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildAssetInfo.cs#L160)
 ```csharp title="Declaration"
-public void CalculateShareBundleName(bool uniqueBundleName, string packageName, string shadersBundleName)
+public void CalculateShareBundleName(IShareAssetPackRule packRule, bool uniqueBundleName, string packageName, string shadersBundleName)
 ```
 
 ##### Parameters
 
 | Type | Name |
 |:--- |:--- |
+| [YooAsset.Editor.IShareAssetPackRule](../YooAsset.Editor/IShareAssetPackRule.md) | *packRule* |
 | `System.Boolean` | *uniqueBundleName* |
 | `System.String` | *packageName* |
 | `System.String` | *shadersBundleName* |

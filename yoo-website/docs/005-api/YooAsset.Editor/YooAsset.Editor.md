@@ -80,6 +80,8 @@ SBP构建参数
 
 ### [DefaultPackRule](../YooAsset.Editor/DefaultPackRule.md)
 
+### [DefaultShareAssetPackRule](../YooAsset.Editor/DefaultShareAssetPackRule.md)
+
 ### [DisableGroup](../YooAsset.Editor/DisableGroup.md)
 
 ### [DisplayNameAttribute](../YooAsset.Editor/DisplayNameAttribute.md)
@@ -200,6 +202,8 @@ SBP构建参数
 资源过滤规则接口
 ### [IPackRule](../YooAsset.Editor/IPackRule.md)
 资源打包规则接口
+### [IShareAssetPackRule](../YooAsset.Editor/IShareAssetPackRule.md)
+共享资源的打包规则
 ## Enums
 ### [EAssetFileExtension](../YooAsset.Editor/EAssetFileExtension.md)
 资源文件格式

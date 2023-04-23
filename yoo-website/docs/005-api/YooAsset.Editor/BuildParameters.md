@@ -66,45 +66,51 @@ public bool EnableLog
 ```csharp title="Declaration"
 public bool VerifyBuildingResult
 ```
-### EncryptionServices
-加密类
+### ShareAssetPackRule
+共享资源的打包规则
 ###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L83)
+```csharp title="Declaration"
+public IShareAssetPackRule ShareAssetPackRule
+```
+### EncryptionServices
+资源的加密接口
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L88)
 ```csharp title="Declaration"
 public IEncryptionServices EncryptionServices
 ```
 ### OutputNameStyle
 补丁文件名称的样式
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L88)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L93)
 ```csharp title="Declaration"
 public EOutputNameStyle OutputNameStyle
 ```
 ### CopyBuildinFileOption
 拷贝内置资源选项
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L93)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L98)
 ```csharp title="Declaration"
 public ECopyBuildinFileOption CopyBuildinFileOption
 ```
 ### CopyBuildinFileTags
 拷贝内置资源的标签
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L98)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L103)
 ```csharp title="Declaration"
 public string CopyBuildinFileTags
 ```
 ### CompressOption
 压缩选项
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L103)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L108)
 ```csharp title="Declaration"
 public ECompressOption CompressOption
 ```
 ### DisableWriteTypeTree
 禁止写入类型树结构（可以降低包体和内存并提高加载效率）
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L108)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L113)
 ```csharp title="Declaration"
 public bool DisableWriteTypeTree
 ```
 ### IgnoreTypeTreeChanges
 忽略类型树变化
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L113)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L118)
 ```csharp title="Declaration"
 public bool IgnoreTypeTreeChanges
 ```

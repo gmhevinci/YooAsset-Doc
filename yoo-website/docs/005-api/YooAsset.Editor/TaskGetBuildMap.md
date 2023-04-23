@@ -12,11 +12,11 @@ sidebar_label: TaskGetBuildMap
 public class TaskGetBuildMap : IBuildTask
 ```
 ## Methods
-### CreateBuildMap(EBuildMode, string)
+### CreateBuildMap(EBuildMode, IShareAssetPackRule, string)
 资源构建上下文
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskGetBuildMap.cs#L27)
+###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskGetBuildMap.cs#L28)
 ```csharp title="Declaration"
-public BuildMapContext CreateBuildMap(EBuildMode buildMode, string packageName)
+public BuildMapContext CreateBuildMap(EBuildMode buildMode, IShareAssetPackRule packRule, string packageName)
 ```
 
 ##### Returns
@@ -28,6 +28,7 @@ public BuildMapContext CreateBuildMap(EBuildMode buildMode, string packageName)
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.Editor.EBuildMode](../YooAsset.Editor/EBuildMode.md) | *buildMode* |
+| [YooAsset.Editor.IShareAssetPackRule](../YooAsset.Editor/IShareAssetPackRule.md) | *packRule* |
 | `System.String` | *packageName* |
 
 

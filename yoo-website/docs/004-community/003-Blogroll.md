@@ -1,5 +1,7 @@
 # 友情链接
 
+介绍一些集成了YooAsset的开源库。
+
 [ET Framework](https://github.com/wqaetly/ET/tree/et7_fgui_yooasset_luban_huatuo) : ET 7.0 + FGUI + luban + huatuo + YooAsset + NKGMoba + UniTask，并提供常用的编辑器工具。
 
 [ETPro](https://github.com/526077247/ETPro) : ET6+YooAsset+HybridCLR

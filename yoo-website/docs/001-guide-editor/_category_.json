@@ -2,7 +2,7 @@
     "label": "Guide - Editor",
     "collapsible": true,
     "link": {
-      "type": "generated-index",
-      "description": "编辑器指引"
+        "type": "generated-index",
+        "description": "编辑器指引"
     }
 }

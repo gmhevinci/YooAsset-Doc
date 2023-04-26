@@ -1,5 +1,7 @@
 # 着色器变种收集
 
+学习如何进行着色器变种的收集。
+
 ![image](./Image/ShaderVariantCollector-img1.jpg)
 
 点击搜集变种按钮开始收集，请耐心等待结束。

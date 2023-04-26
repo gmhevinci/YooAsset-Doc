@@ -1,5 +1,7 @@
 # 资源配置
 
+学习资源配置界面。
+
 ![image](./Image/AssetCollector-img1.jpg)
 
 ### 界面介绍

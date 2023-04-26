@@ -1,5 +1,7 @@
 # 全局配置
 
+了解全局配置文件。
+
 ![image](./Image/Settings-img1.jpg)
 
 通过右键创建配置文件（Project窗体内右键 -> Create -> YooAsset -> Create Setting）

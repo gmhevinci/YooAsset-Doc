@@ -1,5 +1,7 @@
 # 资源构建
 
+学习资源构建界面。
+
 ![image](./Image/AssetBuilder-img1.jpg)
 
 ### 界面介绍

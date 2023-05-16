@@ -72,6 +72,44 @@
 
   点击构建按钮会开始构建流程，构建流程分为多个节点顺序执行，如果某个节点发生错误，会导致构建失败。错误信息可以在控制台查看。
 
+### 加密方法
+
+在Editor目录下实现一个继承IEncryptionServices接口的类。
+
+加密支持三种方式：
+
+- LoadFromFileOffset 通过文件偏移来解密加载。
+- LoadFromMemory 通过文件内存来解密加载。
+- LoadFromStream 通过文件流来解密加载。
+
+```C#
+// 文件偏移加密方式的示例代码
+public class FileOffsetEncryption : IEncryptionServices
+{
+    public EncryptResult Encrypt(EncryptFileInfo fileInfo)
+    {
+        if (fileInfo.BundleName.Contains("_gameres_audio"))
+        {
+            int offset = 32;
+            byte[] fileData = File.ReadAllBytes(fileInfo.FilePath);
+            var encryptedData = new byte[fileData.Length + offset];
+            Buffer.BlockCopy(fileData, 0, encryptedData, offset, fileData.Length);
+            
+            EncryptResult result = new EncryptResult();
+            result.LoadMethod = EBundleLoadMethod.LoadFromFileOffset;
+            result.EncryptedData = encryptedData;
+            return result;
+        }
+        else
+        {
+            EncryptResult result = new EncryptResult();
+            result.LoadMethod = EBundleLoadMethod.Normal;
+            return result;
+        }
+    }
+}
+```
+
 ### 补丁包
 
 构建成功后会在输出目录下找到补丁包文件夹，该文件夹名称为本次构建时指定的资源版本号。

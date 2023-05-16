@@ -65,6 +65,7 @@ private IEnumerator InitializeYooAsset()
 {
     var initParameters = new HostPlayModeParameters();
     initParameters.QueryServices = new QueryStreamingAssetsFileServices();
+    initParameters.DecryptionServices = new GameDecryptionServices();
     initParameters.DefaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
     initParameters.FallbackHostServer = "http://127.0.0.1/CDN2/Android/v1.0";
     yield return package.InitializeAsync(initParameters);
@@ -81,6 +82,39 @@ private class QueryStreamingAssetsFileServices : IQueryServices
     }
 }
 ````
+
+### 解密方法
+
+实现一个继承IDecryptionServices接口的运行时的类。
+
+```c#
+// 文件解密的示例代码
+// 注意：解密类必须配合加密类。
+private class GameDecryptionServices : IDecryptionServices
+{
+    public ulong LoadFromFileOffset(DecryptFileInfo fileInfo)
+    {
+        return 32;
+    }
+    
+    public byte[] LoadFromMemory(DecryptFileInfo fileInfo)
+    {
+        // 如果没有内存加密方式，可以返回空
+        throw new NotImplementedException();
+    }
+
+    public Stream LoadFromStream(DecryptFileInfo fileInfo)
+    {
+        // 如果没有流加密方式，可以返回空
+        throw new NotImplementedException();
+    }
+    
+    public uint GetManagedReadBufferSize()
+    {
+        return 1024;
+    }
+}
+```
 
 ### 源代码解析
 

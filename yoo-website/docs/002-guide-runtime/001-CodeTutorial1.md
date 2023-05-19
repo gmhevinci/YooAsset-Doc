@@ -27,7 +27,7 @@ YooAssets.SetDefaultPackage(package);
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new EditorSimulateModeParameters();
-    initParameters.SimulatePatchManifestPath = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");
+    initParameters.SimulateManifestFilePath  = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");
     yield return package.InitializeAsync(initParameters);
 }
 ````
@@ -68,7 +68,17 @@ private IEnumerator InitializeYooAsset()
     initParameters.DecryptionServices = new GameDecryptionServices();
     initParameters.DefaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
     initParameters.FallbackHostServer = "http://127.0.0.1/CDN2/Android/v1.0";
-    yield return package.InitializeAsync(initParameters);
+    var initOperation = package.InitializeAsync(initParameters);
+    yield return initOperation;
+    
+    if(initOperation.Status == EOperationStatus.Succeed)
+    {
+        Debug.Log("资源包初始化成功！");
+    }
+    else 
+    {
+        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    }
 }
 
 // 内置文件查询服务类
@@ -87,7 +97,7 @@ private class QueryStreamingAssetsFileServices : IQueryServices
 
 实现一个继承IDecryptionServices接口的运行时的类。
 
-```c#
+```csharp
 // 文件解密的示例代码
 // 注意：解密类必须配合加密类。
 private class GameDecryptionServices : IDecryptionServices

@@ -82,7 +82,7 @@
 - LoadFromMemory 通过文件内存来解密加载。
 - LoadFromStream 通过文件流来解密加载。
 
-```C#
+```csharp
 // 文件偏移加密方式的示例代码
 public class FileOffsetEncryption : IEncryptionServices
 {
@@ -155,6 +155,7 @@ private static void BuildInternal(BuildTarget buildTarget)
     buildParameters.PackageName = "DefaultPackage";
     buildParameters.PackageVersion = "1.0";
     buildParameters.VerifyBuildingResult = true;
+    buildParameters.ShareAssetPackRule = new DefaultShareAssetPackRule();
     buildParameters.CompressOption = ECompressOption.LZ4;
     buildParameters.OutputNameStyle = EOutputNameStyle.HashName;
     buildParameters.CopyBuildinFileOption = ECopyBuildinFileOption.None;

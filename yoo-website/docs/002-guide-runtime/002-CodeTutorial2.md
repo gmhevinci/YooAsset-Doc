@@ -36,15 +36,16 @@ private IEnumerator UpdatePackageVersion()
 ````csharp
 private IEnumerator UpdatePackageManifest()
 {
+    // 更新成功后自动保存版本号，作为下次初始化的版本。
+    // 也可以通过operation.SavePackageVersion()方法保存。
+    bool savePackageVersion = true;
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.UpdatePackageManifestAsync(packageVersion);
+    var operation = package.UpdatePackageManifestAsync(packageVersion, savePackageVersion);
     yield return operation;
 
     if (operation.Status == EOperationStatus.Succeed)
     {
         //更新成功
-        //注意：保存资源版本号作为下次默认启动的版本!
-        operation.SavePackageVersion();
     }
     else
     {
@@ -79,9 +80,8 @@ IEnumerator Download()
 {
     int downloadingMaxNum = 10;
     int failedTryAgain = 3;
-    int timeout = 60;
     var package = YooAssets.GetPackage("DefaultPackage");
-    var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain, timeout);
+    var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
     
     //没有需要下载的资源
     if (downloader.TotalDownloadCount == 0)

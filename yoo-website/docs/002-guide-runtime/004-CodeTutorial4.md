@@ -2,6 +2,42 @@
 
 了解一些常规的解决方案。
 
+### 视频打包和加载解决方案
+
+```csharp
+// 编写自定义打包规则，然后将脚本放在Editor目录下。
+// 然后在AssetBundleCollector界面对视频文件使用扩展的打包规则。
+public class PackVideo : IPackRule
+{
+    public PackRuleResult GetPackRuleResult(PackRuleData data)
+    {
+        string bundleName = data.AssetPath;
+        string fileExtension = Path.GetExtension(data.AssetPath);
+        fileExtension = fileExtension.Remove(0, 1);
+        PackRuleResult result = new PackRuleResult(bundleName, fileExtension);
+        return result;
+    }
+
+    bool IPackRule.IsRawFilePackRule()
+    {
+        return true; //视频文件作为原生文件管理
+    }
+}
+```
+
+```csharp
+// 视频加载范例
+public IEnumerator Start()
+{
+    var package = YooAssets.GetPackage("DefaultPackage");
+    var handle = package.LoadRawFileAsync(location);
+    yield return handle;
+    
+    _videoPlayer.url = handle.GetRawFilePath();
+    _videoPlayer.Play();
+}
+```
+
 ### 弱联网环境解决方案
 
 对于偏单机但是也有资源热更需求的项目。当玩家在无网络的时候，我们又不希望玩家卡在资源更新步骤而不能正常游戏。所以当玩家本地网络有问题的时候，我们可以跳过资源更新的步骤。

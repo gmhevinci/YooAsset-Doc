@@ -9,11 +9,18 @@
    打开管理界面 **Edit/Project Settings/Package Manager**
 
    ````
-   // 输入以下内容
+   // 输入以下内容（中国版）
    Name: package.openupm.cn
    URL: https://package.openupm.cn
    Scope(s): com.tuyoogame.yooasset
    ````
+
+   ```
+   // 输入以下内容（国际版）
+   Name: package.openupm.com
+   URL: https://package.openupm.com
+   Scope(s): com.tuyoogame.yooasset
+   ```
 
    ![image](./Image/QuickStart-img1.jpg)
 

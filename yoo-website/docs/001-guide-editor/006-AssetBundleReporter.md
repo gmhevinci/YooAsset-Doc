@@ -21,3 +21,9 @@
 可以查看资源包列表以及每个资源包所包含的资源对象。
 
 ![image](./Image/AssetReporter-img3.png)
+
+### 冗余资源列表视图
+
+在构建参数BuildParameters.AutoAnalyzeRedundancy为False的时候，资源系统底层不会在自动分析冗余资源，需要开发者自己手动配置来避免资源冗余。
+
+![image](./Image/AssetReporter-img4.png)

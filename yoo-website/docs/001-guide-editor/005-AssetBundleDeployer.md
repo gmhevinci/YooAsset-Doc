@@ -31,7 +31,7 @@ v1.0 代表的是APP版本，不是资源版本。在没有更换安装包的情
 下面的示例里一共上传过2次补丁包。第二次上传的补丁包会把第一次的版本记录文件（PackageManifest_DefaultPackage.version）覆盖掉。当我们想回退资源版本的时候，把第一次生成的版本记录文件覆盖到同目录下即可。
 
 ````
-v1.0（游戏版本）
+v1.0（APP版本）
 ├─PackageManifest_DefaultPackage.version
 ├─PackageManifest_DefaultPackage_2023-02-01-654.hash
 ├─PackageManifest_DefaultPackage_2023-02-01-654.bytes

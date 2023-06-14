@@ -155,6 +155,7 @@ private static void BuildInternal(BuildTarget buildTarget)
     buildParameters.PackageName = "DefaultPackage";
     buildParameters.PackageVersion = "1.0";
     buildParameters.VerifyBuildingResult = true;
+    buildParameters.AutoAnalyzeRedundancy = true;
     buildParameters.ShareAssetPackRule = new DefaultShareAssetPackRule();
     buildParameters.CompressOption = ECompressOption.LZ4;
     buildParameters.OutputNameStyle = EOutputNameStyle.HashName;

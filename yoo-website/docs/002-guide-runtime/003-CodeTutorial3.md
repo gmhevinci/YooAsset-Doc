@@ -9,6 +9,8 @@
 - LoadAssetAsync() 异步加载资源对象
 - LoadSubAssetsSync() 同步加载子资源对象
 - LoadSubAssetsAsync() 异步加载子资源对象
+- LoadAllAssetsSync() 同步加载资源包内所有资源对象
+- LoadAllAssetsAsync() 异步加载资源包内所有资源对象
 - LoadRawFileSync() 同步获取原生文件
 - LoadRawFileAsync() 异步获取原生文件
 
@@ -127,6 +129,22 @@ IEnumerator Start()
 }
 ````
 
+### 资源包内所有对象加载范例
+
+例如：我们将所有配置表打进了一个资源包里，我们想把所有配置文件一次性全部加载出来解析。
+
+```csharp
+IEnumerator Start()
+{
+    AllAssetsOperationHandle handle = package.LoadAllAssetsAsync<UnityEngine.TextAsset>(location);
+    yield return handle;
+    foreach(var assetObj in handle.AllAssetObjects)
+    {    
+        UnityEngine.TextAsset textAsset = assetObj as UnityEngine.TextAsset;
+    }
+}
+```
+
 ### 场景异步加载范例
 
 注意：当加载新的主场景的时候，会自动释放之前加载的主场景以及附加场景。
@@ -136,8 +154,8 @@ IEnumerator Start()
 {
     string location = "Assets/GameRes/Scene/Login";
     var sceneMode = UnityEngine.SceneManagement.LoadSceneMode.Single;
-    bool activateOnLoad = true;
-    SceneOperationHandle handle = package.LoadSceneAsync(location, sceneMode, activateOnLoad);
+    bool suspendLoad = false;
+    SceneOperationHandle handle = package.LoadSceneAsync(location, sceneMode, suspendLoad);
     yield return handle;
     Debug.Log($"Scene name is {handle.Scene.name}");
 }

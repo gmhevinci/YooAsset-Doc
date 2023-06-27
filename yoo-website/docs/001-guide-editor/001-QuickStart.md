@@ -56,9 +56,9 @@
 
 ### 系统需求
 
-支持版本: Unity2019.4+
+支持版本: Unity2019.4 & Unity2020.3 & Unity2021.3 & Unity2022.3
 
-支持平台: Windows、OSX、Android、iOS
+支持平台: Windows、OSX、Android、iOS、WebGL
 
 开发环境: .NET4.x
 
@@ -67,9 +67,9 @@
 ````
 Assets
 └─ YooAsset
-    ├─ Editor 编辑器源码目录  
-    ├─ Runtime 运行时源码目录 
+    ├─ Editor 编辑器源码目录
+    ├─ Runtime 运行时源码目录
     ├─ LICENSE 版权文档
-    └─ README 说明文档 
+    └─ README 说明文档
 ````
 

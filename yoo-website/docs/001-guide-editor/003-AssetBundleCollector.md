@@ -2,7 +2,7 @@
 
 学习资源配置界面。
 
-![image](./Image/AssetCollector-img1.jpg)
+![image](./Image/AssetCollector-img1.png)
 
 ### 界面介绍
 
@@ -33,6 +33,14 @@
 - Unique Bundle Name
 
   资源包名追加PackageName作为前缀。
+  
+- Location To Lower
+
+  资源定位地址大小写不敏感。
+
+- Include Asset GUID
+
+  资源清单里包含资源GUID信息。
 
 ### 资源分组
 

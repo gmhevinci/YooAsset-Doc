@@ -174,3 +174,31 @@
 
   资源分类标签列表，该收集器下收集的资源会全部被打上该标签。
 
+### 代码示例
+
+开发者可以通过访问收集器的实例类实现自定义需求。
+
+例如：下面示例是通过代码关闭某个Group
+
+```csharp
+using YooAsset.Editor;
+
+private void SetGroupDsiable(string packageName, string groupName)
+{
+    foreach (var package in AssetBundleCollectorSettingData.Setting.Packages)
+    {
+        if (package.PackageName == packageName)
+        {
+            foreach (var group in package.Groups)
+            {
+                if (group.GroupName == groupName)
+                {
+                    group.ActiveRuleName = nameof(DisableGroup);
+                    break;
+                }
+            }
+        }
+    }
+}
+```
+

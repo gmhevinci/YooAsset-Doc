@@ -64,7 +64,7 @@ private IEnumerator InitializeYooAsset()
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new HostPlayModeParameters();
-    initParameters.QueryServices = new QueryStreamingAssetsFileServices();
+    initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
     initParameters.DecryptionServices = new GameDecryptionServices();
     initParameters.DefaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
     initParameters.FallbackHostServer = "http://127.0.0.1/CDN2/Android/v1.0";
@@ -78,17 +78,6 @@ private IEnumerator InitializeYooAsset()
     else 
     {
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
-    }
-}
-
-// 内置文件查询服务类
-private class QueryStreamingAssetsFileServices : IQueryServices
-{
-    public bool QueryStreamingAssets(string fileName)
-    {
-        // StreamingAssetsHelper.cs是太空战机里提供的一个查询脚本。
-        string buildinFolderName = YooAssets.GetStreamingAssetBuildinFolderName();
-		return StreamingAssetsHelper.FileExists($"{buildinFolderName}/{fileName}");
     }
 }
 ````

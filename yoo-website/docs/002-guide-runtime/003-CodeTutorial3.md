@@ -177,6 +177,24 @@ IEnumerator Start()
 }
 ````
 
+### 配置文件加载范例
+
+````c#
+// 自定义的配置文件
+public class MyGameConfig: ScriptableObject
+{
+    ...
+}
+
+IEnumerator Start()
+{
+    string location = "Assets/GameRes/config/gameConfig.asset";
+    AssetOperationHandle handle = package.LoadAssetFileAsync(location);
+    yield return handle;
+    MyGameConfig gameCOnfig = handle.AssetObject as MyGameConfig;
+}
+````
+
 ### 获取资源信息列表
 
 通过资源标签来获取资源信息列表。

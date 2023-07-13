@@ -63,11 +63,12 @@ private IEnumerator InitializeYooAsset()
 ````csharp
 private IEnumerator InitializeYooAsset()
 {
+    string defaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
+    string fallbackHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
     var initParameters = new HostPlayModeParameters();
     initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
     initParameters.DecryptionServices = new GameDecryptionServices();
-    initParameters.DefaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
-    initParameters.FallbackHostServer = "http://127.0.0.1/CDN2/Android/v1.0";
+    initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
     

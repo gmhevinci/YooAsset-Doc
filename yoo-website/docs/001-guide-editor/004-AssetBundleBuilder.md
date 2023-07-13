@@ -197,7 +197,7 @@ private static string GetBuildPackageName()
 
 - **首包资源**
 
-  在构建应用程序的时候，我们希望将某些资源打进首包里，首包资源拷贝至StreamingAssets/BuildinFiles/目录下。首包资源如果发生变化，也可以通过热更新来更新资源。
+  在构建应用程序的时候，我们希望将某些资源打进首包里，首包资源拷贝至StreamingAssets/yoo/目录下。首包资源如果发生变化，也可以通过热更新来更新资源。
 
 - **补丁包**
 

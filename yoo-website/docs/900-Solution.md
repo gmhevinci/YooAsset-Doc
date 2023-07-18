@@ -165,6 +165,23 @@ private void ReleaseHandles()
 }
 ````
 
+### 微信小游戏支持解决方案
+
+微信小游戏注意事项：
+
+1. 不支持同步加载。
+2. 不支持资源加密。
+3. 所有下载器无效。
+4. 不支持多Package
+
+**关闭WebGL本地缓存***
+
+因为微信小游戏平台的特殊性，需要关闭WebGL的缓存系统，使用微信自带的缓存系统。
+
+```csharp
+YooAssets.SetCacheSystemDisableCacheOnWebGL();
+```
+
 ### UniTask支持解决方案
 
 详情参考 [UniTask 配置教程](https://github.com/tuyoogame/YooAsset/tree/main/Assets/YooAsset/Samples~/UniTask%20Sample/README.md)

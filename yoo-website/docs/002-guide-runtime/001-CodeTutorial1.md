@@ -53,18 +53,14 @@ private IEnumerator InitializeYooAsset()
 注意：该模式需要构建资源包
 
 - DecryptionServices : 如果资源包在构建的时候有加密，需要提供实现IDecryptionServices接口的实例类。
-
 - QueryServices：内置资源查询服务接口。
-
-- DefaultHostServer : 默认的资源服务器IP地址。
-
-- FallbackHostServer : 备用的资源服务器IP地址。
+- RemoteServices: 远端服务器查询服务接口。
 
 ````csharp
 private IEnumerator InitializeYooAsset()
 {
-    string defaultHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
-    string fallbackHostServer = "http://127.0.0.1/CDN1/Android/v1.0";
+    string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";
+    string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     var initParameters = new HostPlayModeParameters();
     initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
     initParameters.DecryptionServices = new GameDecryptionServices();
@@ -82,6 +78,38 @@ private IEnumerator InitializeYooAsset()
     }
 }
 ````
+
+### WebGL运行模式
+
+针对WebGL平台的专属模式，包括微信小游戏，抖音小游戏都需要选择该模式。
+
+注意：该模式需要构建资源包
+
+- DecryptionServices : WebGL平台不支持加密，可以设置为NULL。
+- QueryServices：WebSite站内资源查询服务接口。
+- RemoteServices: 远端服务器查询服务接口。
+
+```csharp
+private IEnumerator InitializeYooAsset()
+{
+    string defaultHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
+    string fallbackHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
+    var initParameters = new WebPlayModeParameters();
+    initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
+    initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    var initOperation = package.InitializeAsync(initParameters);
+    yield return initOperation;
+    
+    if(initOperation.Status == EOperationStatus.Succeed)
+    {
+        Debug.Log("资源包初始化成功！");
+    }
+    else 
+    {
+        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    }
+}
+```
 
 ### 解密方法
 

@@ -93,9 +93,17 @@ const config = {
         darkTheme: require('prism-react-renderer/themes/vsDark'),
         additionalLanguages: ['powershell', 'csharp', 'groovy'],
       },
+      markprompt: {
+        projectKey: 'pk_mmhXpzZypVmhrfQL5B43KfsK0niXhfqY',
+        prompt: {
+          model: 'gpt-3.5-turbo',
+          promptTemplate: '你是一个非常热情的公司代表，喜欢帮助人们！根据下面的文档节选（前面有节选标识），使用其中的信息回答问题，以原格式输出。如果你不确定并且答案在文档中没有明确提到，请用中文写"{{I_DONT_KNOW}}"。文档上下文部分：{{CONTEXT}}问题："{{PROMPT}}"回答（如有相关代码片段，请提供）：',
+        },
+      },
     }),
     themes: [
       // ... Your other themes.
+      '@markprompt/docusaurus-theme-search',
       [
         require.resolve("@easyops-cn/docusaurus-search-local"),
         /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */

@@ -29,7 +29,11 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    locales: ['zh-Hans', 'en-US'],
+    localeConfigs: {
+      "en-US": { label: "English" },
+      "zh-Hans": { label: "简体中文" },
+    },
   },
 
   presets: [
@@ -81,6 +85,16 @@ const config = {
             href: 'https://github.com/tuyoogame/YooAsset',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
+            dropdownItemsAfter: [
+              {
+                to: "https://github.com/gmhevinci/YooAsset-Doc",
+                label: "Help Us Translate",
+              },
+            ],
           },
         ],
       },

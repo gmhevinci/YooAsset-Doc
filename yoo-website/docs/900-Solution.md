@@ -49,7 +49,31 @@ private IEnumerator Start()
 }
 ```
 
+### 资源自定义分发解决方案
 
+希望将所有热更资源压缩到一个ZIP包里。玩家第一次启动游戏去下载ZIP包，下载完成后解压到沙盒目录下。
+
+```csharp
+//首先需要实现资源分发服务类
+class DefaultDeliveryQueryServices : IDeliveryQueryServices
+{
+    //查询文件是否为分发资源，可以使用IO类去查询解压目录下文件是否存在。
+    public bool QueryDeliveryFiles(string packageName, string fileName)
+    
+    //获取分发资源的相关信息，包含文件路径以及文件偏移，一般偏移填0即可。
+    public DeliveryFileInfo GetDeliveryFileInfo(string packageName, string fileName)
+}
+```
+
+注意事项：
+
+1. ZIP包的下载器需要满足断点续传和文件校验逻辑。
+2. ZIP包的解压目录需要开发者自己维护，例如解压目录清空等行为。
+3. ZIP包的下载和解压行为需要在YOO启动之前完成。
+4. 解压行为建议只执行一次，一般是玩家安装完APP之后启动游戏后执行一次。
+5. 解压目录下的文件在游戏启动的时候无法保证文件的完整性，需要开发者自己维护。
+6. YOO的底层机制是会优先查询分发资源，然后是沙盒资源，最后是内置资源。
+7. 因为分发资源可能被全部打进一个文件，所以目前不支持加密行为。
 
 ### 视频打包和加载解决方案
 

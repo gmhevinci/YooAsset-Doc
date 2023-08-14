@@ -136,6 +136,7 @@ IEnumerator Start()
 ```csharp
 IEnumerator Start()
 {
+    // 注意：location只需要填写资源包里的任意资源地址。
     AllAssetsOperationHandle handle = package.LoadAllAssetsAsync<UnityEngine.TextAsset>(location);
     yield return handle;
     foreach(var assetObj in handle.AllAssetObjects)

@@ -189,6 +189,59 @@ private void ReleaseHandles()
 }
 ````
 
+### Wwise音频热更解决方案
+
+Wwise在iOS和Android平台，提供了API用于设置SoundBank路径。
+
+AkSoundEngine::SetBasePath()设置基础目录。
+
+```
+SetBasePath的默认路径为：Application.streamingAssetsPath/Audio/GeneratedSoundBanks/(Platform)
+```
+
+AkSoundEngine::AddBasePath()设置热更目录，该方法可以设置多个更新目录。
+
+```
+AddBasePath的默认路径为：Application.persistentDataPath
+```
+
+**加载规则**
+
+LoadBank时会从最后一次AddBasePath的路径开始搜索，依次向前最后到SetBasePath的路径，搜索到第一个目标SoundBank后加载。
+
+**伪代码示例**
+
+```csharp
+// 在资源收集界面，将SoundBank文件目录设置为原生文件（PackRawFile)，并增加一个Tag标记。
+public IEnumerator Start()
+{
+    ......
+        
+    var package = YooAssets.GetPackage("DefaultPackage");
+    
+    // 通过Tag标记下载更新的音频文件
+    var downloader = package.CreateResourceDownloader(soundbankTag);
+    downloader.BeginDownload();
+ 	yield return downloader;
+    
+    // 通过下面的方法获取原生文件的句柄
+    var handle = package.LoadRawFileAsync(location);
+    yield return handle;
+    
+    // 拷贝沙盒内音频文件到指定目录下（AddBasePath方法添加的目录）
+    var packageVersion = package.GetPackageVersion();
+    var basePath = $"{Application.persistentDataPath}/Audio/GeneratedSoundBanks/{packageVersion}";
+    var soundbankSourceFilePath = handle.GetRawFilePath();
+    var soundbankDestFilePath = $"{basePath}/soundbankFileName";
+    if (File.Exists(soundbankDestFilePath) == false)
+    {
+        File.Copy(soundbankSourceFilePath, soundbankDestFilePath);
+    }
+}
+```
+
+参考：https://zhuanlan.zhihu.com/p/32055700/
+
 ### 微信小游戏支持解决方案
 
 微信小游戏注意事项：
@@ -204,6 +257,29 @@ private void ReleaseHandles()
 
 ```csharp
 YooAssets.SetCacheSystemDisableCacheOnWebGL();
+```
+
+### 资源服务器自定义请求解决方案
+
+例如：在HTTP请求里增加账号密码等内容。
+
+```csharp
+// 设置自定义请求委托
+YooAssets.SetDownloadSystemUnityWebRequest(MyWebRequester);
+
+public UnityWebRequest MyWebRequester(string url)
+{
+    var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbGet);
+    var authorization = GetAuthorization("Admin", "12345");
+    request.SetRequestHeader("AUTHORIZATION", authorization);
+    return reqeust;
+}
+private string GetAuthorization(string userName, string password)
+{
+    string auth = userName + ":" + password;
+    var bytes = System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(auth);
+    return "Basic " + System.Convert.ToBase64String(bytes);
+}
 ```
 
 ### UniTask支持解决方案

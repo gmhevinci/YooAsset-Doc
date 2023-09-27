@@ -75,6 +75,48 @@ class DefaultDeliveryQueryServices : IDeliveryQueryServices
 6. YOO的底层机制是会优先查询分发资源，然后是沙盒资源，最后是内置资源。
 7. 因为分发资源可能被全部打进一个文件，所以目前不支持加密行为。
 
+### 首包资源定制解决方案
+
+YooAsset默认支持通过Tag来指定首包资源，开发者也可以灵活定制自己的首包方案。
+
+例如：在编辑器下，运行游戏过程中记录YooAsset加载过的资源对象，然后将这些资源对象依赖的AssetBundle文件拷贝到StreamgAssets目录下作为首包内容。
+
+```csharp
+using UnityEngine;
+using UnityEditor;
+using YooAsset.Editor;
+
+void BuildBundle()
+{
+    // 等待资源构建流程完成
+    ......
+    
+    // 加载构建成功的资源清单对象
+    byte[] manifestBytes = FileUtility.ReadAllBytes(manifestPath);
+    PackageManifest manifest = ManifestTools.DeserializeFromBinary(manifestBytes);
+    
+    // 查找所有需要打进首包资源的依赖AB
+    HashSet<PackageBundle> bundles = new HashSet<PackageBundle>();
+    foreach(var assetPath in buildinAssetPathList)
+    {
+        if(manifest.TryGetPackageAsset(assetPath, out PackageAsset packageAsset))
+        {
+            var packageBundle = manifest.BundleList[packageAsset.BundleID];
+            if(bundles.Contains(packageBundle) == false)
+                bundles.Add(packageBundle);
+        }
+    }
+    
+    // 拷贝所有首包文件
+    string root = $"{AssetBundleBuilderHelper.GetDefaultStreamingAssetsRoot()}/{packageName}";
+    foreach(var packageBundle in bundles)
+    {
+        string destPath = $"{root}/{packageBundle.FileName}";
+        ...... //拷贝文件
+    }
+}
+```
+
 ### 视频打包和加载解决方案
 
 ```csharp
@@ -155,6 +197,46 @@ private IEnumerator Start()
     }
 }
 ````
+
+### 资源服务器自定义请求解决方案
+
+例如：在HTTP请求里增加账号密码等内容。
+
+```csharp
+// 设置自定义请求委托
+YooAssets.SetDownloadSystemUnityWebRequest(MyWebRequester);
+
+public UnityWebRequest MyWebRequester(string url)
+{
+    var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbGet);
+    var authorization = GetAuthorization("Admin", "12345");
+    request.SetRequestHeader("AUTHORIZATION", authorization);
+    return reqeust;
+}
+private string GetAuthorization(string userName, string password)
+{
+    string auth = userName + ":" + password;
+    var bytes = System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(auth);
+    return "Basic " + System.Convert.ToBase64String(bytes);
+}
+```
+
+### 微信小游戏支持解决方案
+
+微信小游戏注意事项：
+
+1. 不支持同步加载。
+2. 不支持资源加密。
+3. 所有下载器无效。
+4. 不支持多Package
+
+**关闭WebGL本地缓存***
+
+因为微信小游戏平台的特殊性，需要关闭WebGL的缓存系统，使用微信自带的缓存系统。
+
+```csharp
+YooAssets.SetCacheSystemDisableCacheOnWebGL();
+```
 
 ### FairyGUI支持解决方案
 
@@ -241,46 +323,6 @@ public IEnumerator Start()
 ```
 
 参考：https://zhuanlan.zhihu.com/p/32055700/
-
-### 微信小游戏支持解决方案
-
-微信小游戏注意事项：
-
-1. 不支持同步加载。
-2. 不支持资源加密。
-3. 所有下载器无效。
-4. 不支持多Package
-
-**关闭WebGL本地缓存***
-
-因为微信小游戏平台的特殊性，需要关闭WebGL的缓存系统，使用微信自带的缓存系统。
-
-```csharp
-YooAssets.SetCacheSystemDisableCacheOnWebGL();
-```
-
-### 资源服务器自定义请求解决方案
-
-例如：在HTTP请求里增加账号密码等内容。
-
-```csharp
-// 设置自定义请求委托
-YooAssets.SetDownloadSystemUnityWebRequest(MyWebRequester);
-
-public UnityWebRequest MyWebRequester(string url)
-{
-    var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbGet);
-    var authorization = GetAuthorization("Admin", "12345");
-    request.SetRequestHeader("AUTHORIZATION", authorization);
-    return reqeust;
-}
-private string GetAuthorization(string userName, string password)
-{
-    string auth = userName + ":" + password;
-    var bytes = System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(auth);
-    return "Basic " + System.Convert.ToBase64String(bytes);
-}
-```
 
 ### UniTask支持解决方案
 

@@ -27,7 +27,8 @@ YooAssets.SetDefaultPackage(package);
 private IEnumerator InitializeYooAsset()
 {
     var initParameters = new EditorSimulateModeParameters();
-    initParameters.SimulateManifestFilePath  = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");
+    var simulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild(EDefaultBuildPipeline.BuiltinBuildPipeline, "DefaultPackage");
+    initParameters.SimulateManifestFilePath  = simulateManifestFilePath;
     yield return package.InitializeAsync(initParameters);
 }
 ````
@@ -59,11 +60,12 @@ private IEnumerator InitializeYooAsset()
 ````csharp
 private IEnumerator InitializeYooAsset()
 {
+    // 注意：GameQueryServices.cs 太空战机的脚本类，详细见StreamingAssetsHelper.cs
     string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     var initParameters = new HostPlayModeParameters();
-    initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
-    initParameters.DecryptionServices = new GameDecryptionServices();
+    initParameters.BuildinQueryServices = new GameQueryServices(); 
+    initParameters.DecryptionServices = new FileOffsetDecryption();
     initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
@@ -92,10 +94,11 @@ private IEnumerator InitializeYooAsset()
 ```csharp
 private IEnumerator InitializeYooAsset()
 {
+    // 注意：GameQueryServices.cs 太空战机的脚本类，详细见StreamingAssetsHelper.cs
     string defaultHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
     string fallbackHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
     var initParameters = new WebPlayModeParameters();
-    initParameters.QueryServices = new GameQueryServices(); //太空战机DEMO的脚本类，详细见StreamingAssetsHelper
+    initParameters.BuildinQueryServices = new GameQueryServices();
     initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
@@ -116,30 +119,34 @@ private IEnumerator InitializeYooAsset()
 实现一个继承IDecryptionServices接口的运行时的类。
 
 ```csharp
-// 文件解密的示例代码
-// 注意：解密类必须配合加密类。
-private class GameDecryptionServices : IDecryptionServices
+/// <summary>
+/// 资源文件偏移加载解密类
+/// </summary>
+private class FileOffsetDecryption : IDecryptionServices
 {
-    public ulong LoadFromFileOffset(DecryptFileInfo fileInfo)
+    /// <summary>
+    /// 同步方式获取解密的资源包对象
+    /// 注意：加载流对象在资源包对象释放的时候会自动释放
+    /// </summary>
+    AssetBundle IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
     {
-        return 32;
-    }
-    
-    public byte[] LoadFromMemory(DecryptFileInfo fileInfo)
-    {
-        // 如果没有内存加密方式，可以返回空
-        throw new NotImplementedException();
+        managedStream = null;
+        return AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
     }
 
-    public Stream LoadFromStream(DecryptFileInfo fileInfo)
+    /// <summary>
+    /// 异步方式获取解密的资源包对象
+    /// 注意：加载流对象在资源包对象释放的时候会自动释放
+    /// </summary>
+    AssetBundleCreateRequest IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
     {
-        // 如果没有流加密方式，可以返回空
-        throw new NotImplementedException();
+        managedStream = null;
+        return AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
     }
-    
-    public uint GetManagedReadBufferSize()
+
+    private static ulong GetFileOffset()
     {
-        return 1024;
+        return 32;
     }
 }
 ```
@@ -150,7 +157,7 @@ Package.InitializeAsync()方法解析。
 
 - 编辑器模拟模式
 
-  每次启动调用EditorSimulateModeHelper.SimulateBuild()方法，都会在底层执行一次模拟构建（Simulate Build）。
+  每次启动调用EditorSimulateModeHelper.SimulateBuild方法，都会在底层执行一次模拟构建（Simulate Build）。
 
   如果参与构建的资源对象数量级很大的话则会有卡顿现象，可以通过直接指定已有的清单路径来避免每次都重复执行模拟构建。
 

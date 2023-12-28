@@ -28,7 +28,7 @@ private IEnumerator Start()
     {
         var package = YooAssets.CreatePackage("GameLogic");
         var createParameters = new EditorSimulateModeParameters();
-        createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("GameLogic");
+        createParameters.SimulateManifestFilePath = simulateManifestFilePath;
         var initializationOperation = package.InitializeAsync(createParameters);
         yield return initializationOperation;        
     }
@@ -37,9 +37,10 @@ private IEnumerator Start()
     {
         var package = YooAssets.CreatePackage("GameArt");
         var createParameters = new HostPlayModeParameters();
-        createParameters.QueryServices = new GameQueryServices();
-        createParameters.DefaultHostServer = GetHostServerURL();
-        createParameters.FallbackHostServer = GetHostServerURL();
+        createParameters.BuildinQueryServices = new GameQueryServices(); 
+        createParameters.DecryptionServices = new FileOffsetDecryption();
+        createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+        var initOperation = package.InitializeAsync(initParameters);       
         initializationOperation = package.InitializeAsync(createParameters);
         yield return initializationOperation;  
         
@@ -58,10 +59,10 @@ private IEnumerator Start()
 class DefaultDeliveryQueryServices : IDeliveryQueryServices
 {
     //查询文件是否为分发资源，可以使用IO类去查询解压目录下文件是否存在。
-    public bool QueryDeliveryFiles(string packageName, string fileName)
+    bool Query(string packageName, string fileName, string fileCRC);
     
-    //获取分发资源的相关信息，包含文件路径以及文件偏移，一般偏移填0即可。
-    public DeliveryFileInfo GetDeliveryFileInfo(string packageName, string fileName)
+    //获取分发资源文件的路径
+    string GetFilePath(string packageName, string fileName);
 }
 ```
 
@@ -73,7 +74,6 @@ class DefaultDeliveryQueryServices : IDeliveryQueryServices
 4. 解压行为建议只执行一次，一般是玩家安装完APP之后启动游戏后执行一次。
 5. 解压目录下的文件在游戏启动的时候无法保证文件的完整性，需要开发者自己维护。
 6. YOO的底层机制是会优先查询分发资源，然后是沙盒资源，最后是内置资源。
-7. 因为分发资源可能被全部打进一个文件，所以目前不支持加密行为。
 
 ### 首包资源定制解决方案
 
@@ -124,18 +124,13 @@ void BuildBundle()
 // 然后在AssetBundleCollector界面对视频文件使用扩展的打包规则。
 public class PackVideo : IPackRule
 {
-    public PackRuleResult GetPackRuleResult(PackRuleData data)
+    PackRuleResult IPackRule.GetPackRuleResult(PackRuleData data)
     {
         string bundleName = data.AssetPath;
         string fileExtension = Path.GetExtension(data.AssetPath);
         fileExtension = fileExtension.Remove(0, 1);
         PackRuleResult result = new PackRuleResult(bundleName, fileExtension);
         return result;
-    }
-
-    bool IPackRule.IsRawFilePackRule()
-    {
-        return true; //视频文件作为原生文件管理
     }
 }
 ```
@@ -227,8 +222,8 @@ private string GetAuthorization(string userName, string password)
 
 1. 不支持同步加载。
 2. 不支持资源加密。
-3. 所有下载器无效。
 4. 不支持多Package
+4. 下载器总是返回需要下载资源，但如果微信小游戏底层已经缓存会跳过实际下载过程。
 
 **关闭WebGL本地缓存***
 
@@ -237,6 +232,10 @@ private string GetAuthorization(string userName, string password)
 ```csharp
 YooAssets.SetCacheSystemDisableCacheOnWebGL();
 ```
+
+**注意**：一定要禁止微信对资源清单版本文件进行缓存（文件名称样例：PackageManifest_xxx.version）
+
+**注意：**如果未调用该方法，微信小游戏有内存崩溃的风险！
 
 ### FairyGUI支持解决方案
 

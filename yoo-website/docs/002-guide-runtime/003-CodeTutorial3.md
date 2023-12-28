@@ -27,6 +27,8 @@ package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic");
 
 - 在开启可寻址模式下，location代表的是资源对象可寻址地址。
 
+  注意：可寻址模式下，也支持使用完整的资源路径来加载。
+
 ````csharp
 // 以工程内的音频文件为例："Assets/GameRes/Audio/bgMusic.mp3" 
 // 需要在资源配置界面启用可寻址功能（Enable Addressable）。
@@ -50,10 +52,10 @@ package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
 // 委托加载方式
 void Start()
 {
-    AssetOperationHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
+    AssetHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
     handle.Completed += Handle_Completed;
 }
-void Handle_Completed(AssetOperationHandle handle)
+void Handle_Completed(AssetHandle handle)
 {
     AudioClip audioClip = handle.AssetObject as AudioClip;
 }
@@ -62,7 +64,7 @@ void Handle_Completed(AssetOperationHandle handle)
 // 协程加载方式
 IEnumerator Start()
 {
-    AssetOperationHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
+    AssetHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
     yield return handle;   
     AudioClip audioClip = handle.AssetObject as AudioClip;
 }
@@ -71,35 +73,59 @@ IEnumerator Start()
 // Task加载方式
 async void Start()
 {
-    AssetOperationHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
+    AssetHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
     await handle.Task;
     AudioClip audioClip = handle.AssetObject as AudioClip;	
 }
 ````
 
-### 资源卸载范例
+### 资源句柄释放
 
 ````csharp
 IEnumerator Start()
 {
-    AssetOperationHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
+    // 资源句柄释放可以减少该资源的引用计数，当资源引用计数为零的时候，可以使用资源卸载方法卸载资源包。
+    AssetHandle handle = package.LoadAssetAsync<AudioClip>("Assets/GameRes/Audio/bgMusic.mp3");
     yield return handle;
     ...
     handle.Release();
 }
 ````
 
-### 资源释放范例
-
-可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
-
-注意：只有调用资源释放方法，资源对象才会在内存里被移除。
+### 资源卸载范例
 
 ````csharp
-private void UnloadAssets()
+// 卸载所有引用计数为零的资源包。
+// 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
+private void UnloadUnusedAssets()
 {
     var package = YooAssets.GetAssetsPackage("DefaultPackage");
     package.UnloadUnusedAssets();
+}
+
+// 尝试卸载指定的资源对象
+// 注意：如果该资源还在被使用，该方法会无效。
+private void TryUnloadUnusedAsset()
+{
+    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    package.TryUnloadUnusedAsset("Assets/GameRes/Panel/login.prefab");
+}
+
+// 强制卸载所有资源包，该方法请在合适的时机调用。
+// 注意：Package在销毁的时候也会自动调用该方法。
+private void ForceUnloadAllAssets()
+{
+    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    package.ForceUnloadAllAssets();
+}
+
+// 通过初始化配置资源释放行为
+class InitializeParameters
+{
+    /// <summary>
+    /// 自动销毁不再使用的资源提供者
+    /// </summary>
+    public bool AutoDestroyAssetProvider = false;
 }
 ````
 
@@ -108,7 +134,7 @@ private void UnloadAssets()
 ````csharp
 IEnumerator Start()
 {
-    AssetOperationHandle handle = package.LoadAssetAsync<GameObject>("Assets/GameRes/Panel/login.prefab");
+    AssetHandle handle = package.LoadAssetAsync<GameObject>("Assets/GameRes/Panel/login.prefab");
     yield return handle;
     GameObject go = handle.InstantiateSync();
     Debug.Log($"Prefab name is {go.name}");
@@ -122,7 +148,7 @@ IEnumerator Start()
 ````csharp
 IEnumerator Start()
 {
-    SubAssetsOperationHandle handle = package.LoadSubAssetsAsync<Sprite>(location);
+    SubAssetsHandle handle = package.LoadSubAssetsAsync<Sprite>(location);
     yield return handle;
     var sprite = handle.GetSubAssetObject<Sprite>("spriteName");
     Debug.Log($"Sprite name is {sprite.name}");
@@ -137,7 +163,7 @@ IEnumerator Start()
 IEnumerator Start()
 {
     // 注意：location只需要填写资源包里的任意资源地址。
-    AllAssetsOperationHandle handle = package.LoadAllAssetsAsync<UnityEngine.TextAsset>(location);
+    AllAssetsHandle handle = package.LoadAllAssetsAsync<UnityEngine.TextAsset>(location);
     yield return handle;
     foreach(var assetObj in handle.AllAssetObjects)
     {    
@@ -156,7 +182,7 @@ IEnumerator Start()
     string location = "Assets/GameRes/Scene/Login";
     var sceneMode = UnityEngine.SceneManagement.LoadSceneMode.Single;
     bool suspendLoad = false;
-    SceneOperationHandle handle = package.LoadSceneAsync(location, sceneMode, suspendLoad);
+    SceneHandle handle = package.LoadSceneAsync(location, sceneMode, suspendLoad);
     yield return handle;
     Debug.Log($"Scene name is {handle.Scene.name}");
 }
@@ -164,13 +190,16 @@ IEnumerator Start()
 
 ### 原生文件加载范例
 
+**注意：原生文件必须使用原生构建管线来构建。**
+
 例如：wwise的初始化文件
 
 ````csharp
 IEnumerator Start()
 {
+    // 注意：该Package必须是原生文件构建管线构建的资源包裹。
     string location = "Assets/GameRes/wwise/init.bnk";
-    RawFileOperationHandle handle = package.LoadRawFileAsync(location);
+    RawFileHandle handle = package.LoadRawFileAsync(location);
     yield return handle;
     byte[] fileData = handle.GetRawFileData();
     string fileText = handle.GetRawFileText();
@@ -180,7 +209,7 @@ IEnumerator Start()
 
 ### 配置文件加载范例
 
-````c#
+````csharp
 // 自定义的配置文件
 public class MyGameConfig: ScriptableObject
 {
@@ -190,7 +219,7 @@ public class MyGameConfig: ScriptableObject
 IEnumerator Start()
 {
     string location = "Assets/GameRes/config/gameConfig.asset";
-    AssetOperationHandle handle = package.LoadAssetFileAsync(location);
+    AssetHandle handle = package.LoadAssetFileAsync(location);
     yield return handle;
     MyGameConfig gameCOnfig = handle.AssetObject as MyGameConfig;
 }
@@ -208,6 +237,14 @@ void GetAssetInfosByTag(string tag)
     {
         Debug.Log(assetInfo.AssetPath);
     }
+}
+````
+
+### 检测资源是否需要更新下载
+
+````csharp
+{
+    bool isNeedDownload = package.IsNeedDownloadFromRemote(location);
 }
 ````
 

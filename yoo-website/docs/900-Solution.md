@@ -218,12 +218,13 @@ private string GetAuthorization(string userName, string password)
 
 ### 微信小游戏支持解决方案
 
+首先在项目里定义UNITY_WECHAT_GAME宏，然后将微信插件的程序集引用关联到YooAsset运行时的程序集。
+
 微信小游戏注意事项：
 
 1. 不支持同步加载。
 2. 不支持资源加密。
-4. 不支持多Package
-4. 下载器总是返回需要下载资源，但如果微信小游戏底层已经缓存会跳过实际下载过程。
+3. 不支持多Package
 
 **关闭WebGL本地缓存***
 

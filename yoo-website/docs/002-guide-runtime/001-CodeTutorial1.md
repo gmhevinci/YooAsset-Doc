@@ -15,7 +15,12 @@ var package = YooAssets.CreatePackage("DefaultPackage");
 YooAssets.SetDefaultPackage(package);
 ```
 
-资源系统的运行模式支持三种：编辑器模拟模式，单机运行模式，联机运行模式。
+### 资源系统的运行模式
+
+- 编辑器模拟模式
+- 单机运行模式
+- 联机运行模式
+- WebGL运行模式。
 
 ### 编辑器模拟模式
 
@@ -148,6 +153,20 @@ private class FileOffsetDecryption : IDecryptionServices
     {
         return 32;
     }
+}
+```
+
+### 原生文件初始化注意事项
+
+**注意：原生文件的资源包构建模式必须是RawFileBuildPipeline**
+
+```csharp
+// 原生文件资源包的初始化方式，同样适用于上面介绍的四种资源系统的运行模式。
+// 注意：如果需要对下载的原生文件保留原始后缀格式，需要在初始化参数里配置。
+{
+    var initParameters = new HostPlayModeParameters();
+    initParameters.CacheFileAppendExtension = true;
+    ......
 }
 ```
 

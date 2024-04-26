@@ -154,7 +154,7 @@ public IEnumerator Start()
 
 在使用Unity的图集系统的时候（SpriteAtlas），如何解决通过SBP构建管线造成的散图冗余的问题。
 
-1. 确保SBP插件的版本升级到最新。
+1. 确保SBP插件的版本升级到最新（例如：v2.1.3）。
 2. 确保SpriteAtals和精灵散图构建进一个AssetBundle。
 3. 确保精灵散图的收集器设置为StaticAssetCollector类型。
 

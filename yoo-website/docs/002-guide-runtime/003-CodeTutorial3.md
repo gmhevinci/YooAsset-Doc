@@ -225,6 +225,21 @@ IEnumerator Start()
 }
 ````
 
+### 热更脚本加载范例
+
+如果使用的是Lua或者ILRuntime，HybirdCLR热更方式，可以将Lua或者Hotfix.dll的文件格式修改为.bytes
+
+```csharp
+IEnumerator Start()
+{
+    AssetHandle handle = package.LoadAssetAsync<TextAsset>("Assets/GameRes/Hotfix.bytes");
+    yield return handle;
+    TextAsset textAsset = handle.AssetObject as TextAsset;
+    //textAsset.bytes 二进制数据
+    //textAsset.text 文本数据
+}
+```
+
 ### 获取资源信息列表
 
 通过资源标签来获取资源信息列表。

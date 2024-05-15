@@ -18,7 +18,13 @@
 
   (2) ScriptableBuildPipeline: 可编程构建管线
 
+  ​	Unity后续推出的可编程构建管线，和可编程渲染管线一样，让开发者有能力控制打包流程。
+
+  ​	**注意：**从Unity2021.3版本开始，推荐使用该构建管线！
+
   (3) RawFileBuildPipeline: 原生文件构建管线
+
+  ​	用于构建Unity引擎无法识别的资源类型，例如FMOD的音频文件(bank后缀格式)
 
 - **Build Output**
 

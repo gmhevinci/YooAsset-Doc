@@ -208,19 +208,7 @@ private IEnumerator Start()
     {
         // 如果获取远端资源版本失败，说明当前网络无连接。
         // 在正常开始游戏之前，需要验证本地清单内容的完整性。
-        string packageVersion = package.GetPackageVersion(); //注意：获取上次保存的本地版本
-        var contentOperation = package.PreDownloadContentAsync(packageVersion);
-        yield return contentOperation;
-        if (contentOperation.Status != EOperationStatus.Succeed)
-        {
-            ShowMessageBox("请检查本地网络，有新的游戏内容需要更新！");
-            yield break;
-        }
-        
-        int downloadingMaxNum = 10;
-        int failedTryAgain = 3;
-        int timeout = 60;
-        var downloader = contentOperation.CreateResourceDownloader(downloadingMaxNum, failedTryAgain, timeout);
+        var downloader = package.CreateResourceDownloader(1, 1, 60);
         if (downloader.TotalDownloadCount > 0)   
         {
             // 资源内容本地并不完整，需要提示玩家联网更新。

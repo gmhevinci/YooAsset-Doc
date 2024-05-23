@@ -179,21 +179,39 @@ public IEnumerator Start()
 private IEnumerator Start()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.UpdatePackageVersionAsync(30);
-    yield return operation;
-    if (operation.Status == EOperationStatus.Succeed)
+    
+    // 先获取最新的资源版本
+    var versionOperation = package.UpdatePackageVersionAsync(30);
+    yield return versionOperation;
+    if (versionOperation.Status == EOperationStatus.Succeed)
     {
         // 如果获取远端资源版本成功，说明当前网络连接通畅，可以走正常更新流程。
+        bool autoSaveVersion = false; //注意：延迟保存本地版本
+        var manifestOperation = package.UpdatePackageManifestAsync(versionOperation.PackageVersion, autoSaveVersion);
+		yield return manifestOperation;
+        if (manifestOperation.Status != EOperationStatus.Succeed)
+        {
+            ShowMessageBox("请检查本地网络，资源清单更新失败！");
+            yield break;
+        }
+        
+        // 创建下载器和下载逻辑省略
+        ......
+        
+        // 注意：下载完成之后再保存本地版本
+        manifestOperation.SavePackageVersion();
+        
+        // 开始游戏
         ......
     }
     else
     {
         // 如果获取远端资源版本失败，说明当前网络无连接。
         // 在正常开始游戏之前，需要验证本地清单内容的完整性。
-        string packageVersion = package.GetPackageVersion();
-        var operation = package.PreDownloadContentAsync(packageVersion);
-        yield return operation;
-        if (operation.Status != EOperationStatus.Succeed)
+        string packageVersion = package.GetPackageVersion(); //注意：获取上次保存的本地版本
+        var contentOperation = package.PreDownloadContentAsync(packageVersion);
+        yield return contentOperation;
+        if (contentOperation.Status != EOperationStatus.Succeed)
         {
             ShowMessageBox("请检查本地网络，有新的游戏内容需要更新！");
             yield break;
@@ -202,7 +220,7 @@ private IEnumerator Start()
         int downloadingMaxNum = 10;
         int failedTryAgain = 3;
         int timeout = 60;
-        var downloader = operation.CreateResourceDownloader(downloadingMaxNum, failedTryAgain, timeout);
+        var downloader = contentOperation.CreateResourceDownloader(downloadingMaxNum, failedTryAgain, timeout);
         if (downloader.TotalDownloadCount > 0)   
         {
             // 资源内容本地并不完整，需要提示玩家联网更新。

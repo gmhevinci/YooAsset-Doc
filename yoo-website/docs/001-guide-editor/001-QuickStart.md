@@ -8,13 +8,6 @@
 
    打开管理界面 **Edit/Project Settings/Package Manager**
 
-   ````
-   // 输入以下内容（中国版）
-   Name: package.openupm.cn
-   URL: https://package.openupm.cn
-   Scope(s): com.tuyoogame.yooasset
-   ````
-
    ```
    // 输入以下内容（国际版）
    Name: package.openupm.com
@@ -22,12 +15,12 @@
    Scope(s): com.tuyoogame.yooasset
    ```
 
-   ![image](./Image/QuickStart-img1.jpg)
-
+   ![image](./Image/QuickStart-img1.png)
+   
    打开管理界面 **Edit/Windows/Package Manager**
-
+   
    ![image](./Image/QuickStart-img2.jpg)
-
+   
 2. **通过Packages清单安装**
 
    直接修改Packages文件夹下的清单文件manifest.json
@@ -40,8 +33,8 @@
      },
      "scopedRegistries": [
        {
-         "name": "package.openupm.cn",
-         "url": "https://package.openupm.cn",
+         "name": "package.openupm.com",
+         "url": "https://package.openupm.com",
          "scopes": [
            "com.tuyoogame.yooasset"
          ]

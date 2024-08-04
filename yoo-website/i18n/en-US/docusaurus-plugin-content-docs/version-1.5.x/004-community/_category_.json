@@ -1,0 +1,8 @@
+{
+    "label": "Community",
+    "collapsible": true,
+    "link": {
+      "type": "generated-index",
+      "description": "社区"
+    }
+}

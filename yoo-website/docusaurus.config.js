@@ -47,7 +47,7 @@ const config = {
                     lastVersion: 'current',
                     versions:
                     {
-                        current: { label: '2.2.x', path: '.docs', },
+                        current: { label: '2.2.x', path: '2.2.x', },
                     },
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.

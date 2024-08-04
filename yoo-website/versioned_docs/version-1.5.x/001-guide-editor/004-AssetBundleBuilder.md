@@ -6,33 +6,17 @@
 
 ### 界面介绍
 
-- **Build  Package**
-
-  资源包裹的列表，下拉选择要构建的资源包裹。
-
-- **Build Pipeline**
-
-  构建管线的列表，下拉选择要使用的构建管线。
-
-  (1) BuiltinBuildPipeline: 传统的内置构建管线
-
-  (2) ScriptableBuildPipeline: 可编程构建管线
-
-  ​	Unity后续推出的可编程构建管线，和可编程渲染管线一样，让开发者有能力控制打包流程。
-
-  ​	**注意：**从Unity2021.3版本开始，推荐使用该构建管线！
-
-  (3) RawFileBuildPipeline: 原生文件构建管线
-
-  ​	用于构建Unity引擎无法识别的资源类型，例如FMOD的音频文件(bank后缀格式)
-
 - **Build Output**
 
   构建输出的目录，会根据Unity编辑器当前切换的平台自动划分构建结果。
 
-- **Build Version**
+- **Build Pipeline**
 
-  构建的资源包版本。
+  构建管线
+
+  (1) BuiltinBuildPipeline: 传统的内置构建管线。
+
+  (2) ScriptableBuildPipeline: 可编程构建管线。
 
 - **Build Mode**
 
@@ -46,6 +30,14 @@
 
   (4) 模拟构建模式：在编辑器下配合EditorSimulateMode运行模式，来模拟真实运行的环境。
 
+- **Build Version**
+
+  构建的资源包版本。
+
+- **Build Package**
+
+  构建的资源包名称。
+
 - **Encryption**
 
   加密类列表。
@@ -54,13 +46,11 @@
 
   资源包的压缩方式。
 
-- **File Name Style**
+- **Output Name Style**
 
   输出的资源包文件名称样式
 
   HashName：哈希值
-
-  BundleName: 资源包名
 
   BundleName_HashName：资源包名+哈希值
 
@@ -93,30 +83,27 @@
 - LoadFromStream 通过文件流来解密加载。
 
 ```csharp
-/// <summary>
-/// 文件偏移加密方式
-/// </summary>
+// 文件偏移加密方式的示例代码
 public class FileOffsetEncryption : IEncryptionServices
 {
     public EncryptResult Encrypt(EncryptFileInfo fileInfo)
     {
-        // 注意：只对音频资源包加密
         if (fileInfo.BundleName.Contains("_gameres_audio"))
         {
             int offset = 32;
             byte[] fileData = File.ReadAllBytes(fileInfo.FilePath);
             var encryptedData = new byte[fileData.Length + offset];
             Buffer.BlockCopy(fileData, 0, encryptedData, offset, fileData.Length);
-
+            
             EncryptResult result = new EncryptResult();
-            result.Encrypted = true;
+            result.LoadMethod = EBundleLoadMethod.LoadFromFileOffset;
             result.EncryptedData = encryptedData;
             return result;
         }
         else
         {
             EncryptResult result = new EncryptResult();
-            result.Encrypted = false;
+            result.LoadMethod = EBundleLoadMethod.Normal;
             return result;
         }
     }
@@ -135,63 +122,54 @@ public class FileOffsetEncryption : IEncryptionServices
 
 补丁清单文件是上图中以PackageManifest开头命名的文件。
 
-- PackageManifest_DefaultPackage_xxx.hash
+- PackageManifest_DefaultPackage_xxxxxx.hash
 
   记录了补丁清单文件的哈希值。
 
-- PackageManifest_DefaultPackage_xxx.json
+- PackageManifest_DefaultPackage_xxxxxx.json
 
   该文件为Json文本格式，主要用于开发者预览信息。
 
-- PackageManifest_DefaultPackage_xxx.bytes
+- PackageManifest_DefaultPackage_xxxxxx.bytes
 
   该文件为二进制格式，主要用于程序内读取加载。
-
-### 构建报告
-
-BuildReport_DefaultPackage_xxx.json文件为构建报告文件。可以通过构建报告窗口查看本次构建的详细信息。
 
 ### Jenkins支持
 
 如果需要自动化构建，可以参考如下代码范例：
 
-下面是使用内置构建管线来构建资源包的代码。
+使用内置构建管线来构建资源包。
 
 ````csharp
 private static void BuildInternal(BuildTarget buildTarget)
 {
     Debug.Log($"开始构建 : {buildTarget}");
 
-    var buildoutputRoot = AssetBundleBuilderHelper.GetDefaultBuildOutputRoot();
-    var streamingAssetsRoot = AssetBundleBuilderHelper.GetStreamingAssetsRoot();
-    
     // 构建参数
-    BuiltinBuildParameters buildParameters = new BuiltinBuildParameters();
-    buildParameters.BuildOutputRoot = buildoutputRoot;
-    buildParameters.BuildinFileRoot = streamingAssetsRoot;
-    buildParameters.BuildPipeline = EBuildPipeline.BuiltinBuildPipeline.ToString();
-    buildParameters.BuildTarget = BuildTarget;
+    string defaultOutputRoot = AssetBundleBuilderHelper.GetDefaultOutputRoot();
+    BuildParameters buildParameters = new BuildParameters();
+    buildParameters.OutputRoot = defaultOutputRoot;
+    buildParameters.BuildTarget = buildTarget;
+    buildParameters.BuildPipeline = EBuildPipeline.BuiltinBuildPipeline;
     buildParameters.BuildMode = EBuildMode.ForceRebuild;
     buildParameters.PackageName = "DefaultPackage";
     buildParameters.PackageVersion = "1.0";
     buildParameters.VerifyBuildingResult = true;
-    buildParameters.EnableSharePackRule = true; //启用共享资源构建模式，兼容1.5x版本
-    buildParameters.FileNameStyle = EFileNameStyle.HashName;
-    buildParameters.BuildinFileCopyOption = EBuildinFileCopyOption.None;
-    buildParameters.BuildinFileCopyParams = string.Empty;
-    buildParameters.EncryptionServices = CreateEncryptionInstance();
+    buildParameters.SharedPackRule = new ZeroRedundancySharedPackRule();
     buildParameters.CompressOption = ECompressOption.LZ4;
+    buildParameters.OutputNameStyle = EOutputNameStyle.HashName;
+    buildParameters.CopyBuildinFileOption = ECopyBuildinFileOption.None;
     
     // 执行构建
-    BuiltinBuildPipeline pipeline = new BuiltinBuildPipeline();
-    var buildResult = pipeline.Run(buildParameters, true);
+    AssetBundleBuilder builder = new AssetBundleBuilder();
+    var buildResult = builder.Run(buildParameters);
     if (buildResult.Success)
     {
          Debug.Log($"构建成功 : {buildResult.OutputPackageDirectory}");
     }
     else
     {
-        Debug.LogError($"构建失败 : {buildResult.ErrorInfo}");
+        Debug.LogError($"构建失败 : {buildResult.FailedInfo}");
     }
 }
 

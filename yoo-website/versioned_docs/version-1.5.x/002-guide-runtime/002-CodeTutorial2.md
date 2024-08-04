@@ -115,20 +115,6 @@ IEnumerator Download()
 }
 ````
 
-### 下载器合并
-
-可以把同一个package下的多个下载器合并。
-
-```csharp
-// 例如：把关卡资源下载器和某个指定资源下载器进行合并。
-var downloader1 = package.CreateResourceDownloader("level_tag", downloadingMaxNum, failedTryAgain);
-var downloader2 = package.CreateBundleDownloader("asset_location", downloadingMaxNum, failedTryAgain);
-downloader1.Combine(downloader2);
-
-//开启下载
-downloader1.BeginDownload();
-```
-
 ### 源代码解析
 
 Package.UpdatePackageManifestAsync()方法解析。

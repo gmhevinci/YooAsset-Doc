@@ -8,7 +8,7 @@
 
 **Space Shooter** 太空战机DEMO，包含资源热更和加载的示例。
 
-**Extension Sample** 包含编辑器扩展代码的示例和着色器变种收集器。
+**Extension Sample** 包含编辑器扩展代码的示例。 
 
 **UniTask Sample** 包含支持UniTask代码的示例。
 

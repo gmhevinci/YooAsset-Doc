@@ -28,7 +28,7 @@ private IEnumerator Start()
     {
         var package = YooAssets.CreatePackage("GameLogic");
         var createParameters = new EditorSimulateModeParameters();
-        createParameters.SimulateManifestFilePath = simulateManifestFilePath;
+        createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("GameLogic");
         var initializationOperation = package.InitializeAsync(createParameters);
         yield return initializationOperation;        
     }
@@ -37,10 +37,9 @@ private IEnumerator Start()
     {
         var package = YooAssets.CreatePackage("GameArt");
         var createParameters = new HostPlayModeParameters();
-        createParameters.BuildinQueryServices = new GameQueryServices(); 
-        createParameters.DecryptionServices = new FileOffsetDecryption();
-        createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
-        var initOperation = package.InitializeAsync(initParameters);       
+        createParameters.QueryServices = new GameQueryServices();
+        createParameters.DefaultHostServer = GetHostServerURL();
+        createParameters.FallbackHostServer = GetHostServerURL();
         initializationOperation = package.InitializeAsync(createParameters);
         yield return initializationOperation;  
         
@@ -59,10 +58,10 @@ private IEnumerator Start()
 class DefaultDeliveryQueryServices : IDeliveryQueryServices
 {
     //查询文件是否为分发资源，可以使用IO类去查询解压目录下文件是否存在。
-    bool Query(string packageName, string fileName, string fileCRC);
+    public bool QueryDeliveryFiles(string packageName, string fileName)
     
-    //获取分发资源文件的路径
-    string GetFilePath(string packageName, string fileName);
+    //获取分发资源的相关信息，包含文件路径以及文件偏移，一般偏移填0即可。
+    public DeliveryFileInfo GetDeliveryFileInfo(string packageName, string fileName)
 }
 ```
 
@@ -74,6 +73,7 @@ class DefaultDeliveryQueryServices : IDeliveryQueryServices
 4. 解压行为建议只执行一次，一般是玩家安装完APP之后启动游戏后执行一次。
 5. 解压目录下的文件在游戏启动的时候无法保证文件的完整性，需要开发者自己维护。
 6. YOO的底层机制是会优先查询分发资源，然后是沙盒资源，最后是内置资源。
+7. 因为分发资源可能被全部打进一个文件，所以目前不支持加密行为。
 
 ### 首包资源定制解决方案
 
@@ -124,13 +124,18 @@ void BuildBundle()
 // 然后在AssetBundleCollector界面对视频文件使用扩展的打包规则。
 public class PackVideo : IPackRule
 {
-    PackRuleResult IPackRule.GetPackRuleResult(PackRuleData data)
+    public PackRuleResult GetPackRuleResult(PackRuleData data)
     {
         string bundleName = data.AssetPath;
         string fileExtension = Path.GetExtension(data.AssetPath);
         fileExtension = fileExtension.Remove(0, 1);
         PackRuleResult result = new PackRuleResult(bundleName, fileExtension);
         return result;
+    }
+
+    bool IPackRule.IsRawFilePackRule()
+    {
+        return true; //视频文件作为原生文件管理
     }
 }
 ```
@@ -148,29 +153,6 @@ public IEnumerator Start()
 }
 ```
 
-### 图集打包的零冗余解决方案
-
-在unity2020以上的版本，我们会推荐使用SBP构建管线。
-
-在使用Unity的图集系统的时候（SpriteAtlas），如何解决通过SBP构建管线造成的散图冗余的问题。
-
-1. 确保SBP插件的版本升级到最新（例如：v2.1.3）。
-2. 确保SpriteAtals和精灵散图构建进一个AssetBundle。
-3. 确保精灵散图的收集器设置为StaticAssetCollector类型。
-
-```csharp
-// 图集加载范例
-public IEnumerator Start()
-{
-    var package = YooAssets.GetPackage("DefaultPackage");
-    var handle = package.LoadAssetAsync<SpriteAtlas>(location);
-    yield return handle;
-    
-    var atlas = handle.AssetObject as SpriteAtlas;
-    _image.sprite = atlas.GetSprite("icon_test");
-}
-```
-
 ### 弱联网环境解决方案
 
 对于偏单机但是也有资源热更需求的项目。当玩家在无网络的时候，我们又不希望玩家卡在资源更新步骤而不能正常游戏。所以当玩家本地网络有问题的时候，我们可以跳过资源更新的步骤。
@@ -179,36 +161,30 @@ public IEnumerator Start()
 private IEnumerator Start()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-    
-    // 先获取最新的资源版本
-    var versionOperation = package.UpdatePackageVersionAsync(30);
-    yield return versionOperation;
-    if (versionOperation.Status == EOperationStatus.Succeed)
+    var operation = package.UpdatePackageVersionAsync(30);
+    yield return operation;
+    if (operation.Status == EOperationStatus.Succeed)
     {
         // 如果获取远端资源版本成功，说明当前网络连接通畅，可以走正常更新流程。
-        bool autoSaveVersion = false; //注意：延迟保存本地版本
-        var manifestOperation = package.UpdatePackageManifestAsync(versionOperation.PackageVersion, autoSaveVersion);
-		yield return manifestOperation;
-        if (manifestOperation.Status != EOperationStatus.Succeed)
-        {
-            ShowMessageBox("请检查本地网络，资源清单更新失败！");
-            yield break;
-        }
-        
-        // 创建下载器和下载逻辑省略
-        ......
-        
-        // 注意：下载完成之后再保存本地版本
-        manifestOperation.SavePackageVersion();
-        
-        // 开始游戏
         ......
     }
     else
     {
         // 如果获取远端资源版本失败，说明当前网络无连接。
         // 在正常开始游戏之前，需要验证本地清单内容的完整性。
-        var downloader = package.CreateResourceDownloader(1, 1, 60);
+        string packageVersion = package.GetPackageVersion();
+        var operation = package.PreDownloadContentAsync(packageVersion);
+        yield return operation;
+        if (operation.Status != EOperationStatus.Succeed)
+        {
+            ShowMessageBox("请检查本地网络，有新的游戏内容需要更新！");
+            yield break;
+        }
+        
+        int downloadingMaxNum = 10;
+        int failedTryAgain = 3;
+        int timeout = 60;
+        var downloader = operation.CreateResourceDownloader(downloadingMaxNum, failedTryAgain, timeout);
         if (downloader.TotalDownloadCount > 0)   
         {
             // 资源内容本地并不完整，需要提示玩家联网更新。
@@ -247,13 +223,12 @@ private string GetAuthorization(string userName, string password)
 
 ### 微信小游戏支持解决方案
 
-首先在项目里定义UNITY_WECHAT_GAME宏，然后将微信插件的程序集引用关联到YooAsset运行时的程序集。
-
 微信小游戏注意事项：
 
 1. 不支持同步加载。
 2. 不支持资源加密。
-3. 不支持多Package
+3. 所有下载器无效。
+4. 不支持多Package
 
 **关闭WebGL本地缓存***
 
@@ -262,10 +237,6 @@ private string GetAuthorization(string userName, string password)
 ```csharp
 YooAssets.SetCacheSystemDisableCacheOnWebGL();
 ```
-
-**注意**：一定要禁止微信对资源清单版本文件进行缓存（文件名称样例：PackageManifest_xxx.version）
-
-**注意：**如果未调用该方法，微信小游戏有内存崩溃的风险！
 
 ### FairyGUI支持解决方案
 

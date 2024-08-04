@@ -2,7 +2,7 @@
 
 学习资源配置界面。
 
-![image](./Image/AssetCollector-img1.jpg)
+![image](./Image/AssetCollector-img1.png)
 
 ### 界面介绍
 
@@ -16,9 +16,9 @@
 
 **注意**：该工具仅支持Unity2019.4+
 
-### 全局设置
+### 公共设置
 
-- Show Packag
+- Show Packages
 
   是否展示资源包列表视图。
 
@@ -26,18 +26,14 @@
 
   是否显示为中文模式。
 
-- Unique Bundle Name
-
-  资源包名追加PackageName作为前缀。
-
-### 包裹设置
-
 - Enable Addressable
 
   启用可寻址资源定位系统。
 
-  **开启可寻址的同时也支持全路径加载！**
+- Unique Bundle Name
 
+  资源包名追加PackageName作为前缀。
+  
 - Location To Lower
 
   资源定位地址大小写不敏感。
@@ -45,16 +41,6 @@
 - Include Asset GUID
 
   资源清单里包含资源GUID信息。
-
-- Ignore Default Type
-
-  忽略引擎无法识别的文件。
-
-  **建议原生构建管线关闭该选项！**
-
-- Auto Collect Shaders
-
-  将所有着色器构建到独立的资源包内。
 
 ### 资源分组
 

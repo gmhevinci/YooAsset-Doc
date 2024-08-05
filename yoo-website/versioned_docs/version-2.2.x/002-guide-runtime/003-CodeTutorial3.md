@@ -97,10 +97,20 @@ IEnumerator Start()
 ````csharp
 // 卸载所有引用计数为零的资源包。
 // 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
-private void UnloadUnusedAssets()
+private IEnumerator UnloadUnusedAssets()
 {
     var package = YooAssets.GetAssetsPackage("DefaultPackage");
-    package.UnloadUnusedAssets();
+    var operation = package.UnloadUnusedAssetsAsync();
+    yield return operation;
+}
+
+// 强制卸载所有资源包，该方法请在合适的时机调用。
+// 注意：Package在销毁的时候也会自动调用该方法。
+private void ForceUnloadAllAssets()
+{
+    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    var operation = package.UnloadAllAssetsAsync();
+    yield return operation;
 }
 
 // 尝试卸载指定的资源对象
@@ -109,23 +119,6 @@ private void TryUnloadUnusedAsset()
 {
     var package = YooAssets.GetAssetsPackage("DefaultPackage");
     package.TryUnloadUnusedAsset("Assets/GameRes/Panel/login.prefab");
-}
-
-// 强制卸载所有资源包，该方法请在合适的时机调用。
-// 注意：Package在销毁的时候也会自动调用该方法。
-private void ForceUnloadAllAssets()
-{
-    var package = YooAssets.GetAssetsPackage("DefaultPackage");
-    package.ForceUnloadAllAssets();
-}
-
-// 通过初始化配置资源释放行为
-class InitializeParameters
-{
-    /// <summary>
-    /// 自动销毁不再使用的资源提供者
-    /// </summary>
-    public bool AutoDestroyAssetProvider = false;
 }
 ````
 
@@ -181,8 +174,9 @@ IEnumerator Start()
 {
     string location = "Assets/GameRes/Scene/Login";
     var sceneMode = UnityEngine.SceneManagement.LoadSceneMode.Single;
+    var physicsMode = LocalPhysicsMode.None;
     bool suspendLoad = false;
-    SceneHandle handle = package.LoadSceneAsync(location, sceneMode, suspendLoad);
+    SceneHandle handle = package.LoadSceneAsync(location, sceneMode, physicsMode, suspendLoad);
     yield return handle;
     Debug.Log($"Scene name is {handle.Scene.name}");
 }

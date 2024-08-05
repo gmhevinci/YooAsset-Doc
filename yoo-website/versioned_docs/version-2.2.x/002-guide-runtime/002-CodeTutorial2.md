@@ -4,22 +4,20 @@
 
 ### 获取资源版本
 
-对于联机运行模式，在更新补丁清单之前，需要获取一个资源版本。
-
-该资源版本可以通过YooAssets提供的接口来更新，也可以通过HTTP访问游戏服务器来获取。
+资源包在初始化成功之后，需要获取包裹版本
 
 ````csharp
-private IEnumerator UpdatePackageVersion()
+private IEnumerator RequestPackageVersion()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.UpdatePackageVersionAsync();
+    var operation = package.RequestPackageVersionAsync();
     yield return operation;
 
     if (operation.Status == EOperationStatus.Succeed)
     {
         //更新成功
         string packageVersion = operation.PackageVersion;
-        Debug.Log($"Updated package Version : {packageVersion}");
+        Debug.Log($"Request package Version : {packageVersion}");
     }
     else
     {
@@ -31,16 +29,13 @@ private IEnumerator UpdatePackageVersion()
 
 ### 更新资源清单
 
-对于联机运行模式，在获取到资源版本号之后，就可以更新资源清单了。
+在获取到资源版本号之后，就可以更新资源清单了。
 
 ````csharp
 private IEnumerator UpdatePackageManifest()
 {
-    // 更新成功后自动保存版本号，作为下次初始化的版本。
-    // 也可以通过operation.SavePackageVersion()方法保存。
-    bool savePackageVersion = true;
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.UpdatePackageManifestAsync(packageVersion, savePackageVersion);
+    var operation = package.UpdatePackageManifestAsync(packageVersion);
     yield return operation;
 
     if (operation.Status == EOperationStatus.Succeed)
@@ -131,10 +126,14 @@ downloader1.BeginDownload();
 
 ### 源代码解析
 
-Package.UpdatePackageManifestAsync()方法解析。
+Package.RequestPackageVersionAsync()方法解析。
+
+- 单机运行模式
+
+  单机模式下请求的是应用程序内保存的版本文件，一般存放在StreamingAssets目录下。
 
 - 联机运行模式
 
-  通过传入的清单版本，优先比对当前激活清单的版本，如果相同就直接返回成功。如果有差异就从缓存里去查找匹配的清单，如果缓存里不存在，就去远端下载并保存到沙盒里。最后加载沙盒内匹配的清单文件。
+  联机模式下请求的是远端的版本文件，该步骤可以自定义HTTP请求来代替，可以实现WEB端对请求版本的控制。
 
   

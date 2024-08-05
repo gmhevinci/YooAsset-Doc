@@ -2,7 +2,7 @@
 
 学习如何进行资源系统的初始化。
 
-初始化资源系统
+**创建资源包对象**
 
 ```csharp
 // 初始化资源系统
@@ -11,111 +11,150 @@ YooAssets.Initialize();
 // 创建默认的资源包
 var package = YooAssets.CreatePackage("DefaultPackage");
 
+// 获取指定的资源包，如果没有找到会报错
+var package = YooAssets.GetPackage("DefaultPackage");
+
+// 获取指定的资源包，如果没有找到不会报错
+var package = YooAssets.TryGetPackage("DefaultPackage");
+
 // 设置该资源包为默认的资源包，可以使用YooAssets相关加载接口加载该资源包内容。
 YooAssets.SetDefaultPackage(package);
 ```
 
+**销毁资源包对象**
+
+```csharp
+private IEnumerator DestroyPackage()
+{
+    // 先销毁资源包
+    var package = YooAssets.GetPackage("DefaultPackage");
+    DestroyOperation operation = package.DestroyAsync();
+    yield return DestroyOperation;
+    
+    // 然后移除资源包
+    if (YooAssets.RemovePackage(package))
+    {
+        Debug.Log("移除成功！");
+    }
+}
+```
+
 ### 资源系统的运行模式
 
-- 编辑器模拟模式
-- 单机运行模式
-- 联机运行模式
-- WebGL运行模式。
+- 编辑器模拟模式 (EditorSimulateMode)
+- 单机运行模式  (OfflinePlayMode)
+- 联机运行模式  (HostPlayMode)
+- Web运行模式  (WebPlayMode)
 
-### 编辑器模拟模式
+### 编辑器模拟模式 (EditorSimulateMode)
 
 在编辑器下，不需要构建资源包，来模拟运行游戏。
 
 注意：该模式只在编辑器下起效
 
 ````csharp
-private IEnumerator InitializeYooAsset()
+private IEnumerator InitPackage()
 {
+    //注意：如果是原生文件系统选择EDefaultBuildPipeline.RawFileBuildPipeline
+    var buildPipeline = EDefaultBuildPipeline.BuiltinBuildPipeline; 
+    var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(buildPipeline, "DefaultPackage");
+    var editorFileSystem = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
     var initParameters = new EditorSimulateModeParameters();
-    var simulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild(EDefaultBuildPipeline.BuiltinBuildPipeline, "DefaultPackage");
-    initParameters.SimulateManifestFilePath  = simulateManifestFilePath;
+    initParameters.EditorFileSystemParameters = editorFileSystem;
     yield return package.InitializeAsync(initParameters);
+    
+    if(initOperation.Status == EOperationStatus.Succeed)
+        Debug.Log("资源包初始化成功！");
+    else 
+        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
 }
 ````
 
-### 单机运行模式
+### 单机运行模式  (OfflinePlayMode)
 
 对于不需要热更新资源的游戏，可以使用单机运行模式。
 
 注意：该模式需要构建资源包
 
 ````csharp
-private IEnumerator InitializeYooAsset()
+private IEnumerator InitPackage()
 {
+    var buildinFileSystem = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
     var initParameters = new OfflinePlayModeParameters();
+    initParameters.BuildinFileSystemParameters = buildinFileSystem;
     yield return package.InitializeAsync(initParameters);
+    
+    if(initOperation.Status == EOperationStatus.Succeed)
+        Debug.Log("资源包初始化成功！");
+    else 
+        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
 }
 ````
 
-### 联机运行模式
+### 联机运行模式 (HostPlayMode)
 
-对于需要热更新资源的游戏，可以使用联机运行模式，该模式下初始化参数会很多。
+对于需要热更新资源的游戏，可以使用联机运行模式。
 
 注意：该模式需要构建资源包
 
-- DecryptionServices : 如果资源包在构建的时候有加密，需要提供实现IDecryptionServices接口的实例类。
-- QueryServices：内置资源查询服务接口。
-- RemoteServices: 远端服务器查询服务接口。
-
 ````csharp
-private IEnumerator InitializeYooAsset()
+private IEnumerator InitPackage()
 {
     // 注意：GameQueryServices.cs 太空战机的脚本类，详细见StreamingAssetsHelper.cs
     string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";
+    IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    var cacheFileSystem = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
+    var buildinFileSystem = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();   
     var initParameters = new HostPlayModeParameters();
-    initParameters.BuildinQueryServices = new GameQueryServices(); 
-    initParameters.DecryptionServices = new FileOffsetDecryption();
-    initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    initParameters.BuildinFileSystemParameters = buildinFileSystem; 
+    initParameters.CacheFileSystemParameters = cacheFileSystem;
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
-    {
         Debug.Log("资源包初始化成功！");
-    }
     else 
-    {
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
-    }
 }
 ````
 
-### WebGL运行模式
+### Web运行模式 (WebPlayMode)
 
 针对WebGL平台的专属模式，包括微信小游戏，抖音小游戏都需要选择该模式。
 
 注意：该模式需要构建资源包
 
-- DecryptionServices : WebGL平台不支持加密，可以设置为NULL。
-- QueryServices：WebSite站内资源查询服务接口。
-- RemoteServices: 远端服务器查询服务接口。
-
 ```csharp
-private IEnumerator InitializeYooAsset()
+private IEnumerator InitPackage()
 {
-    // 注意：GameQueryServices.cs 太空战机的脚本类，详细见StreamingAssetsHelper.cs
-    string defaultHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
-    string fallbackHostServer = "http://127.0.0.1/CDN/WebGL/v1.0";
+    var webFileSystem = FileSystemParameters.CreateDefaultWebFileSystemParameters();
     var initParameters = new WebPlayModeParameters();
-    initParameters.BuildinQueryServices = new GameQueryServices();
-    initParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    initParameters.WebFileSystemParameters = webFileSystem;
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
-    {
         Debug.Log("资源包初始化成功！");
-    }
     else 
-    {
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
-    }
+}
+```
+
+### 原生文件初始化注意事项
+
+**注意：原生文件的资源包构建模式必须是RawFileBuildPipeline**
+
+**注意：在WebPlayMode模式下，不支持原生文件系统 ！**
+
+```csharp
+// 原生文件资源包的初始化方式，同样适用于上面介绍的四种资源系统的运行模式。
+{
+    // 原生文件的缓存文件系统
+    FileSystemParameters.CreateDefaultCacheRawFileSystemParameters(remoteServices);
+    
+    // 原生文件的内置文件系统
+    FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters(); 
 }
 ```
 
@@ -129,44 +168,36 @@ private IEnumerator InitializeYooAsset()
 /// </summary>
 private class FileOffsetDecryption : IDecryptionServices
 {
-    /// <summary>
-    /// 同步方式获取解密的资源包对象
-    /// 注意：加载流对象在资源包对象释放的时候会自动释放
-    /// </summary>
+    // AssetBundle解密方法
     AssetBundle IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
     {
         managedStream = null;
         return AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
     }
-
-    /// <summary>
-    /// 异步方式获取解密的资源包对象
-    /// 注意：加载流对象在资源包对象释放的时候会自动释放
-    /// </summary>
+    
+	// AssetBundle解密方法
     AssetBundleCreateRequest IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
     {
         managedStream = null;
         return AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
     }
-
+    
+    // 原生文件解密方法
+    byte[] IDecryptionServices.ReadFileData(DecryptFileInfo fileInfo)
+    {
+        throw new System.NotImplementedException();
+    }
+    
+ 	// 原生文件解密方法
+    string IDecryptionServices.ReadFileText(DecryptFileInfo fileInfo)
+    {
+        throw new System.NotImplementedException();
+    }
+    
     private static ulong GetFileOffset()
     {
         return 32;
     }
-}
-```
-
-### 原生文件初始化注意事项
-
-**注意：原生文件的资源包构建模式必须是RawFileBuildPipeline**
-
-```csharp
-// 原生文件资源包的初始化方式，同样适用于上面介绍的四种资源系统的运行模式。
-// 注意：如果需要对下载的原生文件保留原始后缀格式，需要在初始化参数里配置。
-{
-    var initParameters = new HostPlayModeParameters();
-    initParameters.CacheFileAppendExtension = true;
-    ......
 }
 ```
 
@@ -182,12 +213,12 @@ Package.InitializeAsync()方法解析。
 
 - 单机运行模式
 
-  在初始化的时候，会直接读取内置清单文件（StreamingAssets文件夹里的文件），最后初始化缓存系统。
+  在初始化的时候，会初始化内置文件系统。
 
 - 联机运行模式
 
-  在初始化的时候，会优先从沙盒里加载清单，如果沙盒里不存在，则会尝试加载内置清单并将其拷贝到沙盒里。最后初始化缓存系统。
+  在初始化的时候，会初始化内置文件系统和缓存文件系统。
 
-  **注意**：如果沙盒清单和内置清单都不存在，初始化也会被判定为成功！
+  **注意：内置文件系统可以为空。**
 
   

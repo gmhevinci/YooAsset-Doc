@@ -27,19 +27,17 @@ private IEnumerator Start()
     // 游戏工程使用编辑器模拟运行方式，可以方便快捷的验证游戏修改效果。
     {
         var package = YooAssets.CreatePackage("GameLogic");
-        var createParameters = new EditorSimulateModeParameters();
-        createParameters.SimulateManifestFilePath = simulateManifestFilePath;
-        var initializationOperation = package.InitializeAsync(createParameters);
+        var initParameters = new EditorSimulateModeParameters();
+        ...（省略初始化参数）
+        var initializationOperation = package.InitializeAsync(initParameters);
         yield return initializationOperation;        
     }
 
     // 美术工程使用HostPlayMode运行方式，通过公司本地的资源服务器来更新。
     {
         var package = YooAssets.CreatePackage("GameArt");
-        var createParameters = new HostPlayModeParameters();
-        createParameters.BuildinQueryServices = new GameQueryServices(); 
-        createParameters.DecryptionServices = new FileOffsetDecryption();
-        createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+        var initParameters = new HostPlayModeParameters();
+        ...（省略初始化参数）
         var initOperation = package.InitializeAsync(initParameters);       
         initializationOperation = package.InitializeAsync(createParameters);
         yield return initializationOperation;  
@@ -54,26 +52,28 @@ private IEnumerator Start()
 
 希望将所有热更资源压缩到一个ZIP包里。玩家第一次启动游戏去下载ZIP包，下载完成后解压到沙盒目录下。
 
+**关键是实现自定义文件系统。**
+
 ```csharp
 //首先需要实现资源分发服务类
-class DefaultDeliveryQueryServices : IDeliveryQueryServices
+private IEnumerator Start()
 {
-    //查询文件是否为分发资源，可以使用IO类去查询解压目录下文件是否存在。
-    bool Query(string packageName, string fileName, string fileCRC);
-    
-    //获取分发资源文件的路径
-    string GetFilePath(string packageName, string fileName);
+    var package = YooAssets.CreatePackage("GameArt");
+    var initParameters = new HostPlayModeParameters();
+    initParameters.DeliveryFileSystemParameters = deliveryFileSystem;
+    ...（省略其它初始化参数）
+    var initOperation = package.InitializeAsync(initParameters);       
+    initializationOperation = package.InitializeAsync(createParameters);
+    yield return initializationOperation;  
 }
 ```
 
-注意事项：
+文件系统实现过程注意事项：
 
-1. ZIP包的下载器需要满足断点续传和文件校验逻辑。
-2. ZIP包的解压目录需要开发者自己维护，例如解压目录清空等行为。
-3. ZIP包的下载和解压行为需要在YOO启动之前完成。
-4. 解压行为建议只执行一次，一般是玩家安装完APP之后启动游戏后执行一次。
-5. 解压目录下的文件在游戏启动的时候无法保证文件的完整性，需要开发者自己维护。
-6. YOO的底层机制是会优先查询分发资源，然后是沙盒资源，最后是内置资源。
+1. ZIP包的下载和解压可以安排在初始化里。
+2. ZIP包的下载和解压只保证发生一次。
+3. ZIP包的下载器需要满足断点续传和文件校验逻辑。
+4. 解压文件在写入缓存目录时需要保证文件的完整性。
 
 ### 首包资源定制解决方案
 
@@ -180,39 +180,53 @@ private IEnumerator Start()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
     
-    // 先获取最新的资源版本
-    var versionOperation = package.UpdatePackageVersionAsync(30);
-    yield return versionOperation;
-    if (versionOperation.Status == EOperationStatus.Succeed)
+    // 先获取远端最新的资源版本
+    var versionOp = package.RequestPackageVersionAsync(30);
+    yield return versionOp;
+    if (versionOp.Status == EOperationStatus.Succeed)
     {
         // 如果获取远端资源版本成功，说明当前网络连接通畅，可以走正常更新流程。
-        bool autoSaveVersion = false; //注意：延迟保存本地版本
-        var manifestOperation = package.UpdatePackageManifestAsync(versionOperation.PackageVersion, autoSaveVersion);
-		yield return manifestOperation;
-        if (manifestOperation.Status != EOperationStatus.Succeed)
+        var manifestOp = package.UpdatePackageManifestAsync(versionOp.PackageVersion);
+		yield return manifestOp;
+        if (manifestOp.Status != EOperationStatus.Succeed)
         {
             ShowMessageBox("请检查本地网络，资源清单更新失败！");
             yield break;
         }
         
-        // 创建下载器和下载逻辑省略
-        ......
+        // 创建下载器并更新资源
+        ......（代码省略）
         
         // 注意：下载完成之后再保存本地版本
-        manifestOperation.SavePackageVersion();
+        PlayerPrefs.SetString("GAME_VERSION", versionOp.PackageVersion);
         
         // 开始游戏
-        ......
+        StartGame();
     }
     else
     {
-        // 如果获取远端资源版本失败，说明当前网络无连接。
-        // 在正常开始游戏之前，需要验证本地清单内容的完整性。
+        // 获取上次成功记录的版本
+        string version = PlayerPrefs.GetString("GAME_VERSION", string.Empty);
+        if(string.IsNullOrEmpty(version))
+        {
+            ShowMessageBox("没有找到本地版本记录，需要更新资源！");
+            yield break;
+        }
+        
+        // 加载本地缓存的资源清单文件
+        var manifestOp = package.UpdatePackageManifestAsync(version);
+		yield return manifestOp;
+        if (manifestOp.Status != EOperationStatus.Succeed)
+        {
+            ShowMessageBox("加载本地资源清单文件失败，需要更新资源！");
+            yield break;
+        }
+        
+        // 在正常开始游戏之前，还需要验证本地清单内容的完整性。
         var downloader = package.CreateResourceDownloader(1, 1, 60);
         if (downloader.TotalDownloadCount > 0)   
         {
-            // 资源内容本地并不完整，需要提示玩家联网更新。
-            ShowMessageBox("请检查本地网络，有新的游戏内容需要更新！");
+            ShowMessageBox("资源内容本地并不完整，需要更新资源！");
             yield break;
         }
         
@@ -247,25 +261,19 @@ private string GetAuthorization(string userName, string password)
 
 ### 微信小游戏支持解决方案
 
-首先在项目里定义UNITY_WECHAT_GAME宏，然后将微信插件的程序集引用关联到YooAsset运行时的程序集。
+首先安装WX-WASM-SDK-V2 Unity插件，然后导入微信文件系统相关代码，WebPlayMode初始化的时候使用微信文件系统类。
 
-微信小游戏注意事项：
+微信文件系统相关代码可以在扩展工程内找到：Extension Sample --> Runtime --> WechatFileSystem
+
+微信文件系统注意事项：
 
 1. 不支持同步加载。
 2. 不支持资源加密。
-3. 不支持多Package
-
-**关闭WebGL本地缓存***
-
-因为微信小游戏平台的特殊性，需要关闭WebGL的缓存系统，使用微信自带的缓存系统。
-
-```csharp
-YooAssets.SetCacheSystemDisableCacheOnWebGL();
-```
+3. 不支持原生文件构建管线。
 
 **注意**：一定要禁止微信对资源清单版本文件进行缓存（文件名称样例：PackageManifest_xxx.version）
 
-**注意：**如果未调用该方法，微信小游戏有内存崩溃的风险！
+微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/
 
 ### FairyGUI支持解决方案
 

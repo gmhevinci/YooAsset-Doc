@@ -271,6 +271,29 @@ private string GetAuthorization(string userName, string password)
 2. 不支持资源加密。
 3. 不支持原生文件构建管线。
 
+需要关注的代码段：
+
+````csharp
+class WechatFileSystem : IFileSystem
+{
+    // 微信缓存根目录是否需要调整?
+    public virtual void OnCreate(string packageName, string rootDirectory)
+    {
+        PackageName = packageName;
+        _wxFileSystemMgr = WX.GetFileSystemManager();
+        _wxFileCacheRoot = WX.env.USER_DATA_PATH; //注意：如果有子目录，请修改此处！
+    }
+    
+    // 保证该方法返回正确的查询结果
+    public virtual bool Exists(PackageBundle bundle)
+    {
+        string filePath = GetWXFileLoadPath(bundle);
+        string result = _wxFileSystemMgr.AccessSync(filePath);
+        return result.Equals("access:ok");
+    }
+}
+````
+
 **注意**：一定要禁止微信对资源清单版本文件进行缓存（文件名称样例：PackageManifest_xxx.version）
 
 微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/

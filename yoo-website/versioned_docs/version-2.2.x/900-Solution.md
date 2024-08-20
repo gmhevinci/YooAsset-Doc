@@ -271,6 +271,11 @@ private string GetAuthorization(string userName, string password)
 2. 不支持资源加密。
 3. 不支持原生文件构建管线。
 
+原生文件解决办法：
+
+1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
+2. 视频文件通过微信插件来加载播放，视频文件不做资源版本控制。
+
 需要关注的代码段：
 
 ````csharp

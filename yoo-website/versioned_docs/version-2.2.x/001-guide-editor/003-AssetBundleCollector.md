@@ -46,15 +46,15 @@
 
   资源清单里包含资源GUID信息。
 
-- Ignore Default Type
-
-  忽略引擎无法识别的文件。
-
-  **原生文件构建管线不要勾选该选项！**
-
 - Auto Collect Shaders
 
   将所有着色器构建到独立的资源包内。
+  
+- File Ignore Rule
+
+  文件全局忽略规则。该规则可以扩展！
+
+  **原生文件配置选择RawFileIgnoreRule**
 
 ### 资源分组
 
@@ -188,11 +188,13 @@
 
   资源分类标签列表，该收集器下收集的资源会全部被打上该标签。
 
-### 原生文件构建配置
+### 原生文件配置
 
 原生文件配置和AssetBundle配置需要分开，各自创建自己的Package。
 
-在原生文件的包裹设置界面里将Ignore Default Type选项勾选掉，这样构建管线才会识别Unity引擎无法识别的原生文件。
+在原生文件的包裹设置界面里将File Ignore Rule下拉选择RawFileIgnoreRule，这样构建管线才会识别Unity引擎无法识别的原生文件。
+
+资源包构建阶段选择RawFileBuildPipeline构建管线！
 
 ### 代码示例
 

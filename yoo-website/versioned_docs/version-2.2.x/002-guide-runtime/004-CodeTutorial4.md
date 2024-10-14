@@ -171,7 +171,7 @@ public class MyGameConfig: ScriptableObject
 IEnumerator Start()
 {
     string location = "Assets/GameRes/config/gameConfig.asset";
-    AssetHandle handle = package.LoadAssetFileAsync(location);
+    AssetHandle handle = package.LoadAssetAsync(location);
     yield return handle;
     MyGameConfig gameCOnfig = handle.AssetObject as MyGameConfig;
 }

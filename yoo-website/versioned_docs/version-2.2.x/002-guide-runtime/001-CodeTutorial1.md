@@ -29,7 +29,7 @@ private IEnumerator DestroyPackage()
     // 先销毁资源包
     var package = YooAssets.GetPackage("DefaultPackage");
     DestroyOperation operation = package.DestroyAsync();
-    yield return DestroyOperation;
+    yield return operation;
     
     // 然后移除资源包
     if (YooAssets.RemovePackage(package))

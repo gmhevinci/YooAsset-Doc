@@ -303,6 +303,43 @@ class WechatFileSystem : IFileSystem
 
 微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/
 
+### 抖音小游戏支持解决方案
+
+首先安装字节小游戏相关的Unity插件，然后导入抖音文件系统相关代码，WebPlayMode初始化的时候使用抖音文件系统类。
+
+抖音文件系统相关代码可以在扩展工程内找到：Extension Sample --> Runtime --> ByteGameFileSystem
+
+抖音文件系统注意事项：
+
+1. 不支持同步加载。
+2. 不支持资源加密。
+3. 不支持原生文件构建管线。
+
+原生文件解决办法：
+
+1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
+2. 视频文件通过抖音插件来加载播放，视频文件不做资源版本控制。
+
+需要关注的代码段：
+
+````csharp
+class ByteGameFileSystem : IFileSystem
+{
+    public virtual void OnCreate(string packageName, string rootDirectory)
+    {
+        PackageName = packageName;
+        _fileSystemManager = StarkSDK.API.GetStarkFileSystemManager();
+    }
+    
+    // 保证该方法返回正确的查询结果
+    public virtual bool Exists(PackageBundle bundle)
+    {
+        string filePath = GetCacheFileLoadPath(bundle);
+        return _fileSystemManager.AccessSync(filePath);
+    }
+}
+````
+
 ### FairyGUI支持解决方案
 
 注意：在FairyGUI的面板销毁的时候，将资源句柄列表释放，否则会造成资源泄漏。

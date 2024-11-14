@@ -151,6 +151,10 @@ public class FileOffsetEncryption : IEncryptionServices
 
 BuildReport_DefaultPackage_xxx.json文件为构建报告文件。可以通过构建报告窗口查看本次构建的详细信息。
 
+### 版本比对
+
+当构建完成后需要将差异化内容上传到CDN服务器，可以参考[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PackageComparator)编写差异化比对工具。
+
 ### Jenkins支持
 
 如果需要自动化构建，可以参考如下代码范例：

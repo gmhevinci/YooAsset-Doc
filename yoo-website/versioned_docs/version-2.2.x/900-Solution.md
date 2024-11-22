@@ -301,6 +301,8 @@ class WechatFileSystem : IFileSystem
 
 **注意**：一定要禁止微信对资源清单版本文件进行缓存（文件名称样例：PackageManifest_xxx.version）
 
+**注意**：URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle，双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
+
 微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/
 
 ### 抖音小游戏支持解决方案

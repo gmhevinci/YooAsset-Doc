@@ -100,7 +100,6 @@ private IEnumerator InitPackage()
 ````csharp
 private IEnumerator InitPackage()
 {
-    // 注意：GameQueryServices.cs 太空战机的脚本类，详细见StreamingAssetsHelper.cs
     string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
@@ -122,6 +121,8 @@ private IEnumerator InitPackage()
 ### Web运行模式 (WebPlayMode)
 
 针对WebGL平台的专属模式，包括微信小游戏，抖音小游戏都需要选择该模式。
+
+注意：微信小游戏，抖音小游戏请参考解决方案文档介绍。
 
 注意：该模式需要构建资源包
 

@@ -141,9 +141,24 @@ public class PackVideo : IPackRule
         string bundleName = data.AssetPath;
         string fileExtension = Path.GetExtension(data.AssetPath);
         fileExtension = fileExtension.Remove(0, 1);
-        PackRuleResult result = new PackRuleResult(bundleName, fileExtension);
+        PackRuleResult result = new PackRuleResult(bundleName, fileExtension); //Bundle后缀为视频格式后缀
         return result;
     }
+}
+```
+
+```csharp
+// 初始化文件系统注意事项
+// 确保文件系统参数里添加了fileSystemParams.AddParameter(FileSystemParametersDefine.APPEND_FILE_EXTENSION, true);
+// FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters()默认开启了APPEND_FILE_EXTENSION
+// FileSystemParameters.CreateDefaultCacheRawFileSystemParameters()默认开启了APPEND_FILE_EXTENSION
+public IEnumerator Start()
+{
+    var createParameters = new HostPlayModeParameters();
+    createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters();
+    createParameters.CacheFileSystemParameters = FileSystemParameters.CreateDefaultCacheRawFileSystemParameters(remoteServices);
+    initializationOperation = package.InitializeAsync(createParameters);
+    yield return initializationOperation;
 }
 ```
 

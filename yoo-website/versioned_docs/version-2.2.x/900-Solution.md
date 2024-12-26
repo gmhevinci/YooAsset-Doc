@@ -381,6 +381,25 @@ class ByteGameFileSystem : IFileSystem
 }
 ````
 
+### Steam平台支持DLC的扩展资源方案
+
+在Steam官方平台下载DLC资产，然后解压到游戏目录下（通常是内置资产所在目录）。
+
+```csharp
+// 初始化文件系统注意事项
+// 说明：需要关闭Catalog目录查询文件，这样会认定所有加载资产都属内置资产文件。
+public IEnumerator Start()
+{
+    var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+    buildinFileSystemParams.AddParameter(FileSystemParametersDefine.DISABLE_CATALOG_FILE, true);
+    
+    var createParameters = new OfflinePlayModeParameters();
+    createParameters.BuildinFileSystemParameters = buildinFileSystemParams;
+    initializationOperation = package.InitializeAsync(createParameters);
+    yield return initializationOperation;
+}
+```
+
 ### FairyGUI支持解决方案
 
 注意：在FairyGUI的面板销毁的时候，将资源句柄列表释放，否则会造成资源泄漏。

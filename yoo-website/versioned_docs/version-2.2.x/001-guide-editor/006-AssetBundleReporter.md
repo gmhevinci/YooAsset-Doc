@@ -8,7 +8,7 @@
 
 ### 概览视图
 
-![image](./Image/AssetReporter-img1.jpg)
+![image](./Image/AssetReporter-img1.png)
 
 ### 资源对象列表视图
 

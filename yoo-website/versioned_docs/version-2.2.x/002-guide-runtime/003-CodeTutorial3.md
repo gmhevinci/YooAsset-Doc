@@ -8,7 +8,7 @@
 private IEnumerator ClearPackageAllCacheFiles()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.ClearAllBundleFilesAsync();
+    var operation = package.ClearCacheBundleFilesAsync(EFileClearMode.ClearAllBundleFiles);
     yield return operation;
 
     if (operation.Status == EOperationStatus.Succeed)
@@ -31,7 +31,30 @@ private IEnumerator ClearPackageAllCacheFiles()
 private IEnumerator ClearPackageUnusedCacheFiles()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.ClearUnusedBundleFilesAsync();
+    var operation = package.ClearCacheBundleFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
+    yield return operation;
+
+    if (operation.Status == EOperationStatus.Succeed)
+    {
+        //清理成功
+    }
+    else
+    {
+        //清理失败
+        Debug.LogError(operation.Error);
+    }
+}
+````
+
+### 清理文件系统指定标签的缓存资源文件
+
+通过指定Tags来清理相关的缓存文件。
+
+````csharp
+private IEnumerator ClearPackageAllCacheFiles()
+{
+    var package = YooAssets.GetPackage("DefaultPackage");
+    var operation = package.ClearCacheBundleFilesAsync(EFileClearMode.ClearBundleFilesByTags, "level1");
     yield return operation;
 
     if (operation.Status == EOperationStatus.Succeed)

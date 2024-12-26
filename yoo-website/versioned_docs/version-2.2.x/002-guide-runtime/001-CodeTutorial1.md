@@ -54,13 +54,14 @@ private IEnumerator DestroyPackage()
 
 ````csharp
 private IEnumerator InitPackage()
-{
-    //注意：如果是原生文件系统选择EDefaultBuildPipeline.RawFileBuildPipeline
-    var buildPipeline = EDefaultBuildPipeline.BuiltinBuildPipeline; 
-    var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(buildPipeline, "DefaultPackage");
-    var editorFileSystem = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
+{  
+    var simulateBuildParam = new EditorSimulateBuildParam();
+    simulateBuildParam.PackageName = "DefaultPackage"; //指定包裹名称
+    var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(simulateBuildParam);
+    
+    var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
     var initParameters = new EditorSimulateModeParameters();
-    initParameters.EditorFileSystemParameters = editorFileSystem;
+    initParameters.EditorFileSystemParameters = editorFileSystemParams;
     yield return package.InitializeAsync(initParameters);
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -79,9 +80,9 @@ private IEnumerator InitPackage()
 ````csharp
 private IEnumerator InitPackage()
 {
-    var buildinFileSystem = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+    var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
     var initParameters = new OfflinePlayModeParameters();
-    initParameters.BuildinFileSystemParameters = buildinFileSystem;
+    initParameters.BuildinFileSystemParameters = buildinFileSystemParams;
     yield return package.InitializeAsync(initParameters);
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -103,11 +104,12 @@ private IEnumerator InitPackage()
     string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";
     IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
-    var cacheFileSystem = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
-    var buildinFileSystem = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();   
+    var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
+    var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();   
+    
     var initParameters = new HostPlayModeParameters();
-    initParameters.BuildinFileSystemParameters = buildinFileSystem; 
-    initParameters.CacheFileSystemParameters = cacheFileSystem;
+    initParameters.BuildinFileSystemParameters = buildinFileSystemParams; 
+    initParameters.CacheFileSystemParameters = cacheFileSystemParams;
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
     
@@ -129,9 +131,14 @@ private IEnumerator InitPackage()
 ```csharp
 private IEnumerator InitPackage()
 {
-    var webFileSystem = FileSystemParameters.CreateDefaultWebFileSystemParameters();
+    IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    var webServerFileSystemParams = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
+    var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //支持跨域下载
+    
     var initParameters = new WebPlayModeParameters();
-    initParameters.WebFileSystemParameters = webFileSystem;
+    initParameters.WebServerFileSystemParameters = webServerFileSystemParams;
+    initParameters.WebRemoteFileSystemParameters = webRemoteFileSystemParams;
+    
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;
     
@@ -139,23 +146,6 @@ private IEnumerator InitPackage()
         Debug.Log("资源包初始化成功！");
     else 
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
-}
-```
-
-### 原生文件初始化注意事项
-
-**注意：原生文件的资源包构建模式必须是RawFileBuildPipeline**
-
-**注意：在WebPlayMode模式下，不支持原生文件系统 ！**
-
-```csharp
-// 原生文件资源包的初始化方式，同样适用于上面介绍的四种资源系统的运行模式。
-{
-    // 原生文件的缓存文件系统
-    FileSystemParameters.CreateDefaultCacheRawFileSystemParameters(remoteServices);
-    
-    // 原生文件的内置文件系统
-    FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters(); 
 }
 ```
 
@@ -170,17 +160,21 @@ private IEnumerator InitPackage()
 private class FileOffsetDecryption : IDecryptionServices
 {
     // AssetBundle解密方法
-    AssetBundle IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
+    DecryptResult IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo)
     {
-        managedStream = null;
-        return AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
+        DecryptResult decryptResult = new DecryptResult();
+        decryptResult.ManagedStream = null;
+        decryptResult.Result = AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
+        return decryptResult;
     }
     
 	// AssetBundle解密方法
-    AssetBundleCreateRequest IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
+    DecryptResult IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo)
     {
-        managedStream = null;
-        return AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.ConentCRC, GetFileOffset());
+        DecryptResult decryptResult = new DecryptResult();
+        decryptResult.ManagedStream = null;
+        decryptResult.CreateRequest = AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
+        return decryptResult;
     }
     
     // 原生文件解密方法

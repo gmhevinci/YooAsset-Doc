@@ -2,7 +2,7 @@
 
 学习资源配置界面。
 
-![image](./Image/AssetCollector-img1.jpg)
+![image](./Image/AssetCollector-img1.png)
 
 ### 界面介绍
 
@@ -29,6 +29,8 @@
 - Unique Bundle Name
 
   资源包名追加PackageName作为前缀。
+  
+  **当有多个Package的时候，强烈建议开启此项！**
 
 ### 包裹设置
 
@@ -70,7 +72,7 @@
   //自定义扩展范例
   public class DisableGroup : IActiveRule
   {
-      public bool IsActiveGroup()
+      public bool IsActiveGroup(GroupData groupData)
       {
           return false;
       }

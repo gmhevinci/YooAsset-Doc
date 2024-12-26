@@ -10,6 +10,5 @@
 
 配置说明：
 
-- **Manifest File Name** : 清单文件名称
-- Default Yoo Folder Name : 沙盒目录和内置目录的文件夹名称
+- Default Yoo Folder Name : 沙盒目录和内置目录的根目录名称
 

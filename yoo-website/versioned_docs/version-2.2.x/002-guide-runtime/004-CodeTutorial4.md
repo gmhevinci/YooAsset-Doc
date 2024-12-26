@@ -207,6 +207,19 @@ void GetAssetInfosByTag(string tag)
 }
 ````
 
+获取所有的资源信息列表。
+
+````csharp
+void GetAllAssetInfos()
+{
+    AssetInfo[] assetInfos = package.GetAllAssetInfos();
+    foreach (var assetInfo in assetInfos)
+    {
+        Debug.Log(assetInfo.AssetPath);
+    }
+}
+````
+
 ### 检测资源是否需要更新下载
 
 ````csharp

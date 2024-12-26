@@ -64,28 +64,24 @@ private IEnumerator Start()
 
 希望将所有热更资源压缩到一个ZIP包里。玩家第一次启动游戏去下载ZIP包，下载完成后解压到沙盒目录下。
 
-**关键是实现自定义文件系统。**
-
-```csharp
-//首先需要实现资源分发服务类
-private IEnumerator Start()
-{
-    var package = YooAssets.CreatePackage("GameArt");
-    var initParameters = new HostPlayModeParameters();
-    initParameters.DeliveryFileSystemParameters = deliveryFileSystem;
-    ...（省略其它初始化参数）
-    var initOperation = package.InitializeAsync(initParameters);       
-    initializationOperation = package.InitializeAsync(createParameters);
-    yield return initializationOperation;  
-}
-```
-
 文件系统实现过程注意事项：
 
-1. ZIP包的下载和解压可以安排在初始化里。
+1. ZIP包的下载和解压可以安排在初始化流程里。
 2. ZIP包的下载和解压只保证发生一次。
 3. ZIP包的下载器需要满足断点续传和文件校验逻辑。
-4. 解压文件在写入缓存目录时需要保证文件的完整性。
+4. 所有工作准备完毕后，通过文件导入器导入解压的资源文件。
+5. 在导入完成后，可以将解压文件全部删除。
+
+```csharp
+/// <summary>
+/// 创建资源导入器
+/// 注意：资源文件名称必须和资源服务器部署的文件名称一致！
+/// </summary>
+/// <param name="filePaths">资源路径列表</param>
+/// <param name="importerMaxNumber">同时导入的最大文件数</param>
+/// <param name="failedTryAgain">导入失败的重试次数</param>
+public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int importerMaxNumber, int failedTryAgain)
+```
 
 ### 首包资源定制解决方案
 
@@ -149,14 +145,17 @@ public class PackVideo : IPackRule
 
 ```csharp
 // 初始化文件系统注意事项
-// 确保文件系统参数里添加了fileSystemParams.AddParameter(FileSystemParametersDefine.APPEND_FILE_EXTENSION, true);
-// FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters()默认开启了APPEND_FILE_EXTENSION
-// FileSystemParameters.CreateDefaultCacheRawFileSystemParameters()默认开启了APPEND_FILE_EXTENSION
 public IEnumerator Start()
 {
+    var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+    buildinFileSystemParams.AddParameter(FileSystemParametersDefine.APPEND_FILE_EXTENSION, true);
+    
+    var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
+    cacheFileSystemParams.AddParameter(FileSystemParametersDefine.APPEND_FILE_EXTENSION, true);
+    
     var createParameters = new HostPlayModeParameters();
-    createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinRawFileSystemParameters();
-    createParameters.CacheFileSystemParameters = FileSystemParameters.CreateDefaultCacheRawFileSystemParameters(remoteServices);
+    createParameters.BuildinFileSystemParameters = buildinFileSystemParams;
+    createParameters.CacheFileSystemParameters = cacheFileSystemParams;
     initializationOperation = package.InitializeAsync(createParameters);
     yield return initializationOperation;
 }
@@ -232,6 +231,16 @@ private IEnumerator Start()
     }
     else
     {
+        // 首次运行需要拷贝内置资源清单到沙盒内
+        if(IsFirstRunApp)
+        {
+            // 注意：内置清单的版本需要开发者自己记录并填写
+            // 注意：CopyBuildinManifestOperation类是YOO扩展示例的代码！
+            var copyBuildinManifestOp = new CopyBuildinManifestOperation("DefaultPackage", "1.0");
+            YooAssets.StartOperation(copyBuildinManifestOp);
+            yield return copyBuildinManifestOp;
+        }
+        
         // 获取上次成功记录的版本
         string version = PlayerPrefs.GetString("GAME_VERSION", string.Empty);
         if(string.IsNullOrEmpty(version))
@@ -312,8 +321,11 @@ class WechatFileSystem : IFileSystem
     public virtual void OnCreate(string packageName, string rootDirectory)
     {
         PackageName = packageName;
+        
         _wxFileSystemMgr = WX.GetFileSystemManager();
-        _wxFileCacheRoot = WX.env.USER_DATA_PATH; //注意：如果有子目录，请修改此处！
+        _fileCacheRoot = $"{WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE";
+        //_fileCacheRoot = $"{WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/子目录"; //注意：如果有子目录，请修改此处！
+        //_fileCacheRoot = PathUtility.Combine(WX.PluginCachePath, $"StreamingAssets/WebGL");
     }
     
     // 保证该方法返回正确的查询结果

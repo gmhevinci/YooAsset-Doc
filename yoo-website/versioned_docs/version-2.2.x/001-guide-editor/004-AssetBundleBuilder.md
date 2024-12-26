@@ -2,7 +2,7 @@
 
 学习资源构建界面。
 
-![image](./Image/AssetBuilder-img1.jpg)
+![image](./Image/AssetBuilder-img1.png)
 
 ### 界面介绍
 
@@ -14,7 +14,11 @@
 
   构建管线的列表，下拉选择要使用的构建管线。
 
-  (1) BuiltinBuildPipeline: 传统的内置构建管线
+  (1) EditorSimulateBuildPipeline: 编辑器下模拟构建管线
+
+  ​	会生成资源清单文件，但不会生成Bundle文件，用于编辑器下模拟真实打包环境。
+
+  (1) BuiltinBuildPipeline: 内置构建管线
 
   (2) ScriptableBuildPipeline: 可编程构建管线
 
@@ -34,17 +38,17 @@
 
   构建的资源包版本。
 
-- **Build Mode**
+- **Clear Build Cache**
 
-  构建模式
+  清理构建缓存，将会重新构建所有资源包。
 
-  (1) 强制构建模式：会删除指定构建平台下的所有构建记录，重新构建所有资源包。
+  <u>当不勾选此项的时候，引擎会开启增量打包模式，会极大提高构建速度！</u>
+  
+- **Use Asset Depend DB**
 
-  (2) 增量构建模式：以上一次构建结果为基础，对于发生变化的资源进行增量构建。
+  在资源收集过程中，使用资源依赖关系数据库。
 
-  (3) 演练构建模式：在不生成AssetBundle文件的前提下，进行演练构建并快速生成构建报告和补丁清单。
-
-  (4) 模拟构建模式：在编辑器下配合EditorSimulateMode运行模式，来模拟真实运行的环境。
+  <u>当开启此项的时候，会极大提高构建速度！</u>
 
 - **Encryption**
 
@@ -127,29 +131,33 @@ public class FileOffsetEncryption : IEncryptionServices
 
 构建成功后会在输出目录下找到补丁包文件夹，该文件夹名称为本次构建时指定的资源版本号。
 
-补丁包文件夹里包含补丁清单文件，资源包文件，构建报告文件等。
+补丁包文件夹里包含资源清单文件，资源包文件，构建报告等。
 
-![image](./Image/AssetBuilder-img2.jpg)
+![image](./Image/AssetBuilder-img2.png)
 
-### 补丁清单
+### 资源清单
 
-补丁清单文件是上图中以PackageManifest开头命名的文件。
+- DefaultPackage.version
 
-- PackageManifest_DefaultPackage_xxx.hash
+  资源版本文件
 
-  记录了补丁清单文件的哈希值。
+- DefaultPackage_xxx.hash
 
-- PackageManifest_DefaultPackage_xxx.json
+  记录了资源清单文件的哈希值。
+
+- DefaultPackage_xxx.json
 
   该文件为Json文本格式，主要用于开发者预览信息。
 
-- PackageManifest_DefaultPackage_xxx.bytes
+- DefaultPackage_xxx.bytes
 
   该文件为二进制格式，主要用于程序内读取加载。
 
 ### 构建报告
 
-BuildReport_DefaultPackage_xxx.json文件为构建报告文件。可以通过构建报告窗口查看本次构建的详细信息。
+- DefaultPackage_xxx.report
+
+  构建报告文件。可以通过构建报告窗口查看本次构建的详细信息。
 
 ### 版本比对
 
@@ -174,8 +182,8 @@ private static void BuildInternal(BuildTarget buildTarget)
     buildParameters.BuildOutputRoot = buildoutputRoot;
     buildParameters.BuildinFileRoot = streamingAssetsRoot;
     buildParameters.BuildPipeline = EBuildPipeline.BuiltinBuildPipeline.ToString();
+    buildParameters.BuildBundleType = (int)EBuildBundleType.AssetBundle; //必须指定资源包类型
     buildParameters.BuildTarget = BuildTarget;
-    buildParameters.BuildMode = EBuildMode.ForceRebuild;
     buildParameters.PackageName = "DefaultPackage";
     buildParameters.PackageVersion = "1.0";
     buildParameters.VerifyBuildingResult = true;
@@ -185,6 +193,8 @@ private static void BuildInternal(BuildTarget buildTarget)
     buildParameters.BuildinFileCopyParams = string.Empty;
     buildParameters.EncryptionServices = CreateEncryptionInstance();
     buildParameters.CompressOption = ECompressOption.LZ4;
+    buildParameters.ClearBuildCacheFiles = false; //不清理构建缓存，启用增量构建，可以提高打包速度！
+    buildParameters.UseAssetDependencyDB = true; //使用资源依赖关系数据库，可以提高打包速度！
     
     // 执行构建
     BuiltinBuildPipeline pipeline = new BuiltinBuildPipeline();
@@ -216,10 +226,6 @@ private static string GetBuildPackageName()
 - **增量构建**
 
   增量构建是在Unity的帮助下实现的一种快速打包机制。主要是利用资源构建相关的缓存文件来避免二次构建，以此来提高打包效率。
-
-- **强制构建**
-
-  强制构建是每次构建之前，都会清空之前构建的所有缓存文件，以此来重新构建资源包。
 
 - **首包资源**
 

@@ -381,13 +381,14 @@ class ByteGameFileSystem : IFileSystem
 }
 ````
 
-### Steam平台支持DLC的扩展资源方案
+### Steam平台支持DLC扩展资源方案
 
 在Steam官方平台下载DLC资产，然后解压到游戏目录下（通常是内置资产所在目录）。
 
 ```csharp
 // 初始化文件系统注意事项
-// 说明：需要关闭Catalog目录查询文件，这样会认定所有加载资产都属内置资产文件。
+// 说明：需要关闭Catalog目录查询文件，这样文件系统会认定后续解压的DLC资产也属内置资产文件。
+// 说明：Catalog文件是在构建APP的时候，自动生成的内置资产查询目录文件，用于记录构建APP时刻包体内的资产列表。
 public IEnumerator Start()
 {
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();

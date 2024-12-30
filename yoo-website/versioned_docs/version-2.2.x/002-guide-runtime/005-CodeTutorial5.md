@@ -47,3 +47,21 @@ private void TryUnloadUnusedAsset()
 }
 ````
 
+### 场景卸载范例
+
+```csharp
+IEnumerator Start()
+{
+    // 异步加载场景
+    var sceneHandle = package.LoadSceneAsync("Assets/GameRes/Scene/scene_home");
+    yield return handle;
+    
+    ...
+    
+    // 场景卸载成功后，会自动释放该handle的引用计数！
+    // 当前必须保留一个场景，无法卸载最后的场景！
+    var operation = sceneHandle.UnloadAsync();
+    yield return operation;
+}
+```
+

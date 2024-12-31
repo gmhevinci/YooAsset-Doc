@@ -28,7 +28,7 @@
    ````json
    {
      "dependencies": {
-       "com.tuyoogame.yooasset": "2.1.0",
+       "com.tuyoogame.yooasset": "2.x.x",
        ......
      },
      "scopedRegistries": [

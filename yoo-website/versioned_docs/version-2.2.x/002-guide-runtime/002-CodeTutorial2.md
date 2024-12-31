@@ -89,10 +89,10 @@ IEnumerator Download()
     long totalDownloadBytes = downloader.TotalDownloadBytes;    
 
     //注册回调方法
-    downloader.OnDownloadErrorCallback = OnDownloadErrorFunction;
-    downloader.OnDownloadProgressCallback = OnDownloadProgressUpdateFunction;
-    downloader.OnDownloadOverCallback = OnDownloadOverFunction;
-    downloader.OnStartDownloadFileCallback = OnStartDownloadFileFunction;
+    downloader.DownloadFinishCallback = OnDownloadFinishFunction; //当下载器结束（无论成功或失败）
+    downloader.DownloadErrorCallback = OnDownloadErrorFunction; //当下载器发生错误
+    downloader.DownloadUpdateCallback = OnDownloadUpdateFunction; //当下载进度发生变化
+    downloader.DownloadFileBeginCallback = OnDownloadFileBeginFunction; //当开始下载某个文件
 
     //开启下载
     downloader.BeginDownload();

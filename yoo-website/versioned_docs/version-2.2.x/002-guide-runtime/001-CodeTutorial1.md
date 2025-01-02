@@ -62,7 +62,8 @@ private IEnumerator InitPackage()
     var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
     var initParameters = new EditorSimulateModeParameters();
     initParameters.EditorFileSystemParameters = editorFileSystemParams;
-    yield return package.InitializeAsync(initParameters);
+    var initOperation = package.InitializeAsync(initParameters);
+    yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
         Debug.Log("资源包初始化成功！");
@@ -83,7 +84,8 @@ private IEnumerator InitPackage()
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
     var initParameters = new OfflinePlayModeParameters();
     initParameters.BuildinFileSystemParameters = buildinFileSystemParams;
-    yield return package.InitializeAsync(initParameters);
+    var initOperation = package.InitializeAsync(initParameters);
+    yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
         Debug.Log("资源包初始化成功！");

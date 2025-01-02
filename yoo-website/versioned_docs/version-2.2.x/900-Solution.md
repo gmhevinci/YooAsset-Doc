@@ -282,10 +282,10 @@ YooAssets.SetDownloadSystemUnityWebRequest(MyWebRequester);
 
 public UnityWebRequest MyWebRequester(string url)
 {
-    var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbGet);
+    var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbGET);
     var authorization = GetAuthorization("Admin", "12345");
     request.SetRequestHeader("AUTHORIZATION", authorization);
-    return reqeust;
+    return request;
 }
 private string GetAuthorization(string userName, string password)
 {

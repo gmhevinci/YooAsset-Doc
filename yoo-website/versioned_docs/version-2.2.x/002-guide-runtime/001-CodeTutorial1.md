@@ -55,11 +55,11 @@ private IEnumerator DestroyPackage()
 ````csharp
 private IEnumerator InitPackage()
 {  
-    var simulateBuildParam = new EditorSimulateBuildParam();
-    simulateBuildParam.PackageName = "DefaultPackage"; //指定包裹名称
+    var simulateBuildParam = new EditorSimulateBuildParam("DefaultPackage");
     var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(simulateBuildParam);
     
-    var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
+    var packageRoot = simulateBuildResult.PackageRootDirectory;
+    var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
     var initParameters = new EditorSimulateModeParameters();
     initParameters.EditorFileSystemParameters = editorFileSystemParams;
     var initOperation = package.InitializeAsync(initParameters);

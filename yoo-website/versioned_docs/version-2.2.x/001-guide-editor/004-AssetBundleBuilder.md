@@ -163,6 +163,10 @@ public class FileOffsetEncryption : IEncryptionServices
 
 当构建完成后需要将差异化内容上传到CDN服务器，可以参考[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PackageComparator)编写差异化比对工具。
 
+### 构建错误码
+
+参考[构建管线错误码](./008-BuildPipelineErrorCode.md)页面。
+
 ### Jenkins支持
 
 如果需要自动化构建，可以参考如下代码范例：

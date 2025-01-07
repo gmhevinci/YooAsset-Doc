@@ -42,13 +42,21 @@
 
   可以修改PackageVersion解决该问题。
 
+- **ErrorCode116**
+
+  构建参数里填写的构建管线名称为空。BuildPipeline参数不能为空！
+
+- **ErrorCode117**
+
+  构建参数里填写的构建资源包类型无效。BuildBundleType参数不能为空！
+
 - **ErrorCode130**
 
   该错误码为警告，提示开发者在使用Unity2021版本及后续版本的时候，推荐使用SBP构建管线！
 
   随着Unity引擎版本的迭代，Unity2021版本及后续版本对内置构建管线的兼容不足，会导致在构建场景或其它资源的时候出现莫名其妙的显示问题。
-
-
+  
+  
 
 #### TaskGetBuildMap节点
 

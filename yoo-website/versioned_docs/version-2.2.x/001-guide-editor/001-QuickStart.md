@@ -49,7 +49,7 @@
 
 ### 系统需求
 
-支持版本: Unity2019.4 & Unity2020.3 & Unity2021.3 & Unity2022.3
+支持版本: Unity2019.4 & Unity2020.3 & Unity2021.3 & Unity2022.3 & Unity6.0
 
 支持平台: Windows、OSX、Android、iOS、WebGL
 

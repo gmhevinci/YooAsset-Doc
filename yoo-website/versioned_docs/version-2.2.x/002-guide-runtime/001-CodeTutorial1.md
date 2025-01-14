@@ -55,10 +55,8 @@ private IEnumerator DestroyPackage()
 ````csharp
 private IEnumerator InitPackage()
 {  
-    var simulateBuildParam = new EditorSimulateBuildParam("DefaultPackage");
-    var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(simulateBuildParam);
-    
-    var packageRoot = simulateBuildResult.PackageRootDirectory;
+    var buildResult = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");    
+    var packageRoot = buildResult.PackageRootDirectory;
     var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
     var initParameters = new EditorSimulateModeParameters();
     initParameters.EditorFileSystemParameters = editorFileSystemParams;

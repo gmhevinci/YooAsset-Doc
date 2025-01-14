@@ -127,24 +127,13 @@ void BuildBundle()
 
 ### 视频打包和加载解决方案
 
-```csharp
-// 编写自定义打包规则，然后将脚本放在Editor目录下。
-// 然后在AssetBundleCollector界面对视频文件使用扩展的打包规则。
-public class PackVideo : IPackRule
-{
-    PackRuleResult IPackRule.GetPackRuleResult(PackRuleData data)
-    {
-        string bundleName = data.AssetPath;
-        string fileExtension = Path.GetExtension(data.AssetPath);
-        fileExtension = fileExtension.Remove(0, 1);
-        PackRuleResult result = new PackRuleResult(bundleName, fileExtension); //Bundle后缀为视频格式后缀
-        return result;
-    }
-}
-```
+在AssetBundleCollector界面对视频文件使用PackVideoFile打包规则。
+
+然后使用原生文件构建管线构建资源包。
 
 ```csharp
 // 初始化文件系统注意事项
+// 注意：开启APPEND_FILE_EXTENSION参数
 public IEnumerator Start()
 {
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
@@ -163,6 +152,7 @@ public IEnumerator Start()
 
 ```csharp
 // 视频加载范例
+// 注意：使用原生文件加载方法
 public IEnumerator Start()
 {
     var package = YooAssets.GetPackage("DefaultPackage");

@@ -334,6 +334,10 @@ class WechatFileSystem : IFileSystem
 
 微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/
 
+微信小游戏插件官方文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
+
+![image](./Image/Solution-img2.png)
+
 ### 抖音小游戏支持解决方案
 
 首先安装字节小游戏相关的Unity插件，然后导入抖音文件系统相关代码，WebPlayMode初始化的时候使用抖音文件系统类。

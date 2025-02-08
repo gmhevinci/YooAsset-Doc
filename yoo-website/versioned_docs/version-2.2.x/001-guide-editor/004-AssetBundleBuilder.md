@@ -225,6 +225,31 @@ private static string GetBuildPackageName()
 }
 ````
 
+SBP构建管线注意事项
+
+请务必设置内置着色器资源包名称，且和自动收集的着色器资源包名保持一致！
+
+```csharp
+private static void BuildInternal(BuildTarget buildTarget)
+{
+    // 构建参数
+    ScriptableBuildParameters buildParameters = new ScriptableBuildParameters();
+    ......
+    buildParameters.BuiltinShadersBundleName = GetBuiltinShaderBundleName();
+}
+
+/// <summary>
+/// 内置着色器资源包名称
+/// 注意：和自动收集的着色器资源包名保持一致！
+/// </summary>
+private string GetBuiltinShaderBundleName()
+{
+    var uniqueBundleName = AssetBundleCollectorSettingData.Setting.UniqueBundleName;
+    var packRuleResult = DefaultPackRule.CreateShadersPackRuleResult();
+    return packRuleResult.GetBundleName(PackageName, uniqueBundleName);
+}
+```
+
 ### 重要概念
 
 - **增量构建**

@@ -155,13 +155,9 @@
           PackRuleResult result = new PackRuleResult(bundleName, DefaultPackRule.AssetBundleFileExtension);
           return result;   
       }
-      bool IPackRule.IsRawFilePackRule()
-      {
-          return false;
-      }
   }
   ````
-
+  
 - **FilterRule**
 
   过滤规则，规则可以自定义扩展。下面是内置规则：

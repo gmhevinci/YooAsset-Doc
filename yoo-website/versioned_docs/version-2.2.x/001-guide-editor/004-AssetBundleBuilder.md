@@ -96,36 +96,7 @@
 - LoadFromMemory 通过文件内存来解密加载。
 - LoadFromStream 通过文件流来解密加载。
 
-```csharp
-/// <summary>
-/// 文件偏移加密方式
-/// </summary>
-public class FileOffsetEncryption : IEncryptionServices
-{
-    public EncryptResult Encrypt(EncryptFileInfo fileInfo)
-    {
-        // 注意：只对音频资源包加密
-        if (fileInfo.BundleName.Contains("_gameres_audio"))
-        {
-            int offset = 32;
-            byte[] fileData = File.ReadAllBytes(fileInfo.FileLoadPath);
-            var encryptedData = new byte[fileData.Length + offset];
-            Buffer.BlockCopy(fileData, 0, encryptedData, offset, fileData.Length);
-
-            EncryptResult result = new EncryptResult();
-            result.Encrypted = true;
-            result.EncryptedData = encryptedData;
-            return result;
-        }
-        else
-        {
-            EncryptResult result = new EncryptResult();
-            result.Encrypted = false;
-            return result;
-        }
-    }
-}
-```
+参考：[加密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/TestEncryption.cs)
 
 ### 补丁包
 

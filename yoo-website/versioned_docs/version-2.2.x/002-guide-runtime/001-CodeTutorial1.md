@@ -153,48 +153,7 @@ private IEnumerator InitPackage()
 
 实现一个继承IDecryptionServices接口的运行时的类。
 
-```csharp
-/// <summary>
-/// 资源文件偏移加载解密类
-/// </summary>
-private class FileOffsetDecryption : IDecryptionServices
-{
-    // AssetBundle解密方法
-    DecryptResult IDecryptionServices.LoadAssetBundle(DecryptFileInfo fileInfo)
-    {
-        DecryptResult decryptResult = new DecryptResult();
-        decryptResult.ManagedStream = null;
-        decryptResult.Result = AssetBundle.LoadFromFile(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
-        return decryptResult;
-    }
-    
-	// AssetBundle解密方法
-    DecryptResult IDecryptionServices.LoadAssetBundleAsync(DecryptFileInfo fileInfo)
-    {
-        DecryptResult decryptResult = new DecryptResult();
-        decryptResult.ManagedStream = null;
-        decryptResult.CreateRequest = AssetBundle.LoadFromFileAsync(fileInfo.FileLoadPath, fileInfo.FileLoadCRC, GetFileOffset());
-        return decryptResult;
-    }
-    
-    // 原生文件解密方法
-    byte[] IDecryptionServices.ReadFileData(DecryptFileInfo fileInfo)
-    {
-        throw new System.NotImplementedException();
-    }
-    
- 	// 原生文件解密方法
-    string IDecryptionServices.ReadFileText(DecryptFileInfo fileInfo)
-    {
-        throw new System.NotImplementedException();
-    }
-    
-    private static ulong GetFileOffset()
-    {
-        return 32;
-    }
-}
-```
+参考：[解密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/TestEncryption.cs)
 
 ### 源代码解析
 

@@ -81,13 +81,15 @@ private class WebDecryption : IWebDecryptionServices
 
 ![image](./Image/Solution-img2.png)
 
+
+
 ### 抖音小游戏
 
 首先安装字节小游戏相关的Unity插件，然后导入抖音文件系统相关代码。
 
 抖音文件系统相关代码在扩展工程内：Extension Sample --> Runtime --> ExtensionFileSystem--> [TiktokFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionFileSystem/TiktokFileSystem)
 
-**抖音文件系统注意事项**
+**文件系统注意事项**
 
 1. 不支持同步加载。
 2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
@@ -108,13 +110,16 @@ IEnumerator InitPackage()
     string fallbackHostServer = GetHostServerURL();
     var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     
+    // 创建解密服务类
+    var decryptionServices = new WebDecryption();
+    
     // 小游戏缓存根目录
     // 注意：如果有子目录，请修改此处！
     string packageRoot = $"xxx"; 
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();
-    createParameters.WebServerFileSystemParameters = TiktokFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices);
+    createParameters.WebServerFileSystemParameters = TiktokFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, decryptionServices);
     
     // 初始化ResourcePackage
     yield reurn package.InitializeAsync(createParameters);
@@ -124,3 +129,41 @@ IEnumerator InitPackage()
 **其它注意事项**
 
 - 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
+
+
+
+### 支付宝小游戏
+
+由于官方在文件系统层面支持不足，[官方文档介绍](https://opendocs.alipay.com/mini-game/0ftleg)
+
+目前的技术方案走WebGL网页平台的文件系统。
+
+**文件系统注意事项**
+
+1. 不支持同步加载。
+2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
+3. 不支持原生文件构建管线。
+
+**文件系统初始化**
+
+```csharp
+IEnumerator InitPackage()
+{
+    // 创建远程服务类
+    string defaultHostServer = GetHostServerURL();
+    string fallbackHostServer = GetHostServerURL();
+    var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    
+    // 创建解密服务类
+    var decryptionServices = new WebDecryption();
+    
+    // 创建初始化参数
+    bool disableUnityWebCache = true; //注意：一定要禁用引擎的缓存机制！！！
+    var createParameters = new WebPlayModeParameters();
+    createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices, decryptionServices, disableUnityWebCache);
+    
+    // 初始化ResourcePackage
+    yield reurn package.InitializeAsync(createParameters);
+}
+```
+

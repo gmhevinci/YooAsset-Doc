@@ -29,16 +29,41 @@ IEnumerator InitPackage()
     string fallbackHostServer = GetHostServerURL();
     var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     
+    // 创建解密服务类
+    var decryptionServices = new WebDecryption();
+    
     // 小游戏缓存根目录
     // 注意：如果有子目录，请修改此处！
     string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE"; 
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();
-    createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices);
+    createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, decryptionServices);
     
     // 初始化ResourcePackage
     yield reurn package.InitializeAsync(createParameters);
+}
+
+// 解密服务类
+private class WebDecryption : IWebDecryptionServices
+{
+    public WebDecryptResult LoadAssetBundle(WebDecryptFileInfo fileInfo)
+    {
+        // 安全起见可以拷贝一份原始数据
+        byte[] copyData = new byte[fileInfo.FileData.Length];
+        Buffer.BlockCopy(fileInfo.FileData, 0, copyData, 0, fileInfo.FileData.Length);
+
+        // 实现你的解密算法
+        for (int i = 0; i < copyData.Length; i++)
+        {
+            ......
+        }
+
+        // 从内存中加载AssetBundle
+        WebDecryptResult decryptResult = new WebDecryptResult();
+        decryptResult.Result = AssetBundle.LoadFromMemory(copyData);
+        return decryptResult;
+    }
 }
 ````
 

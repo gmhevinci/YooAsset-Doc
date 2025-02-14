@@ -203,7 +203,7 @@
 ```csharp
 using YooAsset.Editor;
 
-private void SetGroupDsiable(string packageName, string groupName)
+private void SetGroupDisable(string packageName, string groupName)
 {
     foreach (var package in AssetBundleCollectorSettingData.Setting.Packages)
     {

@@ -140,6 +140,21 @@ IEnumerator Start()
 }
 ````
 
+### 图集精灵加载范例
+
+如何加载SpriteAtlas对象以及包含的精灵
+
+```csharp
+IEnumerator Start()
+{
+    string location = "Assets/GameRes/UIAtlas/login.spriteatlas";
+    AssetHandle handle = package.LoadAssetAsync(location);
+    yield return handle;
+    var spriteAtals = handle.AssetObject as SpriteAtlas;
+    var spriteObject = spriteAtals.GetSprite("spriteName");
+}
+```
+
 ### 原生文件加载范例
 
 **注意：原生文件必须使用原生构建管线来构建。**

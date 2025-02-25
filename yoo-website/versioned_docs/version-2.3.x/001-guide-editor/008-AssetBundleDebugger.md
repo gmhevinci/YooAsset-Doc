@@ -20,9 +20,24 @@ adb forward tcp:34999 localabstract:Unity- 包名
 
 ### 资源对象列表视图
 
-![image](./Image/AssetDebugger-img1.jpg)
+该页面展示了当前加载的所有资源对象，以及加载耗时，加载状态，引用计数等数据。
+
+Depend Bundles 是选中的资源对象加载所依赖的资源包列表！
+
+![image](./Image/AssetDebugger-img1.png)
 
 ### 资源包列表视图
 
-![image](./Image/AssetDebugger-img2.jpg)
+该页面展示了当前加载的所有资源包，以及加载状态，引用计数等数据。
+
+Using Asset 是选中的资源包当前正在使用的资源对象列表。
+
+Reference Bundle 是选中的资源包相关引用关系的资源包列表（谁引用了选中的资源包）。
+
+当一个资源包在内存里被卸载需要2个条件：
+
+1. Using Assets 列表里所有资源对象的引用计数为零。
+2. Reference Bundle 列表里所有资源包的引用计数为零。
+
+![image](./Image/AssetDebugger-img2.png)
 

@@ -12,6 +12,8 @@
 
 - [HybridCLR_YooAsset_UniTask](https://github.com/JoinEnjoyJoyYangLingYun/HybridCLR_YooAsset_UniTask) : 整合HybridCLR+YooAsset+UniTask工程
 
+- [yooasset_wxminigame](https://github.com/absences/yooasset_wxminigame)：使用yooasset的微信小游戏demo
+
 - [JEngine](https://github.com/JasonXuDeveloper/JEngine) : 集成了YooAsset的优秀开源框架。
 
 - [TEngine](https://github.com/ALEXTANGXIAO/TEngine) : 集成了YooAsset的优秀开源框架。

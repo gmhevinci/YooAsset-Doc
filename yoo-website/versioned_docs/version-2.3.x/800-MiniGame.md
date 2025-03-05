@@ -13,6 +13,7 @@
 1. 不支持同步加载。
 2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
 3. 不支持原生文件构建管线。
+4. 构建的Bundle文件名称不要带有中文！
 
 **原生文件解决办法**
 
@@ -80,6 +81,8 @@ private class WebDecryption : IWebDecryptionServices
 微信小游戏插件官方文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
 
 ![image](./Image/Solution-img2.png)
+
+![image](./Image/Solution-img3.jpg)
 
 
 

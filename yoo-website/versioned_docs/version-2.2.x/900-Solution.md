@@ -201,7 +201,7 @@ private IEnumerator Start()
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
     buildinFileSystemParams.AddParameter(FileSystemParametersDefine.COPY_BUILDIN_PACKAGE_MANIFEST, true);
     var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices); 
-    var playModeParameters = new OfflinePlayModeParameters();
+    var playModeParameters = new HostPlayModeParameters();
     playModeParameters.BuildinFileSystemParameters = buildinFileSystemParams;
     playModeParameters.CacheFileSystemParameters = cacheFileSystemParams;
     var initOperation = package.InitializeAsync(playModeParameters);

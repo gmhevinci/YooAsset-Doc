@@ -41,3 +41,10 @@ Reference Bundle 是选中的资源包相关引用关系的资源包列表（谁
 
 ![image](./Image/AssetDebugger-img2.png)
 
+### 异步操作任务列表视图
+
+该页面展示了当前所有异步任务的信息，包括任务开始的时间，耗时，状态以及附加调试信息。
+
+选中异步操作任务，可以在底部查看完整的操作链信息。
+
+![image](./Image/AssetDebugger-img3.png)

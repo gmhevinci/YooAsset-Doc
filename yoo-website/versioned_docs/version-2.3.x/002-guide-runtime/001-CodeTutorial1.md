@@ -151,9 +151,18 @@ private IEnumerator InitPackage()
 
 ### 解密方法
 
-实现一个继承IDecryptionServices接口的运行时的类。
+实现一个继承IDecryptionServices接口的类，参考代码：[单元测试工程](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
 
-参考：[解密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/TestEncryption.cs)
+FileSystemParameters.cs类里有各个默认的文件系统的初始化方法。
+
+```csharp
+// 初始化资源包
+var initParams = new OfflinePlayModeParameters();
+var decryption = new FileStreamDecryption();
+initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption, packageRoot);
+var initializeOp = package.InitializeAsync(initParams);
+yield return initializeOp;
+```
 
 ### 源代码解析
 

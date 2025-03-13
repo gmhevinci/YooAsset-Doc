@@ -45,6 +45,7 @@ private IEnumerator DestroyPackage()
 - 单机运行模式  (OfflinePlayMode)
 - 联机运行模式  (HostPlayMode)
 - Web运行模式  (WebPlayMode)
+- 自定义运行模式  (CustomPlayMode)
 
 ### 编辑器模拟模式 (EditorSimulateMode)
 
@@ -120,6 +121,31 @@ private IEnumerator InitPackage()
 }
 ````
 
+```csharp
+/// <summary>
+/// 远端资源地址查询服务类
+/// </summary>
+private class RemoteServices : IRemoteServices
+{
+    private readonly string _defaultHostServer;
+    private readonly string _fallbackHostServer;
+
+    public RemoteServices(string defaultHostServer, string fallbackHostServer)
+    {
+        _defaultHostServer = defaultHostServer;
+        _fallbackHostServer = fallbackHostServer;
+    }
+    string IRemoteServices.GetRemoteMainURL(string fileName)
+    {
+        return $"{_defaultHostServer}/{fileName}";
+    }
+    string IRemoteServices.GetRemoteFallbackURL(string fileName)
+    {
+        return $"{_fallbackHostServer}/{fileName}";
+    }
+}
+```
+
 ### Web运行模式 (WebPlayMode)
 
 针对WebGL平台的专属模式，包括微信小游戏，抖音小游戏都需要选择该模式。
@@ -131,6 +157,7 @@ private IEnumerator InitPackage()
 ```csharp
 private IEnumerator InitPackage()
 {
+    //说明：RemoteServices类定义请参考联机运行模式！
     IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     var webServerFileSystemParams = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
     var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //支持跨域下载
@@ -138,6 +165,33 @@ private IEnumerator InitPackage()
     var initParameters = new WebPlayModeParameters();
     initParameters.WebServerFileSystemParameters = webServerFileSystemParams;
     initParameters.WebRemoteFileSystemParameters = webRemoteFileSystemParams;
+    
+    var initOperation = package.InitializeAsync(initParameters);
+    yield return initOperation;
+    
+    if(initOperation.Status == EOperationStatus.Succeed)
+        Debug.Log("资源包初始化成功！");
+    else 
+        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+}
+```
+
+### 自定义运行模式  (CustomPlayMode)
+
+支持多个文件系统。
+
+注意：列表最后一个元素作为主文件系统！
+
+```csharp
+private IEnumerator InitPackage()
+{
+    // 配置各个文件系统参数
+    ......
+    
+    var initParameters = new CustomPlayModeParameters();
+    initParameters.FileSystemParameterList.Add(FileSystemParamsA);
+    initParameters.FileSystemParameterList.Add(FileSystemParamsB);
+    initParameters.FileSystemParameterList.Add(FileSystemParamsC);
     
     var initOperation = package.InitializeAsync(initParameters);
     yield return initOperation;

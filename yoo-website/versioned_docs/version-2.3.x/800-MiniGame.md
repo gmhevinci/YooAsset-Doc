@@ -2,6 +2,37 @@
 
 了解如何使用YooAsset接入小游戏平台。
 
+### 网页小游戏
+
+**文件系统注意事项**
+
+1. 不支持同步加载。
+2. 不支持原生文件构建管线。
+3. 不支持下载器。
+
+**文件系统初始化**
+
+````csharp
+IEnumerator InitPackage()
+{
+    // 创建远程服务类
+    string defaultHostServer = GetHostServerURL();
+    string fallbackHostServer = GetHostServerURL();
+    var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    
+    // 创建解密服务类
+    var decryptionServices = new WebDecryption();
+    
+    // 创建初始化参数
+    var createParameters = new WebPlayModeParameters();
+    createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices, decryptionServices);
+    createParameters.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters(decryptionServices);
+    
+    // 初始化ResourcePackage
+    yield reurn package.InitializeAsync(createParameters);
+}
+````
+
 ### 微信小游戏
 
 首先安装WX-WASM-SDK-V2 Unity插件，然后导入微信文件系统相关代码。

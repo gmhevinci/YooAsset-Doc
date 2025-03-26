@@ -2,4 +2,7 @@
 
 docfx metadata
 
-dotnet ../../tools/docfx/DocfxEx.dll
+dotnet C:/Github/YooAsset-Doc/tools/docfx/DocfxEx.dll
+
+echo "任意键退出"
+read -n 1

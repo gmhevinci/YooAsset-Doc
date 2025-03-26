@@ -7,7 +7,7 @@
             "YooAsset.Editor.csproj",
             "YooAsset.csproj"
           ],
-          "src": "../../../YooAsset/"
+          "src": "../../../YooAsset-Dev/"
         }
       ],
       "dest": "api",

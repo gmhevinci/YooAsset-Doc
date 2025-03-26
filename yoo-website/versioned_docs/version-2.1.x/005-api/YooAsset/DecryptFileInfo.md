@@ -1,25 +1,32 @@
 ---
 title: Struct DecryptFileInfo
 sidebar_label: DecryptFileInfo
+description: "解密文件的信息"
 ---
 # Struct DecryptFileInfo
-
+解密文件的信息
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L4)
+
 ```csharp title="Declaration"
 public struct DecryptFileInfo
 ```
 ## Fields
 ### BundleName
 资源包名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L9)
+
 ```csharp title="Declaration"
 public string BundleName
 ```
-### FilePath
-文件路径
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L14)
+### FileLoadPath
+文件加载路径
+
 ```csharp title="Declaration"
-public string FilePath
+public string FileLoadPath
+```
+### ConentCRC
+Unity引擎用于内容校验的CRC
+
+```csharp title="Declaration"
+public uint ConentCRC
 ```

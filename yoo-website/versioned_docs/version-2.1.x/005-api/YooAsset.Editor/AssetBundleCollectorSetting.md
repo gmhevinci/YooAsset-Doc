@@ -6,60 +6,67 @@ sidebar_label: AssetBundleCollectorSetting
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L9)
+
 ```csharp title="Declaration"
 [CreateAssetMenu(fileName = "AssetBundleCollectorSetting", menuName = "YooAsset/Create AssetBundle Collector Settings")]
 public class AssetBundleCollectorSetting : ScriptableObject
 ```
 ## Fields
 ### ShowPackageView
-是否显示包裹列表视图
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L15)
+显示包裹列表视图
+
 ```csharp title="Declaration"
 public bool ShowPackageView
 ```
-### EnableAddressable
-是否启用可寻址资源定位
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L20)
-```csharp title="Declaration"
-public bool EnableAddressable
-```
-### UniqueBundleName
-资源包名唯一化
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L25)
-```csharp title="Declaration"
-public bool UniqueBundleName
-```
 ### ShowEditorAlias
 是否显示编辑器别名
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L30)
+
 ```csharp title="Declaration"
 public bool ShowEditorAlias
 ```
+### UniqueBundleName
+资源包名唯一化
+
+```csharp title="Declaration"
+public bool UniqueBundleName
+```
 ### Packages
 包裹列表
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L36)
+
 ```csharp title="Declaration"
 public List<AssetBundleCollectorPackage> Packages
 ```
 ## Methods
 ### ClearAll()
 清空所有数据
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L42)
+
 ```csharp title="Declaration"
 public void ClearAll()
 ```
-### CheckConfigError()
-检测配置错误
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L51)
+### CheckPackageConfigError(string)
+检测包裹配置错误
+
 ```csharp title="Declaration"
-public void CheckConfigError()
+public void CheckPackageConfigError(string packageName)
 ```
-### FixConfigError()
-修复配置错误
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L62)
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *packageName* |
+
+### CheckAllPackageConfigError()
+检测所有配置错误
+
 ```csharp title="Declaration"
-public bool FixConfigError()
+public void CheckAllPackageConfigError()
+```
+### FixAllPackageConfigError()
+修复所有配置错误
+
+```csharp title="Declaration"
+public bool FixAllPackageConfigError()
 ```
 
 ##### Returns
@@ -67,7 +74,7 @@ public bool FixConfigError()
 `System.Boolean`
 ### GetPackageAllTags(string)
 获取所有的资源标签
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L78)
+
 ```csharp title="Declaration"
 public List<string> GetPackageAllTags(string packageName)
 ```
@@ -84,7 +91,7 @@ public List<string> GetPackageAllTags(string packageName)
 
 ### GetPackageAssets(EBuildMode, string)
 获取包裹收集的资源文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorSetting.cs#L95)
+
 ```csharp title="Declaration"
 public CollectResult GetPackageAssets(EBuildMode buildMode, string packageName)
 ```
@@ -98,5 +105,22 @@ public CollectResult GetPackageAssets(EBuildMode buildMode, string packageName)
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.Editor.EBuildMode](../YooAsset.Editor/EBuildMode.md) | *buildMode* |
+| `System.String` | *packageName* |
+
+### GetPackage(string)
+获取包裹类
+
+```csharp title="Declaration"
+public AssetBundleCollectorPackage GetPackage(string packageName)
+```
+
+##### Returns
+
+[YooAsset.Editor.AssetBundleCollectorPackage](../YooAsset.Editor/AssetBundleCollectorPackage.md)
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
 | `System.String` | *packageName* |
 

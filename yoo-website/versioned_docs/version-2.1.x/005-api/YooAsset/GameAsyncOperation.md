@@ -6,26 +6,32 @@ sidebar_label: GameAsyncOperation
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/OperationSystem/GameAsyncOperation.cs#L4)
+
 ```csharp title="Declaration"
-public abstract class GameAsyncOperation : AsyncOperationBase, IEnumerator
+public abstract class GameAsyncOperation : AsyncOperationBase, IEnumerator, IComparable<AsyncOperationBase>
 ```
 ## Methods
 ### OnStart()
 异步操作开始
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/OperationSystem/GameAsyncOperation.cs#L18)
+
 ```csharp title="Declaration"
 protected abstract void OnStart()
 ```
 ### OnUpdate()
 异步操作更新
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/OperationSystem/GameAsyncOperation.cs#L23)
+
 ```csharp title="Declaration"
 protected abstract void OnUpdate()
 ```
+### OnAbort()
+异步操作终止
+
+```csharp title="Declaration"
+protected abstract void OnAbort()
+```
 ### IsBusy()
 异步操作系统是否繁忙
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/OperationSystem/GameAsyncOperation.cs#L28)
+
 ```csharp title="Declaration"
 protected bool IsBusy()
 ```
@@ -37,3 +43,4 @@ protected bool IsBusy()
 ## Implements
 
 * `System.Collections.IEnumerator`
+* `System.IComparable<YooAsset.AsyncOperationBase>`

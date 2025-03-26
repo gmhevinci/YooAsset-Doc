@@ -6,17 +6,16 @@ sidebar_label: TaskGetBuildMap
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskGetBuildMap.cs#L10)
+
 ```csharp title="Declaration"
-[Task("获取资源构建内容")]
-public class TaskGetBuildMap : IBuildTask
+public class TaskGetBuildMap
 ```
 ## Methods
-### CreateBuildMap(EBuildMode, IShareAssetPackRule, string)
-资源构建上下文
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskGetBuildMap.cs#L28)
+### CreateBuildMap(BuildParameters)
+生成资源构建上下文
+
 ```csharp title="Declaration"
-public BuildMapContext CreateBuildMap(EBuildMode buildMode, IShareAssetPackRule packRule, string packageName)
+public BuildMapContext CreateBuildMap(BuildParameters buildParameters)
 ```
 
 ##### Returns
@@ -27,11 +26,43 @@ public BuildMapContext CreateBuildMap(EBuildMode buildMode, IShareAssetPackRule 
 
 | Type | Name |
 |:--- |:--- |
-| [YooAsset.Editor.EBuildMode](../YooAsset.Editor/EBuildMode.md) | *buildMode* |
-| [YooAsset.Editor.IShareAssetPackRule](../YooAsset.Editor/IShareAssetPackRule.md) | *packRule* |
-| `System.String` | *packageName* |
+| [YooAsset.Editor.BuildParameters](../YooAsset.Editor/BuildParameters.md) | *buildParameters* |
 
+### PreProcessPackShareBundle(BuildParameters, CollectCommand, Dictionary&lt;string, BuildAssetInfo&gt;)
+共享资源打包前置处理
 
-## Implements
+```csharp title="Declaration"
+protected virtual void PreProcessPackShareBundle(BuildParameters buildParameters, CollectCommand command, Dictionary<string, BuildAssetInfo> allBuildAssetInfos)
+```
 
-* [YooAsset.Editor.IBuildTask](../YooAsset.Editor/IBuildTask.md)
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.BuildParameters](../YooAsset.Editor/BuildParameters.md) | *buildParameters* |
+| [YooAsset.Editor.CollectCommand](../YooAsset.Editor/CollectCommand.md) | *command* |
+| `System.Collections.Generic.Dictionary<System.String,YooAsset.Editor.BuildAssetInfo>` | *allBuildAssetInfos* |
+
+### PostProcessPackShareBundle()
+共享资源打包后置处理
+
+```csharp title="Declaration"
+protected virtual void PostProcessPackShareBundle()
+```
+### GetShareBundleName(BuildAssetInfo)
+获取共享资源包名称
+
+```csharp title="Declaration"
+protected virtual PackRuleResult GetShareBundleName(BuildAssetInfo buildAssetInfo)
+```
+
+##### Returns
+
+[YooAsset.Editor.PackRuleResult](../YooAsset.Editor/PackRuleResult.md)
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.BuildAssetInfo](../YooAsset.Editor/BuildAssetInfo.md) | *buildAssetInfo* |
+

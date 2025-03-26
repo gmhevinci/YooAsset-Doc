@@ -6,7 +6,7 @@ sidebar_label: AssetBundleCollectorPackage
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L10)
+
 ```csharp title="Declaration"
 [Serializable]
 public class AssetBundleCollectorPackage
@@ -14,32 +14,62 @@ public class AssetBundleCollectorPackage
 ## Fields
 ### PackageName
 包裹名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L16)
+
 ```csharp title="Declaration"
 public string PackageName
 ```
 ### PackageDesc
 包裹描述
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L21)
+
 ```csharp title="Declaration"
 public string PackageDesc
 ```
+### EnableAddressable
+启用可寻址资源定位
+
+```csharp title="Declaration"
+public bool EnableAddressable
+```
+### LocationToLower
+资源定位地址大小写不敏感
+
+```csharp title="Declaration"
+public bool LocationToLower
+```
+### IncludeAssetGUID
+包含资源GUID数据
+
+```csharp title="Declaration"
+public bool IncludeAssetGUID
+```
+### AutoCollectShaders
+自动收集所有着色器（所有着色器存储在一个资源包内）
+
+```csharp title="Declaration"
+public bool AutoCollectShaders
+```
+### IgnoreRuleName
+资源忽略规则名
+
+```csharp title="Declaration"
+public string IgnoreRuleName
+```
 ### Groups
 分组列表
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L26)
+
 ```csharp title="Declaration"
 public List<AssetBundleCollectorGroup> Groups
 ```
 ## Methods
 ### CheckConfigError()
 检测配置错误
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L32)
+
 ```csharp title="Declaration"
 public void CheckConfigError()
 ```
 ### FixConfigError()
 修复配置错误
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L43)
+
 ```csharp title="Declaration"
 public bool FixConfigError()
 ```
@@ -49,7 +79,7 @@ public bool FixConfigError()
 `System.Boolean`
 ### GetAllCollectAssets(CollectCommand)
 获取打包收集的资源文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L59)
+
 ```csharp title="Declaration"
 public List<CollectAssetInfo> GetAllCollectAssets(CollectCommand command)
 ```
@@ -66,7 +96,7 @@ public List<CollectAssetInfo> GetAllCollectAssets(CollectCommand command)
 
 ### GetAllTags()
 获取所有的资源标签
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetBundleCollectorPackage.cs#L100)
+
 ```csharp title="Declaration"
 public List<string> GetAllTags()
 ```

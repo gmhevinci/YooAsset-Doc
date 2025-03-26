@@ -6,16 +6,16 @@ sidebar_label: AssetBundleBuilder
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilder.cs#L9)
+
 ```csharp title="Declaration"
 public class AssetBundleBuilder
 ```
 ## Methods
-### Run(BuildParameters)
-开始构建
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilder.cs#L16)
+### Run(BuildParameters, List&lt;IBuildTask&gt;, bool)
+构建资源包
+
 ```csharp title="Declaration"
-public BuildResult Run(BuildParameters buildParameters)
+public BuildResult Run(BuildParameters buildParameters, List<IBuildTask> buildPipeline, bool enableLog)
 ```
 
 ##### Returns
@@ -27,4 +27,6 @@ public BuildResult Run(BuildParameters buildParameters)
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.Editor.BuildParameters](../YooAsset.Editor/BuildParameters.md) | *buildParameters* |
+| `System.Collections.Generic.List<YooAsset.Editor.IBuildTask>` | *buildPipeline* |
+| `System.Boolean` | *enableLog* |
 

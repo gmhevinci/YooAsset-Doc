@@ -7,69 +7,46 @@ description: "解密类服务接口"
 解密类服务接口
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L20)
+
 ```csharp title="Declaration"
 public interface IDecryptionServices
 ```
 ## Methods
-### LoadFromFileOffset(DecryptFileInfo)
-文件偏移解密方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L25)
+### LoadAssetBundle(DecryptFileInfo, out Stream)
+同步方式获取解密的资源包对象
+注意：加载流对象在资源包对象释放的时候会自动释放
+
 ```csharp title="Declaration"
-ulong LoadFromFileOffset(DecryptFileInfo fileInfo)
+AssetBundle LoadAssetBundle(DecryptFileInfo fileInfo, out Stream managedStream)
 ```
 
 ##### Returns
 
-`System.UInt64`
+`UnityEngine.AssetBundle`
 
 ##### Parameters
 
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.DecryptFileInfo](../YooAsset/DecryptFileInfo.md) | *fileInfo* |
+| `System.IO.Stream` | *managedStream* |
 
-### LoadFromMemory(DecryptFileInfo)
-文件内存解密方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L30)
+### LoadAssetBundleAsync(DecryptFileInfo, out Stream)
+异步方式获取解密的资源包对象
+注意：加载流对象在资源包对象释放的时候会自动释放
+
 ```csharp title="Declaration"
-byte[] LoadFromMemory(DecryptFileInfo fileInfo)
+AssetBundleCreateRequest LoadAssetBundleAsync(DecryptFileInfo fileInfo, out Stream managedStream)
 ```
 
 ##### Returns
 
-`System.Byte[]`
+`UnityEngine.AssetBundleCreateRequest`
 
 ##### Parameters
 
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.DecryptFileInfo](../YooAsset/DecryptFileInfo.md) | *fileInfo* |
+| `System.IO.Stream` | *managedStream* |
 
-### LoadFromStream(DecryptFileInfo)
-文件流解密方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L35)
-```csharp title="Declaration"
-Stream LoadFromStream(DecryptFileInfo fileInfo)
-```
-
-##### Returns
-
-`System.IO.Stream`
-
-##### Parameters
-
-| Type | Name |
-|:--- |:--- |
-| [YooAsset.DecryptFileInfo](../YooAsset/DecryptFileInfo.md) | *fileInfo* |
-
-### GetManagedReadBufferSize()
-文件流解密的托管缓存大小
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L40)
-```csharp title="Declaration"
-uint GetManagedReadBufferSize()
-```
-
-##### Returns
-
-`System.UInt32`

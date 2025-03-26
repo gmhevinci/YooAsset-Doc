@@ -7,35 +7,53 @@ description: "初始化参数"
 初始化参数
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L28)
+
 ```csharp title="Declaration"
 public abstract class InitializeParameters
 ```
 ## Fields
-### LocationToLower
-资源定位地址大小写不敏感
-注意：默认值为False
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L34)
+### BuildinRootDirectory
+内置文件的根路径
+注意：当参数为空的时候会使用默认的根目录。
+
 ```csharp title="Declaration"
-public bool LocationToLower
+public string BuildinRootDirectory
+```
+### SandboxRootDirectory
+沙盒文件的根路径
+注意：当参数为空的时候会使用默认的根目录。
+
+```csharp title="Declaration"
+public string SandboxRootDirectory
+```
+### CacheFileAppendExtension
+缓存文件追加原始后缀格式
+
+```csharp title="Declaration"
+public bool CacheFileAppendExtension
+```
+### CacheBootVerifyLevel
+缓存系统启动时的验证级别
+
+```csharp title="Declaration"
+public EVerifyLevel CacheBootVerifyLevel
+```
+### AutoDestroyAssetProvider
+自动销毁不再使用的资源提供者
+
+```csharp title="Declaration"
+public bool AutoDestroyAssetProvider
+```
+### BreakpointResumeFileSize
+启用断点续传参数
+说明：当文件的大小大于设置的字节数时启用断点续传下载器
+
+```csharp title="Declaration"
+public uint BreakpointResumeFileSize
 ```
 ### DecryptionServices
 文件解密服务接口
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L39)
+
 ```csharp title="Declaration"
 public IDecryptionServices DecryptionServices
-```
-### LoadingMaxTimeSlice
-资源加载每帧处理的最大时间片段
-注意：默认值为MaxValue
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L45)
-```csharp title="Declaration"
-public long LoadingMaxTimeSlice
-```
-### DownloadFailedTryAgain
-下载失败尝试次数
-注意：默认值为MaxValue
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L51)
-```csharp title="Declaration"
-public int DownloadFailedTryAgain
 ```

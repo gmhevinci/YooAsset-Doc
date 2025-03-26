@@ -7,26 +7,32 @@ description: "联机运行模式的初始化参数"
 联机运行模式的初始化参数
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L75)
+
 ```csharp title="Declaration"
 public class HostPlayModeParameters : InitializeParameters
 ```
 ## Fields
-### DefaultHostServer
-默认的资源服务器下载地址
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L80)
+### RemoteServices
+远端资源地址查询服务类
+
 ```csharp title="Declaration"
-public string DefaultHostServer
+public IRemoteServices RemoteServices
 ```
-### FallbackHostServer
-备用的资源服务器下载地址
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L85)
-```csharp title="Declaration"
-public string FallbackHostServer
-```
-### QueryServices
+### BuildinQueryServices
 内置资源查询服务接口
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L90)
+
 ```csharp title="Declaration"
-public IQueryServices QueryServices
+public IBuildinQueryServices BuildinQueryServices
+```
+### DeliveryQueryServices
+分发资源查询服务接口
+
+```csharp title="Declaration"
+public IDeliveryQueryServices DeliveryQueryServices
+```
+### DeliveryLoadServices
+分发资源加载服务接口
+
+```csharp title="Declaration"
+public IDeliveryLoadServices DeliveryLoadServices
 ```

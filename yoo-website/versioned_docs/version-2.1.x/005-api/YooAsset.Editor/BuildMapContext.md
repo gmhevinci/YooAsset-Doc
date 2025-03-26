@@ -6,47 +6,41 @@ sidebar_label: BuildMapContext
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L9)
+
 ```csharp title="Declaration"
 public class BuildMapContext : IContextObject
 ```
 ## Properties
+### Command
+资源收集命令
+
+```csharp title="Declaration"
+public CollectCommand Command { get; set; }
+```
 ### Collection
 资源包信息列表
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L37)
+
 ```csharp title="Declaration"
 public Dictionary<string, BuildBundleInfo>.ValueCollection Collection { get; }
 ```
 ## Fields
+### IndependAssets
+未被依赖的资源列表
+
+```csharp title="Declaration"
+public readonly List<ReportIndependAsset> IndependAssets
+```
 ### AssetFileCount
 参与构建的资源总数
 说明：包括主动收集的资源以及其依赖的所有资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L17)
+
 ```csharp title="Declaration"
 public int AssetFileCount
-```
-### EnableAddressable
-是否启用可寻址资源定位
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L22)
-```csharp title="Declaration"
-public bool EnableAddressable
-```
-### UniqueBundleName
-资源包名唯一化
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L27)
-```csharp title="Declaration"
-public bool UniqueBundleName
-```
-### ShadersBundleName
-着色器统一的全名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L32)
-```csharp title="Declaration"
-public string ShadersBundleName
 ```
 ## Methods
 ### PackAsset(BuildAssetInfo)
 添加一个打包资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L49)
+
 ```csharp title="Declaration"
 public void PackAsset(BuildAssetInfo assetInfo)
 ```
@@ -59,7 +53,7 @@ public void PackAsset(BuildAssetInfo assetInfo)
 
 ### IsContainsBundle(string)
 是否包含资源包
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L70)
+
 ```csharp title="Declaration"
 public bool IsContainsBundle(string bundleName)
 ```
@@ -76,7 +70,7 @@ public bool IsContainsBundle(string bundleName)
 
 ### GetBundleInfo(string)
 获取资源包信息，如果没找到返回NULL
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L78)
+
 ```csharp title="Declaration"
 public BuildBundleInfo GetBundleInfo(string bundleName)
 ```
@@ -93,7 +87,7 @@ public BuildBundleInfo GetBundleInfo(string bundleName)
 
 ### GetPipelineBuilds()
 获取构建管线里需要的数据
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L90)
+
 ```csharp title="Declaration"
 public AssetBundleBuild[] GetPipelineBuilds()
 ```
@@ -103,7 +97,7 @@ public AssetBundleBuild[] GetPipelineBuilds()
 `UnityEditor.AssetBundleBuild[]`
 ### CreateShadersBundleInfo(string)
 创建着色器信息类
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildMapContext.cs#L104)
+
 ```csharp title="Declaration"
 public void CreateShadersBundleInfo(string shadersBundleName)
 ```

@@ -6,16 +6,16 @@ sidebar_label: EditorSimulateModeHelper
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/PlayMode/EditorSimulateModeHelper.cs#L37)
+
 ```csharp title="Declaration"
 public static class EditorSimulateModeHelper
 ```
 ## Methods
-### SimulateBuild(string)
-编辑器下模拟构建清单
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/PlayMode/EditorSimulateModeHelper.cs#L42)
+### SimulateBuild(string, string)
+
+
 ```csharp title="Declaration"
-public static string SimulateBuild(string packageName)
+public static string SimulateBuild(string buildPipelineName, string packageName)
 ```
 
 ##### Returns
@@ -26,5 +26,24 @@ public static string SimulateBuild(string packageName)
 
 | Type | Name |
 |:--- |:--- |
+| `System.String` | *buildPipelineName* |
+| `System.String` | *packageName* |
+
+### SimulateBuild(EDefaultBuildPipeline, string)
+
+
+```csharp title="Declaration"
+public static string SimulateBuild(EDefaultBuildPipeline buildPipeline, string packageName)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.EDefaultBuildPipeline](../YooAsset/EDefaultBuildPipeline.md) | *buildPipeline* |
 | `System.String` | *packageName* |
 

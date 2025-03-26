@@ -7,110 +7,133 @@ description: "构建参数"
 构建参数
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L10)
+
 ```csharp title="Declaration"
-public class BuildParameters
+public abstract class BuildParameters
 ```
 ## Fields
-### SBPParameters
-可编程构建管线的参数
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L36)
+### BuildOutputRoot
+构建输出的根目录
+
 ```csharp title="Declaration"
-public BuildParameters.SBPBuildParameters SBPParameters
+public string BuildOutputRoot
 ```
-### OutputRoot
-输出的根目录
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L42)
+### BuildinFileRoot
+内置文件的根目录
+
 ```csharp title="Declaration"
-public string OutputRoot
-```
-### BuildTarget
-构建的平台
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L47)
-```csharp title="Declaration"
-public BuildTarget BuildTarget
+public string BuildinFileRoot
 ```
 ### BuildPipeline
 构建管线
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L52)
+
 ```csharp title="Declaration"
-public EBuildPipeline BuildPipeline
+public string BuildPipeline
+```
+### BuildTarget
+构建的平台
+
+```csharp title="Declaration"
+public BuildTarget BuildTarget
 ```
 ### BuildMode
 构建模式
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L57)
+
 ```csharp title="Declaration"
 public EBuildMode BuildMode
 ```
 ### PackageName
 构建的包裹名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L62)
+
 ```csharp title="Declaration"
 public string PackageName
 ```
 ### PackageVersion
 构建的包裹版本
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L67)
+
 ```csharp title="Declaration"
 public string PackageVersion
 ```
-### EnableLog
-是否显示普通日志
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L73)
+### EnableSharePackRule
+是否启用共享资源打包
+
 ```csharp title="Declaration"
-public bool EnableLog
+public bool EnableSharePackRule
 ```
 ### VerifyBuildingResult
 验证构建结果
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L78)
+
 ```csharp title="Declaration"
 public bool VerifyBuildingResult
 ```
-### ShareAssetPackRule
-共享资源的打包规则
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L83)
+### FileNameStyle
+资源包名称样式
+
 ```csharp title="Declaration"
-public IShareAssetPackRule ShareAssetPackRule
+public EFileNameStyle FileNameStyle
+```
+### BuildinFileCopyOption
+内置文件的拷贝选项
+
+```csharp title="Declaration"
+public EBuildinFileCopyOption BuildinFileCopyOption
+```
+### BuildinFileCopyParams
+内置文件的拷贝参数
+
+```csharp title="Declaration"
+public string BuildinFileCopyParams
 ```
 ### EncryptionServices
-资源的加密接口
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L88)
+资源包加密服务类
+
 ```csharp title="Declaration"
 public IEncryptionServices EncryptionServices
 ```
-### OutputNameStyle
-补丁文件名称的样式
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L93)
+## Methods
+### CheckBuildParameters()
+检测构建参数是否合法
+
 ```csharp title="Declaration"
-public EOutputNameStyle OutputNameStyle
+public virtual void CheckBuildParameters()
 ```
-### CopyBuildinFileOption
-拷贝内置资源选项
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L98)
+### GetPipelineOutputDirectory()
+获取构建管线的输出目录
+
 ```csharp title="Declaration"
-public ECopyBuildinFileOption CopyBuildinFileOption
+public virtual string GetPipelineOutputDirectory()
 ```
-### CopyBuildinFileTags
-拷贝内置资源的标签
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L103)
+
+##### Returns
+
+`System.String`
+### GetPackageOutputDirectory()
+获取本次构建的补丁输出目录
+
 ```csharp title="Declaration"
-public string CopyBuildinFileTags
+public virtual string GetPackageOutputDirectory()
 ```
-### CompressOption
-压缩选项
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L108)
+
+##### Returns
+
+`System.String`
+### GetPackageRootDirectory()
+获取本次构建的补丁根目录
+
 ```csharp title="Declaration"
-public ECompressOption CompressOption
+public virtual string GetPackageRootDirectory()
 ```
-### DisableWriteTypeTree
-禁止写入类型树结构（可以降低包体和内存并提高加载效率）
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L113)
+
+##### Returns
+
+`System.String`
+### GetBuildinRootDirectory()
+获取内置资源的根目录
+
 ```csharp title="Declaration"
-public bool DisableWriteTypeTree
+public virtual string GetBuildinRootDirectory()
 ```
-### IgnoreTypeTreeChanges
-忽略类型树变化
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildParameters.cs#L118)
-```csharp title="Declaration"
-public bool IgnoreTypeTreeChanges
-```
+
+##### Returns
+
+`System.String`

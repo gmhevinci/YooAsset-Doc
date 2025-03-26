@@ -7,14 +7,14 @@ description: "编辑器工具类"
 编辑器工具类
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L17)
+
 ```csharp title="Declaration"
 public static class EditorTools
 ```
 ## Methods
 ### GetAssignableTypes(Type)
 获取带继承关系的所有类的类型
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L53)
+
 ```csharp title="Declaration"
 public static List<Type> GetAssignableTypes(Type parentType)
 ```
@@ -29,9 +29,26 @@ public static List<Type> GetAssignableTypes(Type parentType)
 |:--- |:--- |
 | `System.Type` | *parentType* |
 
+### GetTypesWithAttribute(Type)
+获取带有指定属性的所有类的类型
+
+```csharp title="Declaration"
+public static List<Type> GetTypesWithAttribute(Type attrType)
+```
+
+##### Returns
+
+`System.Collections.Generic.List<System.Type>`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.Type` | *attrType* |
+
 ### InvokeNonPublicStaticMethod(Type, string, params object[])
 调用私有的静态方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L76)
+
 ```csharp title="Declaration"
 public static object InvokeNonPublicStaticMethod(Type type, string method, params object[] parameters)
 ```
@@ -50,7 +67,7 @@ public static object InvokeNonPublicStaticMethod(Type type, string method, param
 
 ### InvokePublicStaticMethod(Type, string, params object[])
 调用公开的静态方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L93)
+
 ```csharp title="Declaration"
 public static object InvokePublicStaticMethod(Type type, string method, params object[] parameters)
 ```
@@ -69,7 +86,7 @@ public static object InvokePublicStaticMethod(Type type, string method, params o
 
 ### FindAssets(EAssetSearchType, string[])
 搜集资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L112)
+
 ```csharp title="Declaration"
 public static string[] FindAssets(EAssetSearchType searchType, string[] searchInFolders)
 ```
@@ -86,7 +103,7 @@ public static string[] FindAssets(EAssetSearchType searchType, string[] searchIn
 
 ### FindAssets(EAssetSearchType, string)
 搜集资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L150)
+
 ```csharp title="Declaration"
 public static string[] FindAssets(EAssetSearchType searchType, string searchInFolder)
 ```
@@ -103,7 +120,7 @@ public static string[] FindAssets(EAssetSearchType searchType, string searchInFo
 
 ### OpenFolderPanel(string, string, string)
 打开搜索面板
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L161)
+
 ```csharp title="Declaration"
 public static string OpenFolderPanel(string title, string defaultPath, string defaultName = "")
 ```
@@ -121,7 +138,7 @@ public static string OpenFolderPanel(string title, string defaultPath, string de
 
 ### OpenFilePath(string, string, string)
 打开搜索面板
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L181)
+
 ```csharp title="Declaration"
 public static string OpenFilePath(string title, string defaultPath, string extension = "")
 ```
@@ -139,7 +156,7 @@ public static string OpenFilePath(string title, string defaultPath, string exten
 
 ### DisplayProgressBar(string, int, int)
 显示进度框
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L198)
+
 ```csharp title="Declaration"
 public static void DisplayProgressBar(string tips, int progressValue, int totalValue)
 ```
@@ -154,61 +171,61 @@ public static void DisplayProgressBar(string tips, int progressValue, int totalV
 
 ### ClearProgressBar()
 隐藏进度框
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L206)
+
 ```csharp title="Declaration"
 public static void ClearProgressBar()
 ```
 ### FocusUnitySceneWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L213)
+
 ```csharp title="Declaration"
 public static void FocusUnitySceneWindow()
 ```
 ### CloseUnityGameWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L217)
+
 ```csharp title="Declaration"
 public static void CloseUnityGameWindow()
 ```
 ### FocusUnityGameWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L222)
+
 ```csharp title="Declaration"
 public static void FocusUnityGameWindow()
 ```
 ### FocueUnityProjectWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L227)
+
 ```csharp title="Declaration"
 public static void FocueUnityProjectWindow()
 ```
 ### FocusUnityHierarchyWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L232)
+
 ```csharp title="Declaration"
 public static void FocusUnityHierarchyWindow()
 ```
 ### FocusUnityInspectorWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L237)
+
 ```csharp title="Declaration"
 public static void FocusUnityInspectorWindow()
 ```
 ### FocusUnityConsoleWindow()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L242)
+
 ```csharp title="Declaration"
 public static void FocusUnityConsoleWindow()
 ```
 ### ClearUnityConsole()
 清空控制台
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L268)
+
 ```csharp title="Declaration"
 public static void ClearUnityConsole()
 ```
 ### HasDirtyScenes()
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L275)
+
 ```csharp title="Declaration"
 public static bool HasDirtyScenes()
 ```
@@ -216,9 +233,43 @@ public static bool HasDirtyScenes()
 ##### Returns
 
 `System.Boolean`
+### RemoveFirstChar(string)
+
+
+```csharp title="Declaration"
+public static string RemoveFirstChar(string str)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *str* |
+
+### RemoveLastChar(string)
+
+
+```csharp title="Declaration"
+public static string RemoveLastChar(string str)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *str* |
+
 ### StringToStringList(string, char)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L289)
+
 ```csharp title="Declaration"
 public static List<string> StringToStringList(string str, char separator)
 ```
@@ -236,7 +287,7 @@ public static List<string> StringToStringList(string str, char separator)
 
 ### NameToEnum&lt;T&gt;(string)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L307)
+
 ```csharp title="Declaration"
 public static T NameToEnum<T>(string name)
 ```
@@ -255,7 +306,7 @@ public static T NameToEnum<T>(string name)
 * `T`
 ### CreateFileDirectory(string)
 创建文件所在的目录
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L322)
+
 ```csharp title="Declaration"
 public static void CreateFileDirectory(string filePath)
 ```
@@ -268,7 +319,7 @@ public static void CreateFileDirectory(string filePath)
 
 ### CreateDirectory(string)
 创建文件夹
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L331)
+
 ```csharp title="Declaration"
 public static bool CreateDirectory(string directory)
 ```
@@ -285,7 +336,7 @@ public static bool CreateDirectory(string directory)
 
 ### DeleteDirectory(string)
 删除文件夹及子目录
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L347)
+
 ```csharp title="Declaration"
 public static bool DeleteDirectory(string directory)
 ```
@@ -302,7 +353,7 @@ public static bool DeleteDirectory(string directory)
 
 ### FileRename(string, string)
 文件重命名
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L363)
+
 ```csharp title="Declaration"
 public static void FileRename(string filePath, string newName)
 ```
@@ -316,7 +367,7 @@ public static void FileRename(string filePath, string newName)
 
 ### MoveFile(string, string)
 移动文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L383)
+
 ```csharp title="Declaration"
 public static void MoveFile(string filePath, string destPath)
 ```
@@ -331,7 +382,7 @@ public static void MoveFile(string filePath, string destPath)
 ### CopyDirectory(string, string)
 拷贝文件夹
 注意：包括所有子目录的文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L396)
+
 ```csharp title="Declaration"
 public static void CopyDirectory(string sourcePath, string destPath)
 ```
@@ -345,7 +396,7 @@ public static void CopyDirectory(string sourcePath, string destPath)
 
 ### CopyFile(string, string, bool)
 拷贝文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L416)
+
 ```csharp title="Declaration"
 public static void CopyFile(string sourcePath, string destPath, bool overwrite)
 ```
@@ -360,7 +411,7 @@ public static void CopyFile(string sourcePath, string destPath, bool overwrite)
 
 ### ClearFolder(string)
 清空文件夹
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L432)
+
 ```csharp title="Declaration"
 public static void ClearFolder(string directoryPath)
 ```
@@ -373,7 +424,7 @@ public static void ClearFolder(string directoryPath)
 
 ### GetFileSize(string)
 获取文件字节大小
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L455)
+
 ```csharp title="Declaration"
 public static long GetFileSize(string filePath)
 ```
@@ -390,7 +441,7 @@ public static long GetFileSize(string filePath)
 
 ### ReadFileAllText(string)
 读取文件的所有文本内容
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L464)
+
 ```csharp title="Declaration"
 public static string ReadFileAllText(string filePath)
 ```
@@ -407,7 +458,7 @@ public static string ReadFileAllText(string filePath)
 
 ### ReadFileAllLine(string)
 读取文本的所有文本内容
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L475)
+
 ```csharp title="Declaration"
 public static string[] ReadFileAllLine(string filePath)
 ```
@@ -424,7 +475,7 @@ public static string[] ReadFileAllLine(string filePath)
 
 ### CheckBundleFileValid(byte[])
 检测AssetBundle文件是否合法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L486)
+
 ```csharp title="Declaration"
 public static bool CheckBundleFileValid(byte[] fileData)
 ```
@@ -441,7 +492,7 @@ public static bool CheckBundleFileValid(byte[] fileData)
 
 ### GetRegularPath(string)
 获取规范的路径
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L520)
+
 ```csharp title="Declaration"
 public static string GetRegularPath(string path)
 ```
@@ -456,9 +507,26 @@ public static string GetRegularPath(string path)
 |:--- |:--- |
 | `System.String` | *path* |
 
+### RemoveExtension(string)
+移除路径里的后缀名
+
+```csharp title="Declaration"
+public static string RemoveExtension(string str)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *str* |
+
 ### GetProjectPath()
 获取项目工程路径
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L528)
+
 ```csharp title="Declaration"
 public static string GetProjectPath()
 ```
@@ -469,7 +537,7 @@ public static string GetProjectPath()
 ### AbsolutePathToAssetPath(string)
 转换文件的绝对路径为Unity资源路径
 例如 D:\\YourPorject\\Assets\\Works\\file.txt 替换为 Assets/Works/file.txt
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L538)
+
 ```csharp title="Declaration"
 public static string AbsolutePathToAssetPath(string absolutePath)
 ```
@@ -487,7 +555,7 @@ public static string AbsolutePathToAssetPath(string absolutePath)
 ### AssetPathToAbsolutePath(string)
 转换Unity资源路径为文件的绝对路径
 例如：Assets/Works/file.txt 替换为 D:\\YourPorject/Assets/Works/file.txt
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L548)
+
 ```csharp title="Declaration"
 public static string AssetPathToAbsolutePath(string assetPath)
 ```
@@ -504,7 +572,7 @@ public static string AssetPathToAbsolutePath(string assetPath)
 
 ### FindFolder(string, string)
 递归查找目标文件夹路径
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L560)
+
 ```csharp title="Declaration"
 public static string FindFolder(string root, string folderName)
 ```
@@ -522,7 +590,7 @@ public static string FindFolder(string root, string folderName)
 ### Substring(string, string, bool, bool)
 截取字符串
 获取匹配到的后面内容
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/EditorTools.cs#L585)
+
 ```csharp title="Declaration"
 public static string Substring(string content, string key, bool includeKey, bool firstMatch = true)
 ```

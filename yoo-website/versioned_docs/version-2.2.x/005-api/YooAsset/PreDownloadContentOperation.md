@@ -1,21 +1,24 @@
 ---
 title: Class PreDownloadContentOperation
 sidebar_label: PreDownloadContentOperation
+description: "预下载内容
+说明：目前只支持联机模式"
 ---
 # Class PreDownloadContentOperation
-
+预下载内容
+说明：目前只支持联机模式
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L7)
+
 ```csharp title="Declaration"
-public abstract class PreDownloadContentOperation : AsyncOperationBase, IEnumerator
+public abstract class PreDownloadContentOperation : AsyncOperationBase, IEnumerator, IComparable<AsyncOperationBase>
 ```
 ## Methods
 ### CreateResourceDownloader(int, int, int)
 创建资源下载器，用于下载当前资源版本所有的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L15)
+
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public abstract ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -32,9 +35,9 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(int download
 
 ### CreateResourceDownloader(string, int, int, int)
 创建资源下载器，用于下载指定的资源标签关联的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L27)
+
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public abstract ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -52,9 +55,9 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(string tag, 
 
 ### CreateResourceDownloader(string[], int, int, int)
 创建资源下载器，用于下载指定的资源标签列表关联的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L39)
+
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public abstract ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -72,9 +75,9 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(string[] tag
 
 ### CreateBundleDownloader(string, int, int, int)
 创建资源下载器，用于下载指定的资源依赖的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L51)
+
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateBundleDownloader(string location, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public abstract ResourceDownloaderOperation CreateBundleDownloader(string location, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -92,9 +95,9 @@ public virtual ResourceDownloaderOperation CreateBundleDownloader(string locatio
 
 ### CreateBundleDownloader(string[], int, int, int)
 创建资源下载器，用于下载指定的资源列表依赖的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L63)
+
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateBundleDownloader(string[] locations, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public abstract ResourceDownloaderOperation CreateBundleDownloader(string[] locations, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -114,3 +117,4 @@ public virtual ResourceDownloaderOperation CreateBundleDownloader(string[] locat
 ## Implements
 
 * `System.Collections.IEnumerator`
+* `System.IComparable<YooAsset.AsyncOperationBase>`

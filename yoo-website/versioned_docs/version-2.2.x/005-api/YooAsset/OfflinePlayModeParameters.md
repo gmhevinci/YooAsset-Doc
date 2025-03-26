@@ -7,7 +7,14 @@ description: "离线运行模式的初始化参数"
 离线运行模式的初始化参数
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L68)
+
 ```csharp title="Declaration"
 public class OfflinePlayModeParameters : InitializeParameters
+```
+## Fields
+### BuildinFileSystemParameters
+
+
+```csharp title="Declaration"
+public FileSystemParameters BuildinFileSystemParameters
 ```

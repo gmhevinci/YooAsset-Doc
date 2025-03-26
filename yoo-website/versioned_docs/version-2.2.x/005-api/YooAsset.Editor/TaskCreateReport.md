@@ -6,12 +6,23 @@ sidebar_label: TaskCreateReport
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskCreateReport.cs#L8)
+
 ```csharp title="Declaration"
-[Task("创建构建报告文件")]
-public class TaskCreateReport : IBuildTask
+public class TaskCreateReport
+```
+## Methods
+### CreateReportFile(BuildParametersContext, BuildMapContext, ManifestContext)
+
+
+```csharp title="Declaration"
+protected void CreateReportFile(BuildParametersContext buildParametersContext, BuildMapContext buildMapContext, ManifestContext manifestContext)
 ```
 
-## Implements
+##### Parameters
 
-* [YooAsset.Editor.IBuildTask](../YooAsset.Editor/IBuildTask.md)
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.BuildParametersContext](../YooAsset.Editor/BuildParametersContext.md) | *buildParametersContext* |
+| [YooAsset.Editor.BuildMapContext](../YooAsset.Editor/BuildMapContext.md) | *buildMapContext* |
+| [YooAsset.Editor.ManifestContext](../YooAsset.Editor/ManifestContext.md) | *manifestContext* |
+

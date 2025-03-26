@@ -1,0 +1,35 @@
+---
+title: Class EditorSimulateBuildPipeline
+sidebar_label: EditorSimulateBuildPipeline
+---
+# Class EditorSimulateBuildPipeline
+
+
+###### **Assembly**: YooAsset.Editor.dll
+
+```csharp title="Declaration"
+public class EditorSimulateBuildPipeline : IBuildPipeline
+```
+## Methods
+### Run(BuildParameters, bool)
+
+
+```csharp title="Declaration"
+public BuildResult Run(BuildParameters buildParameters, bool enableLog)
+```
+
+##### Returns
+
+[YooAsset.Editor.BuildResult](../YooAsset.Editor/BuildResult.md)
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.BuildParameters](../YooAsset.Editor/BuildParameters.md) | *buildParameters* |
+| `System.Boolean` | *enableLog* |
+
+
+## Implements
+
+* [YooAsset.Editor.IBuildPipeline](../YooAsset.Editor/IBuildPipeline.md)

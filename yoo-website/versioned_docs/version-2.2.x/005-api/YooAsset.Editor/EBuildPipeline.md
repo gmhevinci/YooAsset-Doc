@@ -7,20 +7,32 @@ description: "构建管线类型"
 构建管线类型
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/EBuildPipeline.cs#L7)
+
 ```csharp title="Declaration"
 public enum EBuildPipeline
 ```
 ## Fields
-### BuiltinBuildPipeline
-传统内置构建管线
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/EBuildPipeline.cs#L12)
+### EditorSimulateBuildPipeline
+编辑器下的模拟构建管线（ESBP）
+
 ```csharp title="Declaration"
-BuiltinBuildPipeline = 0
+EditorSimulateBuildPipeline = 0
+```
+### BuiltinBuildPipeline
+传统内置构建管线 (BBP)
+
+```csharp title="Declaration"
+BuiltinBuildPipeline = 1
 ```
 ### ScriptableBuildPipeline
-可编程构建管线
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/EBuildPipeline.cs#L17)
+可编程构建管线 (SBP)
+
 ```csharp title="Declaration"
-ScriptableBuildPipeline = 1
+ScriptableBuildPipeline = 2
+```
+### RawFileBuildPipeline
+原生文件构建管线 (RFBP)
+
+```csharp title="Declaration"
+RawFileBuildPipeline = 3
 ```

@@ -7,15 +7,15 @@ description: "打包着色器变种集合"
 打包着色器变种集合
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultPackRule.cs#L183)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultPackRule.cs#L181)
 ```csharp title="Declaration"
 [DisplayName("打包着色器变种集合文件")]
 public class PackShaderVariants : IPackRule
 ```
 ## Methods
 ### GetPackRuleResult(PackRuleData)
-
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultPackRule.cs#L186)
+获取打包规则结果
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultPackRule.cs#L184)
 ```csharp title="Declaration"
 public PackRuleResult GetPackRuleResult(PackRuleData data)
 ```

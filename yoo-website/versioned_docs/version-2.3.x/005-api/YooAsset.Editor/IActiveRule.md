@@ -7,18 +7,25 @@ description: "资源分组激活规则接口"
 资源分组激活规则接口
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/IActiveRule.cs#L7)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/CollectRules/IActiveRule.cs#L17)
 ```csharp title="Declaration"
 public interface IActiveRule
 ```
 ## Methods
-### IsActiveGroup()
+### IsActiveGroup(GroupData)
 是否激活分组
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/IActiveRule.cs#L12)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/CollectRules/IActiveRule.cs#L22)
 ```csharp title="Declaration"
-bool IsActiveGroup()
+bool IsActiveGroup(GroupData data)
 ```
 
 ##### Returns
 
 `System.Boolean`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.GroupData](../YooAsset.Editor/GroupData.md) | *data* |
+

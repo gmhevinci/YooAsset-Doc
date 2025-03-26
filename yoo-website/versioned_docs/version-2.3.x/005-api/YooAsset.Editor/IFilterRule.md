@@ -7,14 +7,14 @@ description: "资源过滤规则接口"
 资源过滤规则接口
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/IFilterRule.cs#L17)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/CollectRules/IFilterRule.cs#L23)
 ```csharp title="Declaration"
 public interface IFilterRule
 ```
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 是否为收集资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/IFilterRule.cs#L23)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/CollectRules/IFilterRule.cs#L29)
 ```csharp title="Declaration"
 bool IsCollectAsset(FilterRuleData data)
 ```

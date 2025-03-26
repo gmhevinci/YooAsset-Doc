@@ -6,9 +6,8 @@ sidebar_label: TaskVerifyBuildResult_SBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskVerifyBuildResult_SBP.cs#L12)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/ScriptableBuildPipeline/BuildTasks/TaskVerifyBuildResult_SBP.cs#L12)
 ```csharp title="Declaration"
-[Task("验证构建结果")]
 public class TaskVerifyBuildResult_SBP : IBuildTask
 ```
 

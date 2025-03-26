@@ -7,11 +7,12 @@ description: "场景卸载异步操作类"
 场景卸载异步操作类
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/AssetSystem/Operations/UnloadSceneOperation.cs#L9)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Operation/UnloadSceneOperation.cs#L9)
 ```csharp title="Declaration"
-public sealed class UnloadSceneOperation : AsyncOperationBase, IEnumerator
+public sealed class UnloadSceneOperation : AsyncOperationBase, IEnumerator, IComparable<AsyncOperationBase>
 ```
 
 ## Implements
 
 * `System.Collections.IEnumerator`
+* `System.IComparable<YooAsset.AsyncOperationBase>`

@@ -6,11 +6,12 @@ sidebar_label: ResourceDownloaderOperation
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/DownloaderOperation.cs#L252)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/DownloaderOperation.cs#L375)
 ```csharp title="Declaration"
-public sealed class ResourceDownloaderOperation : DownloaderOperation, IEnumerator
+public sealed class ResourceDownloaderOperation : DownloaderOperation, IEnumerator, IComparable<AsyncOperationBase>
 ```
 
 ## Implements
 
 * `System.Collections.IEnumerator`
+* `System.IComparable<YooAsset.AsyncOperationBase>`

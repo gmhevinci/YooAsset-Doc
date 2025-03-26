@@ -6,22 +6,29 @@ sidebar_label: DisableGroup
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultActiveRule.cs#L13)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultActiveRule.cs#L13)
 ```csharp title="Declaration"
 [DisplayName("禁用分组")]
 public class DisableGroup : IActiveRule
 ```
 ## Methods
-### IsActiveGroup()
-
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultActiveRule.cs#L16)
+### IsActiveGroup(GroupData)
+是否激活分组
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultActiveRule.cs#L16)
 ```csharp title="Declaration"
-public bool IsActiveGroup()
+public bool IsActiveGroup(GroupData data)
 ```
 
 ##### Returns
 
 `System.Boolean`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.GroupData](../YooAsset.Editor/GroupData.md) | *data* |
+
 
 ## Implements
 

@@ -6,75 +6,105 @@ sidebar_label: BuildBundleInfo
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L9)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L9)
 ```csharp title="Declaration"
 public class BuildBundleInfo
 ```
 ## Properties
-### BundleName
-资源包名称
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L48)
+### PackageUnityHash
+Unity引擎生成的哈希值（构建内容的哈希值）
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L15)
 ```csharp title="Declaration"
-public string BundleName { get; }
+public string PackageUnityHash { get; set; }
 ```
-### LoadMethod
-Bundle文件的加载方法
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L64)
+### PackageUnityCRC
+Unity引擎生成的CRC
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L20)
 ```csharp title="Declaration"
-public EBundleLoadMethod LoadMethod { get; set; }
+public uint PackageUnityCRC { get; set; }
+```
+### PackageFileHash
+文件哈希值
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L25)
+```csharp title="Declaration"
+public string PackageFileHash { get; set; }
+```
+### PackageFileCRC
+文件哈希值
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L30)
+```csharp title="Declaration"
+public string PackageFileCRC { get; set; }
+```
+### PackageFileSize
+文件哈希值
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L35)
+```csharp title="Declaration"
+public long PackageFileSize { get; set; }
+```
+### BuildOutputFilePath
+构建输出的文件路径
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L40)
+```csharp title="Declaration"
+public string BuildOutputFilePath { get; set; }
+```
+### PackageSourceFilePath
+补丁包的源文件路径
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L45)
+```csharp title="Declaration"
+public string PackageSourceFilePath { get; set; }
+```
+### PackageDestFilePath
+补丁包的目标文件路径
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L50)
+```csharp title="Declaration"
+public string PackageDestFilePath { get; set; }
 ```
 ### EncryptedFilePath
 加密生成文件的路径
 注意：如果未加密该路径为空
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L70)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L56)
 ```csharp title="Declaration"
 public string EncryptedFilePath { get; set; }
 ```
-### IsRawFile
-是否为原生文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L75)
+### BundleName
+资源包名称
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L70)
 ```csharp title="Declaration"
-public bool IsRawFile { get; }
+public string BundleName { get; }
 ```
-### IsEncryptedFile
-是否为加密文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L91)
+### Encrypted
+加密文件
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L75)
 ```csharp title="Declaration"
-public bool IsEncryptedFile { get; }
+public bool Encrypted { get; set; }
 ```
 ## Fields
-### AllMainAssets
+### AllPackAssets
 参与构建的资源列表
-注意：不包含零依赖资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L54)
+注意：不包含零依赖资源和冗余资源
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L65)
 ```csharp title="Declaration"
-public readonly List<BuildAssetInfo> AllMainAssets
-```
-### BundleInfo
-补丁文件信息
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L59)
-```csharp title="Declaration"
-public readonly BuildBundleInfo.InfoWrapper BundleInfo
+public readonly List<BuildAssetInfo> AllPackAssets
 ```
 ## Methods
 ### PackAsset(BuildAssetInfo)
 添加一个打包资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L111)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L86)
 ```csharp title="Declaration"
-public void PackAsset(BuildAssetInfo assetInfo)
+public void PackAsset(BuildAssetInfo buildAsset)
 ```
 
 ##### Parameters
 
 | Type | Name |
 |:--- |:--- |
-| [YooAsset.Editor.BuildAssetInfo](../YooAsset.Editor/BuildAssetInfo.md) | *assetInfo* |
+| [YooAsset.Editor.BuildAssetInfo](../YooAsset.Editor/BuildAssetInfo.md) | *buildAsset* |
 
-### IsContainsAsset(string)
+### IsContainsPackAsset(string)
 是否包含指定资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L122)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L99)
 ```csharp title="Declaration"
-public bool IsContainsAsset(string assetPath)
+public bool IsContainsPackAsset(string assetPath)
 ```
 
 ##### Returns
@@ -87,49 +117,46 @@ public bool IsContainsAsset(string assetPath)
 |:--- |:--- |
 | `System.String` | *assetPath* |
 
-### GetBundleTags()
-获取资源包的分类标签列表
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L137)
-```csharp title="Declaration"
-public string[] GetBundleTags()
-```
-
-##### Returns
-
-`System.String[]`
-### GetAllBuiltinAssetPaths()
-获取该资源包内的所有资源（包括零依赖资源）
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L154)
-```csharp title="Declaration"
-public List<string> GetAllBuiltinAssetPaths()
-```
-
-##### Returns
-
-`System.Collections.Generic.List<System.String>`
-### GetAllMainAssetPaths()
+### GetAllPackAssetPaths()
 获取构建的资源路径列表
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L177)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L107)
 ```csharp title="Declaration"
-public string[] GetAllMainAssetPaths()
+public string[] GetAllPackAssetPaths()
 ```
 
 ##### Returns
 
 `System.String[]`
-### GetAllMainAssetInfos()
-获取所有写入补丁清单的资源
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L185)
+### GetPackAssetInfo(string)
+获取构建的主资源信息
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L115)
 ```csharp title="Declaration"
-public BuildAssetInfo[] GetAllMainAssetInfos()
+public BuildAssetInfo GetPackAssetInfo(string assetPath)
 ```
 
 ##### Returns
 
-`YooAsset.Editor.BuildAssetInfo[]`
+[YooAsset.Editor.BuildAssetInfo](../YooAsset.Editor/BuildAssetInfo.md)
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *assetPath* |
+
+### GetBundleContents()
+获取资源包内部所有资产
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L130)
+```csharp title="Declaration"
+public List<AssetInfo> GetBundleContents()
+```
+
+##### Returns
+
+`System.Collections.Generic.List<YooAsset.Editor.AssetInfo>`
 ### CreatePipelineBuild()
 创建AssetBundleBuild类
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L193)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L156)
 ```csharp title="Declaration"
 public AssetBundleBuild CreatePipelineBuild()
 ```
@@ -137,3 +164,13 @@ public AssetBundleBuild CreatePipelineBuild()
 ##### Returns
 
 `UnityEditor.AssetBundleBuild`
+### GetAllManifestAssetInfos()
+获取所有写入补丁清单的资源
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildBundleInfo.cs#L169)
+```csharp title="Declaration"
+public BuildAssetInfo[] GetAllManifestAssetInfos()
+```
+
+##### Returns
+
+`YooAsset.Editor.BuildAssetInfo[]`

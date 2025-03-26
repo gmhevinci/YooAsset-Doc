@@ -6,16 +6,16 @@ sidebar_label: PreDownloadContentOperation
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L7)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L7)
 ```csharp title="Declaration"
-public abstract class PreDownloadContentOperation : AsyncOperationBase, IEnumerator
+public sealed class PreDownloadContentOperation : AsyncOperationBase, IEnumerator, IComparable<AsyncOperationBase>
 ```
 ## Methods
 ### CreateResourceDownloader(int, int, int)
 创建资源下载器，用于下载当前资源版本所有的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L15)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L105)
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -32,9 +32,9 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(int download
 
 ### CreateResourceDownloader(string, int, int, int)
 创建资源下载器，用于下载指定的资源标签关联的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L27)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L125)
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -52,9 +52,9 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(string tag, 
 
 ### CreateResourceDownloader(string[], int, int, int)
 创建资源下载器，用于下载指定的资源标签列表关联的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L39)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L145)
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -70,11 +70,11 @@ public virtual ResourceDownloaderOperation CreateResourceDownloader(string[] tag
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
 | `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(string, int, int, int)
+### CreateBundleDownloader(string, bool, int, int, int)
 创建资源下载器，用于下载指定的资源依赖的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L51)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L165)
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateBundleDownloader(string location, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string location, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -86,15 +86,16 @@ public virtual ResourceDownloaderOperation CreateBundleDownloader(string locatio
 | Type | Name | Description |
 |:--- |:--- |:--- |
 | `System.String` | *location* | 资源定位地址 |
+| `System.Boolean` | *recursiveDownload* |  |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
 | `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(string[], int, int, int)
+### CreateBundleDownloader(string[], bool, int, int, int)
 创建资源下载器，用于下载指定的资源列表依赖的资源包文件
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Runtime/PackageSystem/Operations/PreDownloadContentOperation.cs#L63)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/PreDownloadContentOperation.cs#L189)
 ```csharp title="Declaration"
-public virtual ResourceDownloaderOperation CreateBundleDownloader(string[] locations, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
 ```
 
 ##### Returns
@@ -106,6 +107,7 @@ public virtual ResourceDownloaderOperation CreateBundleDownloader(string[] locat
 | Type | Name | Description |
 |:--- |:--- |:--- |
 | `System.String[]` | *locations* | 资源定位地址列表 |
+| `System.Boolean` | *recursiveDownload* |  |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
 | `System.Int32` | *timeout* | 超时时间 |
@@ -114,3 +116,4 @@ public virtual ResourceDownloaderOperation CreateBundleDownloader(string[] locat
 ## Implements
 
 * `System.Collections.IEnumerator`
+* `System.IComparable<YooAsset.AsyncOperationBase>`

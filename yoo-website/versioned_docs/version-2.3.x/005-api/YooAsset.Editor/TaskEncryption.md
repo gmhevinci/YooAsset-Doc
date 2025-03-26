@@ -6,12 +6,22 @@ sidebar_label: TaskEncryption
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildTasks/TaskEncryption.cs#L9)
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskEncryption.cs#L9)
 ```csharp title="Declaration"
-[Task("资源包加密")]
-public class TaskEncryption : IBuildTask
+public class TaskEncryption
+```
+## Methods
+### EncryptingBundleFiles(BuildParametersContext, BuildMapContext)
+加密文件
+###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskEncryption.cs#L14)
+```csharp title="Declaration"
+public void EncryptingBundleFiles(BuildParametersContext buildParametersContext, BuildMapContext buildMapContext)
 ```
 
-## Implements
+##### Parameters
 
-* [YooAsset.Editor.IBuildTask](../YooAsset.Editor/IBuildTask.md)
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.BuildParametersContext](../YooAsset.Editor/BuildParametersContext.md) | *buildParametersContext* |
+| [YooAsset.Editor.BuildMapContext](../YooAsset.Editor/BuildMapContext.md) | *buildMapContext* |
+

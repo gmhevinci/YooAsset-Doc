@@ -4,7 +4,7 @@
 
 **创建资源包对象**
 
-```csharp
+```c#
 // 初始化资源系统
 YooAssets.Initialize();
 

@@ -170,8 +170,7 @@ public IEnumerator Start()
 
 在使用Unity的图集系统的时候（SpriteAtlas），如何解决通过SBP构建管线造成的散图冗余的问题。
 
-1. 确保SBP插件的版本升级到最新（例如：v2.1.3）。
-2. 确保SpriteAtals和精灵散图构建进一个AssetBundle。
+1. 确保SBP插件的版本升级到最新（例如：v1.21.25）。
 3. 确保精灵散图的收集器设置为StaticAssetCollector类型。
 
 ```csharp
@@ -200,7 +199,11 @@ private IEnumerator Start()
     // 注意：设置参数COPY_BUILDIN_PACKAGE_MANIFEST，可以初始化的时候拷贝内置清单到沙盒目录
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
     buildinFileSystemParams.AddParameter(FileSystemParametersDefine.COPY_BUILDIN_PACKAGE_MANIFEST, true);
+    
+    // 注意：设置参数INSTALL_CLEAR_MODE，可以解决覆盖安装的时候将拷贝的内置清单文件清理的问题。
     var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices); 
+    cacheFileSystemParams.AddParameter(FileSystemParametersDefine.INSTALL_CLEAR_MODE, EOverwriteInstallClearMode.None);
+    
     var playModeParameters = new HostPlayModeParameters();
     playModeParameters.BuildinFileSystemParameters = buildinFileSystemParams;
     playModeParameters.CacheFileSystemParameters = cacheFileSystemParams;
@@ -290,10 +293,17 @@ private string GetAuthorization(string userName, string password)
 
 在Steam官方平台下载DLC资产，然后解压到游戏目录下（通常是内置资产所在目录）。
 
+**注意**：2.3.6版本开始，内置文件系统的Catalog文件现在存储在StreammingAssets目录下。
+
+**注意**：2.3.6版本之前，内置文件系统的Catalog文件存储在Resources目录下，和APP绑定在一起无法更新。
+
+在构建资源的时候CopyBuildinFileOption为ClearAndCopyAll。这样在内置文件输出目录下会自动生成Catalog文件，可以将该Catalog文件和资源文件一起做DLC分发。
+
+另外一个方案就是禁用内置文件系统的Catalog文件用于内置文件的查询。在禁用catalog文件后，所有资源文件的加载会全部从内置文件里读取并加载，该方案并不适用HostPlayMode！
+
 ```csharp
-// 初始化文件系统注意事项
-// 说明：需要关闭Catalog目录查询文件，这样文件系统会认定后续解压的DLC资产也属内置资产文件。
-// 说明：Catalog文件是在构建APP的时候，自动生成的内置资产查询目录文件，用于记录构建APP时刻包体内的资产列表。
+// 禁用Catalog文件！
+// 说明：Catalog文件是自动生成的内置资产查询目录文件，用于记录构建APP时刻包体内的资产列表。
 public IEnumerator Start()
 {
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();

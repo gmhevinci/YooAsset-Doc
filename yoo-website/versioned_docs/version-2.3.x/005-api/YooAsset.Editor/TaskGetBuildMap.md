@@ -6,14 +6,14 @@ sidebar_label: TaskGetBuildMap
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskGetBuildMap.cs#L10)
+
 ```csharp title="Declaration"
 public class TaskGetBuildMap
 ```
 ## Methods
 ### CreateBuildMap(bool, BuildParameters)
 生成资源构建上下文
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskGetBuildMap.cs#L15)
+
 ```csharp title="Declaration"
 public BuildMapContext CreateBuildMap(bool simulateBuild, BuildParameters buildParameters)
 ```
@@ -31,7 +31,7 @@ public BuildMapContext CreateBuildMap(bool simulateBuild, BuildParameters buildP
 
 ### PreProcessPackShareBundle(BuildParameters, CollectCommand, Dictionary&lt;string, BuildAssetInfo&gt;)
 共享资源打包前置处理
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskGetBuildMap.cs#L202)
+
 ```csharp title="Declaration"
 protected virtual void PreProcessPackShareBundle(BuildParameters buildParameters, CollectCommand command, Dictionary<string, BuildAssetInfo> allBuildAssetInfos)
 ```
@@ -46,7 +46,7 @@ protected virtual void PreProcessPackShareBundle(BuildParameters buildParameters
 
 ### ProcessingPackShareBundle(BuildParameters, CollectCommand, BuildAssetInfo)
 共享资源打包机制
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskGetBuildMap.cs#L209)
+
 ```csharp title="Declaration"
 protected virtual void ProcessingPackShareBundle(BuildParameters buildParameters, CollectCommand command, BuildAssetInfo buildAssetInfo)
 ```
@@ -61,7 +61,7 @@ protected virtual void ProcessingPackShareBundle(BuildParameters buildParameters
 
 ### PostProcessPackShareBundle(BuildParameters, CollectCommand, Dictionary&lt;string, BuildAssetInfo&gt;)
 共享资源打包后置处理
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BaseTasks/TaskGetBuildMap.cs#L236)
+
 ```csharp title="Declaration"
 protected virtual void PostProcessPackShareBundle(BuildParameters buildParameters, CollectCommand command, Dictionary<string, BuildAssetInfo> allBuildAssetInfos)
 ```

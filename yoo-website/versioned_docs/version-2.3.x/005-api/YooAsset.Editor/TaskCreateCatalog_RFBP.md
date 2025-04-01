@@ -6,7 +6,7 @@ sidebar_label: TaskCreateCatalog_RFBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/RawFileBuildPipeline/BuildTasks/TaskCreateCatalog_RFBP.cs#L9)
+
 ```csharp title="Declaration"
 public class TaskCreateCatalog_RFBP : TaskCreateCatalog, IBuildTask
 ```

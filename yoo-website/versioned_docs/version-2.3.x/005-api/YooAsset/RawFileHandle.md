@@ -6,20 +6,20 @@ sidebar_label: RawFileHandle
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L4)
+
 ```csharp title="Declaration"
 public class RawFileHandle : HandleBase, IEnumerator, IDisposable
 ```
 ## Methods
 ### WaitForAsyncComplete()
 等待异步执行完毕
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L41)
+
 ```csharp title="Declaration"
 public void WaitForAsyncComplete()
 ```
 ### GetRawFileData()
 获取原生文件的二进制数据
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L52)
+
 ```csharp title="Declaration"
 public byte[] GetRawFileData()
 ```
@@ -29,7 +29,7 @@ public byte[] GetRawFileData()
 `System.Byte[]`
 ### GetRawFileText()
 获取原生文件的文本数据
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L62)
+
 ```csharp title="Declaration"
 public string GetRawFileText()
 ```
@@ -39,7 +39,7 @@ public string GetRawFileText()
 `System.String`
 ### GetRawFilePath()
 获取原生文件的路径
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L72)
+
 ```csharp title="Declaration"
 public string GetRawFilePath()
 ```
@@ -50,7 +50,7 @@ public string GetRawFilePath()
 ## Events
 ### Completed
 完成委托
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/RawFileHandle.cs#L19)
+
 ```csharp title="Declaration"
 public event Action<RawFileHandle> Completed
 ```

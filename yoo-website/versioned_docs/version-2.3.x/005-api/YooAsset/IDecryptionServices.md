@@ -6,14 +6,14 @@ sidebar_label: IDecryptionServices
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L42)
+
 ```csharp title="Declaration"
 public interface IDecryptionServices
 ```
 ## Methods
 ### LoadAssetBundle(DecryptFileInfo)
 同步方式获取解密的资源包对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L47)
+
 ```csharp title="Declaration"
 DecryptResult LoadAssetBundle(DecryptFileInfo fileInfo)
 ```
@@ -30,7 +30,7 @@ DecryptResult LoadAssetBundle(DecryptFileInfo fileInfo)
 
 ### LoadAssetBundleAsync(DecryptFileInfo)
 异步方式获取解密的资源包对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L52)
+
 ```csharp title="Declaration"
 DecryptResult LoadAssetBundleAsync(DecryptFileInfo fileInfo)
 ```
@@ -47,7 +47,7 @@ DecryptResult LoadAssetBundleAsync(DecryptFileInfo fileInfo)
 
 ### ReadFileData(DecryptFileInfo)
 获取解密的字节数据
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L57)
+
 ```csharp title="Declaration"
 byte[] ReadFileData(DecryptFileInfo fileInfo)
 ```
@@ -64,7 +64,7 @@ byte[] ReadFileData(DecryptFileInfo fileInfo)
 
 ### ReadFileText(DecryptFileInfo)
 获取解密的文本数据
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Services/IDecryptionServices.cs#L62)
+
 ```csharp title="Declaration"
 string ReadFileText(DecryptFileInfo fileInfo)
 ```

@@ -6,14 +6,14 @@ sidebar_label: RawFileBuildPipeline
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/RawFileBuildPipeline/RawFileBuildPipeline.cs#L10)
+
 ```csharp title="Declaration"
 public class RawFileBuildPipeline : IBuildPipeline
 ```
 ## Methods
 ### Run(BuildParameters, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/RawFileBuildPipeline/RawFileBuildPipeline.cs#L12)
+
 ```csharp title="Declaration"
 public BuildResult Run(BuildParameters buildParameters, bool enableLog)
 ```

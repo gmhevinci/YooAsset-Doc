@@ -6,14 +6,14 @@ sidebar_label: TaskCreateManifest_ESBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/EditorSimulateBuildPipeline/BuildTasks/TaskCreateManifest_ESBP.cs#L6)
+
 ```csharp title="Declaration"
 public class TaskCreateManifest_ESBP : TaskCreateManifest, IBuildTask
 ```
 ## Methods
 ### GetBundleDepends(BuildContext, string)
 获取资源包的依赖集合
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/EditorSimulateBuildPipeline/BuildTasks/TaskCreateManifest_ESBP.cs#L13)
+
 ```csharp title="Declaration"
 protected override string[] GetBundleDepends(BuildContext context, string bundleName)
 ```

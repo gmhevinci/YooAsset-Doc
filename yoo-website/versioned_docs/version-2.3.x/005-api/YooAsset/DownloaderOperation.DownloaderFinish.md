@@ -7,7 +7,7 @@ description: "下载器结束"
 下载器结束
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/DownloaderOperation.cs#L22)
+
 ```csharp title="Declaration"
 public delegate void DownloaderOperation.DownloaderFinish(DownloaderFinishData data)
 ```

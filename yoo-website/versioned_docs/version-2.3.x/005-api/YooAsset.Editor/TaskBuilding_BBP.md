@@ -6,7 +6,7 @@ sidebar_label: TaskBuilding_BBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskBuilding_BBP.cs#L10)
+
 ```csharp title="Declaration"
 public class TaskBuilding_BBP : IBuildTask
 ```

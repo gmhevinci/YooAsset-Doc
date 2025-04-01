@@ -9,7 +9,7 @@ description: "以分组名称作为资源包名
 注意：收集的所有文件打进一个资源包
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultPackRule.cs#L125)
+
 ```csharp title="Declaration"
 [DisplayName("资源包名: 分组名称")]
 public class PackGroup : IPackRule

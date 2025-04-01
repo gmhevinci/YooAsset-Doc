@@ -7,7 +7,14 @@ description: "初始化参数"
 初始化参数
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/InitializeParameters.cs#L39)
+
 ```csharp title="Declaration"
 public abstract class InitializeParameters
+```
+## Fields
+### BundleLoadingMaxConcurrency
+同时加载Bundle文件的最大并发数
+
+```csharp title="Declaration"
+public int BundleLoadingMaxConcurrency
 ```

@@ -6,14 +6,14 @@ sidebar_label: AssetDependencyCache
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetDependencyCache.cs#L11)
+
 ```csharp title="Declaration"
 public class AssetDependencyCache
 ```
 ## Methods
 ### GetDependencies(string, bool)
 获取资源的依赖列表
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/AssetDependencyCache.cs#L39)
+
 ```csharp title="Declaration"
 public string[] GetDependencies(string assetPath, bool recursive = true)
 ```

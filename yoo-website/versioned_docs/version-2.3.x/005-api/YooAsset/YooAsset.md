@@ -127,5 +127,7 @@ WebGL运行模式的初始化参数
 文件校验等级
 ### [EOperationStatus](../YooAsset/EOperationStatus.md)
 
+### [EOverwriteInstallClearMode](../YooAsset/EOverwriteInstallClearMode.md)
+覆盖安装清理模式
 ### [EPlayMode](../YooAsset/EPlayMode.md)
 运行模式

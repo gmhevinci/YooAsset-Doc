@@ -6,7 +6,7 @@ sidebar_label: CollectShader
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultFilterRule.cs#L58)
+
 ```csharp title="Declaration"
 [DisplayName("收集着色器")]
 public class CollectShader : IFilterRule
@@ -14,7 +14,7 @@ public class CollectShader : IFilterRule
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 是否为收集资源
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultFilterRule.cs#L61)
+
 ```csharp title="Declaration"
 public bool IsCollectAsset(FilterRuleData data)
 ```

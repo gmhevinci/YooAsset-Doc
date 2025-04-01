@@ -6,7 +6,7 @@ sidebar_label: TaskPrepare_BBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskPrepare_BBP.cs#L9)
+
 ```csharp title="Declaration"
 public class TaskPrepare_BBP : IBuildTask
 ```

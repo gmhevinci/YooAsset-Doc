@@ -7,7 +7,7 @@ description: "文件系统参数"
 文件系统参数
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L9)
+
 ```csharp title="Declaration"
 public class FileSystemParameters
 ```
@@ -16,20 +16,20 @@ public class FileSystemParameters
 文件系统类
 格式: "namespace.class,assembly"
 格式: "命名空间.类型名,程序集"
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L18)
+
 ```csharp title="Declaration"
 public string FileSystemClass { get; }
 ```
 ### PackageRoot
 文件系统的根目录
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L23)
+
 ```csharp title="Declaration"
 public string PackageRoot { get; }
 ```
 ## Methods
 ### AddParameter(string, object)
 添加自定义参数
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L35)
+
 ```csharp title="Declaration"
 public void AddParameter(string name, object value)
 ```
@@ -44,7 +44,7 @@ public void AddParameter(string name, object value)
 ### CreateDefaultEditorFileSystemParameters(string)
 创建默认的编辑器文件系统参数
 &lt;param name="packageRoot"&gt;文件系统的根目录&lt;/param&gt;
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L74)
+
 ```csharp title="Declaration"
 public static FileSystemParameters CreateDefaultEditorFileSystemParameters(string packageRoot)
 ```
@@ -61,7 +61,7 @@ public static FileSystemParameters CreateDefaultEditorFileSystemParameters(strin
 
 ### CreateDefaultBuildinFileSystemParameters(IDecryptionServices, string)
 创建默认的内置文件系统参数
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L86)
+
 ```csharp title="Declaration"
 public static FileSystemParameters CreateDefaultBuildinFileSystemParameters(IDecryptionServices decryptionServices = null, string packageRoot = null)
 ```
@@ -79,7 +79,7 @@ public static FileSystemParameters CreateDefaultBuildinFileSystemParameters(IDec
 
 ### CreateDefaultCacheFileSystemParameters(IRemoteServices, IDecryptionServices, string)
 创建默认的缓存文件系统参数
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L100)
+
 ```csharp title="Declaration"
 public static FileSystemParameters CreateDefaultCacheFileSystemParameters(IRemoteServices remoteServices, IDecryptionServices decryptionServices = null, string packageRoot = null)
 ```
@@ -98,7 +98,7 @@ public static FileSystemParameters CreateDefaultCacheFileSystemParameters(IRemot
 
 ### CreateDefaultWebServerFileSystemParameters(IWebDecryptionServices, bool)
 创建默认的WebServer文件系统参数
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L114)
+
 ```csharp title="Declaration"
 public static FileSystemParameters CreateDefaultWebServerFileSystemParameters(IWebDecryptionServices decryptionServices = null, bool disableUnityWebCache = false)
 ```
@@ -116,7 +116,7 @@ public static FileSystemParameters CreateDefaultWebServerFileSystemParameters(IW
 
 ### CreateDefaultWebRemoteFileSystemParameters(IRemoteServices, IWebDecryptionServices, bool)
 创建默认的WebRemote文件系统参数
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/FileSystem/FileSystemParameters.cs#L129)
+
 ```csharp title="Declaration"
 public static FileSystemParameters CreateDefaultWebRemoteFileSystemParameters(IRemoteServices remoteServices, IWebDecryptionServices decryptionServices = null, bool disableUnityWebCache = false)
 ```

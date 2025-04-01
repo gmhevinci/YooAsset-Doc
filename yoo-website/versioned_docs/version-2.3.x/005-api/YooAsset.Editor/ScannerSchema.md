@@ -6,14 +6,14 @@ sidebar_label: ScannerSchema
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/ScannerSchema.cs#L7)
+
 ```csharp title="Declaration"
 public abstract class ScannerSchema : ScriptableObject
 ```
 ## Methods
 ### GetUserGuide()
 获取用户指南信息
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/ScannerSchema.cs#L12)
+
 ```csharp title="Declaration"
 public abstract string GetUserGuide()
 ```
@@ -23,7 +23,7 @@ public abstract string GetUserGuide()
 `System.String`
 ### RunScanner(AssetArtScanner)
 运行生成扫描报告
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/ScannerSchema.cs#L17)
+
 ```csharp title="Declaration"
 public abstract ScanReport RunScanner(AssetArtScanner scanner)
 ```
@@ -40,7 +40,7 @@ public abstract ScanReport RunScanner(AssetArtScanner scanner)
 
 ### FixResult(List&lt;ReportElement&gt;)
 修复扫描结果
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/ScannerSchema.cs#L22)
+
 ```csharp title="Declaration"
 public abstract void FixResult(List<ReportElement> fixList)
 ```
@@ -53,7 +53,7 @@ public abstract void FixResult(List<ReportElement> fixList)
 
 ### CreateInspector()
 创建检视面板
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/ScannerSchema.cs#L27)
+
 ```csharp title="Declaration"
 public virtual SchemaInspector CreateInspector()
 ```

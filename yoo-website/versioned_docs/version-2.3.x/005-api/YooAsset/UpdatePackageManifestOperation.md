@@ -6,7 +6,7 @@ sidebar_label: UpdatePackageManifestOperation
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/UpdatePackageManifestOperation.cs#L4)
+
 ```csharp title="Declaration"
 public sealed class UpdatePackageManifestOperation : AsyncOperationBase, IEnumerator, IComparable<AsyncOperationBase>
 ```

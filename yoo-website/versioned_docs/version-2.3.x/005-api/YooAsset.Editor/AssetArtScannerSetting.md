@@ -6,21 +6,21 @@ sidebar_label: AssetArtScannerSetting
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/AssetArtScannerSetting.cs#L11)
+
 ```csharp title="Declaration"
 public class AssetArtScannerSetting : ScriptableObject
 ```
 ## Fields
 ### Scanners
 扫描器列表
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/AssetArtScannerSetting.cs#L16)
+
 ```csharp title="Declaration"
 public List<AssetArtScanner> Scanners
 ```
 ## Methods
 ### BeginScan(string)
 开始扫描
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/AssetArtScannerSetting.cs#L21)
+
 ```csharp title="Declaration"
 public ScannerResult BeginScan(string scannerGUID)
 ```
@@ -37,7 +37,7 @@ public ScannerResult BeginScan(string scannerGUID)
 
 ### GetScanner(string)
 获取指定的扫描器
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetArtScanner/AssetArtScannerSetting.cs#L56)
+
 ```csharp title="Declaration"
 public AssetArtScanner GetScanner(string scannerGUID)
 ```

@@ -6,7 +6,7 @@ sidebar_label: TaskVerifyBuildResult_BBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskVerifyBuildResult_BBP.cs#L11)
+
 ```csharp title="Declaration"
 public class TaskVerifyBuildResult_BBP : IBuildTask
 ```

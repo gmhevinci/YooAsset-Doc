@@ -6,27 +6,27 @@ sidebar_label: AssetHandle
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L5)
+
 ```csharp title="Declaration"
 public sealed class AssetHandle : HandleBase, IEnumerator, IDisposable
 ```
 ## Properties
 ### AssetObject
 资源对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L53)
+
 ```csharp title="Declaration"
 public Object AssetObject { get; }
 ```
 ## Methods
 ### WaitForAsyncComplete()
 等待异步执行完毕
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L42)
+
 ```csharp title="Declaration"
 public void WaitForAsyncComplete()
 ```
 ### GetAssetObject&lt;TAsset&gt;()
 获取资源对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L67)
+
 ```csharp title="Declaration"
 public TAsset GetAssetObject<TAsset>() where TAsset : Object
 ```
@@ -40,7 +40,7 @@ public TAsset GetAssetObject<TAsset>() where TAsset : Object
 | `TAsset` | 资源类型 |
 ### InstantiateSync()
 同步初始化游戏对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L77)
+
 ```csharp title="Declaration"
 public GameObject InstantiateSync()
 ```
@@ -50,7 +50,7 @@ public GameObject InstantiateSync()
 `UnityEngine.GameObject`
 ### InstantiateSync(Transform)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L81)
+
 ```csharp title="Declaration"
 public GameObject InstantiateSync(Transform parent)
 ```
@@ -67,7 +67,7 @@ public GameObject InstantiateSync(Transform parent)
 
 ### InstantiateSync(Transform, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L85)
+
 ```csharp title="Declaration"
 public GameObject InstantiateSync(Transform parent, bool worldPositionStays)
 ```
@@ -85,7 +85,7 @@ public GameObject InstantiateSync(Transform parent, bool worldPositionStays)
 
 ### InstantiateSync(Vector3, Quaternion)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L89)
+
 ```csharp title="Declaration"
 public GameObject InstantiateSync(Vector3 position, Quaternion rotation)
 ```
@@ -103,7 +103,7 @@ public GameObject InstantiateSync(Vector3 position, Quaternion rotation)
 
 ### InstantiateSync(Vector3, Quaternion, Transform)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L93)
+
 ```csharp title="Declaration"
 public GameObject InstantiateSync(Vector3 position, Quaternion rotation, Transform parent)
 ```
@@ -122,7 +122,7 @@ public GameObject InstantiateSync(Vector3 position, Quaternion rotation, Transfo
 
 ### InstantiateAsync(bool)
 异步初始化游戏对象
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L101)
+
 ```csharp title="Declaration"
 public InstantiateOperation InstantiateAsync(bool actived = true)
 ```
@@ -139,7 +139,7 @@ public InstantiateOperation InstantiateAsync(bool actived = true)
 
 ### InstantiateAsync(Transform, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L105)
+
 ```csharp title="Declaration"
 public InstantiateOperation InstantiateAsync(Transform parent, bool actived = true)
 ```
@@ -157,7 +157,7 @@ public InstantiateOperation InstantiateAsync(Transform parent, bool actived = tr
 
 ### InstantiateAsync(Transform, bool, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L109)
+
 ```csharp title="Declaration"
 public InstantiateOperation InstantiateAsync(Transform parent, bool worldPositionStays, bool actived = true)
 ```
@@ -176,7 +176,7 @@ public InstantiateOperation InstantiateAsync(Transform parent, bool worldPositio
 
 ### InstantiateAsync(Vector3, Quaternion, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L113)
+
 ```csharp title="Declaration"
 public InstantiateOperation InstantiateAsync(Vector3 position, Quaternion rotation, bool actived = true)
 ```
@@ -195,7 +195,7 @@ public InstantiateOperation InstantiateAsync(Vector3 position, Quaternion rotati
 
 ### InstantiateAsync(Vector3, Quaternion, Transform, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L117)
+
 ```csharp title="Declaration"
 public InstantiateOperation InstantiateAsync(Vector3 position, Quaternion rotation, Transform parent, bool actived = true)
 ```
@@ -216,7 +216,7 @@ public InstantiateOperation InstantiateAsync(Vector3 position, Quaternion rotati
 ## Events
 ### Completed
 完成委托
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourceManager/Handle/AssetHandle.cs#L20)
+
 ```csharp title="Declaration"
 public event Action<AssetHandle> Completed
 ```

@@ -6,14 +6,14 @@ sidebar_label: TaskUpdateBundleInfo_BBP
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L9)
+
 ```csharp title="Declaration"
 public class TaskUpdateBundleInfo_BBP : TaskUpdateBundleInfo, IBuildTask
 ```
 ## Methods
 ### GetUnityHash(BuildBundleInfo, BuildContext)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L16)
+
 ```csharp title="Declaration"
 protected override string GetUnityHash(BuildBundleInfo bundleInfo, BuildContext context)
 ```
@@ -31,7 +31,7 @@ protected override string GetUnityHash(BuildBundleInfo bundleInfo, BuildContext 
 
 ### GetUnityCRC(BuildBundleInfo, BuildContext)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L30)
+
 ```csharp title="Declaration"
 protected override uint GetUnityCRC(BuildBundleInfo bundleInfo, BuildContext context)
 ```
@@ -49,7 +49,7 @@ protected override uint GetUnityCRC(BuildBundleInfo bundleInfo, BuildContext con
 
 ### GetBundleFileHash(BuildBundleInfo, BuildParametersContext)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L43)
+
 ```csharp title="Declaration"
 protected override string GetBundleFileHash(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
 ```
@@ -67,7 +67,7 @@ protected override string GetBundleFileHash(BuildBundleInfo bundleInfo, BuildPar
 
 ### GetBundleFileCRC(BuildBundleInfo, BuildParametersContext)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L48)
+
 ```csharp title="Declaration"
 protected override string GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
 ```
@@ -85,7 +85,7 @@ protected override string GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildPara
 
 ### GetBundleFileSize(BuildBundleInfo, BuildParametersContext)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/BuiltinBuildPipeline/BuildTasks/TaskUpdateBundleInfo_BBP.cs#L53)
+
 ```csharp title="Declaration"
 protected override long GetBundleFileSize(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
 ```

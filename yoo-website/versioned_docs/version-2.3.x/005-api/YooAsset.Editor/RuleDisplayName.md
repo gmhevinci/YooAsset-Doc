@@ -6,20 +6,20 @@ sidebar_label: RuleDisplayName
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/RuleDisplayName.cs#L4)
+
 ```csharp title="Declaration"
 public class RuleDisplayName
 ```
 ## Fields
 ### ClassName
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/RuleDisplayName.cs#L6)
+
 ```csharp title="Declaration"
 public string ClassName
 ```
 ### DisplayName
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/RuleDisplayName.cs#L7)
+
 ```csharp title="Declaration"
 public string DisplayName
 ```

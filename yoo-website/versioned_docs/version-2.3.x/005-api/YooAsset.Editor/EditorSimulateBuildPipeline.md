@@ -6,14 +6,14 @@ sidebar_label: EditorSimulateBuildPipeline
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/EditorSimulateBuildPipeline/EditorSimulateBuildPipeline.cs#L7)
+
 ```csharp title="Declaration"
 public class EditorSimulateBuildPipeline : IBuildPipeline
 ```
 ## Methods
 ### Run(BuildParameters, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/BuildPipeline/EditorSimulateBuildPipeline/EditorSimulateBuildPipeline.cs#L9)
+
 ```csharp title="Declaration"
 public BuildResult Run(BuildParameters buildParameters, bool enableLog)
 ```

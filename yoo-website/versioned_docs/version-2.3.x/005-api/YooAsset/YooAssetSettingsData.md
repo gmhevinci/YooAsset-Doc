@@ -6,14 +6,14 @@ sidebar_label: YooAssetSettingsData
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L6)
+
 ```csharp title="Declaration"
 public static class YooAssetSettingsData
 ```
 ## Methods
 ### GetDefaultYooFolderName()
 获取YooAsset文件夹名称
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L48)
+
 ```csharp title="Declaration"
 public static string GetDefaultYooFolderName()
 ```
@@ -23,7 +23,7 @@ public static string GetDefaultYooFolderName()
 `System.String`
 ### GetBuildReportFileName(string, string)
 获取构建报告文件名
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L56)
+
 ```csharp title="Declaration"
 public static string GetBuildReportFileName(string packageName, string packageVersion)
 ```
@@ -41,7 +41,7 @@ public static string GetBuildReportFileName(string packageName, string packageVe
 
 ### GetManifestBinaryFileName(string, string)
 获取清单文件完整名称
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L67)
+
 ```csharp title="Declaration"
 public static string GetManifestBinaryFileName(string packageName, string packageVersion)
 ```
@@ -59,7 +59,7 @@ public static string GetManifestBinaryFileName(string packageName, string packag
 
 ### GetManifestJsonFileName(string, string)
 获取清单文件完整名称
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L78)
+
 ```csharp title="Declaration"
 public static string GetManifestJsonFileName(string packageName, string packageVersion)
 ```
@@ -77,7 +77,7 @@ public static string GetManifestJsonFileName(string packageName, string packageV
 
 ### GetPackageHashFileName(string, string)
 获取包裹的哈希文件完整名称
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L89)
+
 ```csharp title="Declaration"
 public static string GetPackageHashFileName(string packageName, string packageVersion)
 ```
@@ -95,7 +95,7 @@ public static string GetPackageHashFileName(string packageName, string packageVe
 
 ### GetPackageVersionFileName(string)
 获取包裹的版本文件完整名称
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/Settings/YooAssetSettingsData.cs#L100)
+
 ```csharp title="Declaration"
 public static string GetPackageVersionFileName(string packageName)
 ```

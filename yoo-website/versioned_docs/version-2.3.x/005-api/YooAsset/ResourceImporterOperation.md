@@ -6,7 +6,7 @@ sidebar_label: ResourceImporterOperation
 
 
 ###### **Assembly**: YooAsset.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Runtime/ResourcePackage/Operation/DownloaderOperation.cs#L409)
+
 ```csharp title="Declaration"
 public sealed class ResourceImporterOperation : DownloaderOperation, IEnumerator, IComparable<AsyncOperationBase>
 ```

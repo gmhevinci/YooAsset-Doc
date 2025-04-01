@@ -15,7 +15,7 @@ description: "以收集器路径下顶级文件夹为资源包名
 例如："Assets/UIPanel/Shop/View/main.prefab" --&gt; "assets_uipanel_shop.bundle"
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultPackRule.cs#L73)
+
 ```csharp title="Declaration"
 [DisplayName("资源包名: 收集器下顶级文件夹路径")]
 public class PackTopDirectory : IPackRule

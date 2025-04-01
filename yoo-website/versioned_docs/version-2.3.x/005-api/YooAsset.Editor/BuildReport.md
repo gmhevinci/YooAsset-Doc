@@ -7,7 +7,7 @@ description: "构建报告"
 构建报告
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L12)
+
 ```csharp title="Declaration"
 [Serializable]
 public class BuildReport
@@ -15,32 +15,32 @@ public class BuildReport
 ## Fields
 ### Summary
 汇总信息
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L18)
+
 ```csharp title="Declaration"
 public ReportSummary Summary
 ```
 ### AssetInfos
 资源对象列表
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L23)
+
 ```csharp title="Declaration"
 public List<ReportAssetInfo> AssetInfos
 ```
 ### BundleInfos
 资源包列表
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L28)
+
 ```csharp title="Declaration"
 public List<ReportBundleInfo> BundleInfos
 ```
 ### IndependAssets
 未被依赖的资源列表
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L33)
+
 ```csharp title="Declaration"
 public List<ReportIndependAsset> IndependAssets
 ```
 ## Methods
 ### GetBundleInfo(string)
 获取资源包信息类
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L38)
+
 ```csharp title="Declaration"
 public ReportBundleInfo GetBundleInfo(string bundleName)
 ```
@@ -57,7 +57,7 @@ public ReportBundleInfo GetBundleInfo(string bundleName)
 
 ### GetAssetInfo(string)
 获取资源信息类
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L51)
+
 ```csharp title="Declaration"
 public ReportAssetInfo GetAssetInfo(string assetPath)
 ```
@@ -74,7 +74,7 @@ public ReportAssetInfo GetAssetInfo(string assetPath)
 
 ### Serialize(string, BuildReport)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L62)
+
 ```csharp title="Declaration"
 public static void Serialize(string savePath, BuildReport buildReport)
 ```
@@ -88,7 +88,7 @@ public static void Serialize(string savePath, BuildReport buildReport)
 
 ### Deserialize(string)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleReporter/BuildReport.cs#L70)
+
 ```csharp title="Declaration"
 public static BuildReport Deserialize(string jsonData)
 ```

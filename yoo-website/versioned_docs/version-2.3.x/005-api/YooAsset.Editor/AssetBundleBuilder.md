@@ -6,14 +6,14 @@ sidebar_label: AssetBundleBuilder
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilder.cs#L11)
+
 ```csharp title="Declaration"
 public class AssetBundleBuilder
 ```
 ## Methods
 ### Run(BuildParameters, List&lt;IBuildTask&gt;, bool)
 构建资源包
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilder.cs#L18)
+
 ```csharp title="Declaration"
 public BuildResult Run(BuildParameters buildParameters, List<IBuildTask> buildPipeline, bool enableLog)
 ```

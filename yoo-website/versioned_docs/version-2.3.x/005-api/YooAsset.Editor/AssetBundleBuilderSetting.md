@@ -6,14 +6,14 @@ sidebar_label: AssetBundleBuilderSetting
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L7)
+
 ```csharp title="Declaration"
 public static class AssetBundleBuilderSetting
 ```
 ## Methods
 ### GetPackageBuildPipeline(string)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L10)
+
 ```csharp title="Declaration"
 public static EBuildPipeline GetPackageBuildPipeline(string packageName)
 ```
@@ -30,7 +30,7 @@ public static EBuildPipeline GetPackageBuildPipeline(string packageName)
 
 ### SetPackageBuildPipeline(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L15)
+
 ```csharp title="Declaration"
 public static void SetPackageBuildPipeline(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -44,7 +44,7 @@ public static void SetPackageBuildPipeline(string packageName, EBuildPipeline bu
 
 ### GetPackageCompressOption(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L22)
+
 ```csharp title="Declaration"
 public static ECompressOption GetPackageCompressOption(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -62,7 +62,7 @@ public static ECompressOption GetPackageCompressOption(string packageName, EBuil
 
 ### SetPackageCompressOption(string, EBuildPipeline, ECompressOption)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L27)
+
 ```csharp title="Declaration"
 public static void SetPackageCompressOption(string packageName, EBuildPipeline buildPipeline, ECompressOption compressOption)
 ```
@@ -77,7 +77,7 @@ public static void SetPackageCompressOption(string packageName, EBuildPipeline b
 
 ### GetPackageFileNameStyle(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L34)
+
 ```csharp title="Declaration"
 public static EFileNameStyle GetPackageFileNameStyle(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -95,7 +95,7 @@ public static EFileNameStyle GetPackageFileNameStyle(string packageName, EBuildP
 
 ### SetPackageFileNameStyle(string, EBuildPipeline, EFileNameStyle)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L39)
+
 ```csharp title="Declaration"
 public static void SetPackageFileNameStyle(string packageName, EBuildPipeline buildPipeline, EFileNameStyle fileNameStyle)
 ```
@@ -110,7 +110,7 @@ public static void SetPackageFileNameStyle(string packageName, EBuildPipeline bu
 
 ### GetPackageBuildinFileCopyOption(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L46)
+
 ```csharp title="Declaration"
 public static EBuildinFileCopyOption GetPackageBuildinFileCopyOption(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -128,7 +128,7 @@ public static EBuildinFileCopyOption GetPackageBuildinFileCopyOption(string pack
 
 ### SetPackageBuildinFileCopyOption(string, EBuildPipeline, EBuildinFileCopyOption)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L51)
+
 ```csharp title="Declaration"
 public static void SetPackageBuildinFileCopyOption(string packageName, EBuildPipeline buildPipeline, EBuildinFileCopyOption buildinFileCopyOption)
 ```
@@ -143,7 +143,7 @@ public static void SetPackageBuildinFileCopyOption(string packageName, EBuildPip
 
 ### GetPackageBuildinFileCopyParams(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L58)
+
 ```csharp title="Declaration"
 public static string GetPackageBuildinFileCopyParams(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -161,7 +161,7 @@ public static string GetPackageBuildinFileCopyParams(string packageName, EBuildP
 
 ### SetPackageBuildinFileCopyParams(string, EBuildPipeline, string)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L63)
+
 ```csharp title="Declaration"
 public static void SetPackageBuildinFileCopyParams(string packageName, EBuildPipeline buildPipeline, string buildinFileCopyParams)
 ```
@@ -176,7 +176,7 @@ public static void SetPackageBuildinFileCopyParams(string packageName, EBuildPip
 
 ### GetPackageEncyptionClassName(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L70)
+
 ```csharp title="Declaration"
 public static string GetPackageEncyptionClassName(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -194,7 +194,7 @@ public static string GetPackageEncyptionClassName(string packageName, EBuildPipe
 
 ### SetPackageEncyptionClassName(string, EBuildPipeline, string)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L75)
+
 ```csharp title="Declaration"
 public static void SetPackageEncyptionClassName(string packageName, EBuildPipeline buildPipeline, string encyptionClassName)
 ```
@@ -209,7 +209,7 @@ public static void SetPackageEncyptionClassName(string packageName, EBuildPipeli
 
 ### GetPackageClearBuildCache(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L82)
+
 ```csharp title="Declaration"
 public static bool GetPackageClearBuildCache(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -227,7 +227,7 @@ public static bool GetPackageClearBuildCache(string packageName, EBuildPipeline 
 
 ### SetPackageClearBuildCache(string, EBuildPipeline, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L87)
+
 ```csharp title="Declaration"
 public static void SetPackageClearBuildCache(string packageName, EBuildPipeline buildPipeline, bool clearBuildCache)
 ```
@@ -242,7 +242,7 @@ public static void SetPackageClearBuildCache(string packageName, EBuildPipeline 
 
 ### GetPackageUseAssetDependencyDB(string, EBuildPipeline)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L94)
+
 ```csharp title="Declaration"
 public static bool GetPackageUseAssetDependencyDB(string packageName, EBuildPipeline buildPipeline)
 ```
@@ -260,7 +260,7 @@ public static bool GetPackageUseAssetDependencyDB(string packageName, EBuildPipe
 
 ### SetPackageUseAssetDependencyDB(string, EBuildPipeline, bool)
 
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleBuilder/AssetBundleBuilderSetting.cs#L99)
+
 ```csharp title="Declaration"
 public static void SetPackageUseAssetDependencyDB(string packageName, EBuildPipeline buildPipeline, bool useAssetDependencyDB)
 ```

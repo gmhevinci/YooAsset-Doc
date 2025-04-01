@@ -6,7 +6,7 @@ sidebar_label: CollectScene
 
 
 ###### **Assembly**: YooAsset.Editor.dll
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultFilterRule.cs#L18)
+
 ```csharp title="Declaration"
 [DisplayName("收集场景")]
 public class CollectScene : IFilterRule
@@ -14,7 +14,7 @@ public class CollectScene : IFilterRule
 ## Methods
 ### IsCollectAsset(FilterRuleData)
 是否为收集资源
-###### [View Source](https://github.com/tuyoogame/YooAsset-Samples.git/blob/main/Assets/YooAsset/Editor/AssetBundleCollector/DefaultRules/DefaultFilterRule.cs#L21)
+
 ```csharp title="Declaration"
 public bool IsCollectAsset(FilterRuleData data)
 ```

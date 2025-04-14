@@ -110,7 +110,11 @@ private class WebDecryption : IWebDecryptionServices
 
 假设CDN地址为：http://127.0.0.1/CDN/WebGL/yoo/ (该目录下存储的是热更文件)
 
-根据下图配置，则初始化代码PackageRoot设置为：**$"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"**
+根据下图配置，则初始化代码PackageRoot设置为
+
+```csharp
+string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"
+```
 
 ![image](./Image/Solution-img2.png)
 

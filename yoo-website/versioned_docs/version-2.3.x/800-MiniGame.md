@@ -33,6 +33,8 @@ IEnumerator InitPackage()
 }
 ````
 
+
+
 ### 微信小游戏
 
 首先安装WX-WASM-SDK-V2 Unity插件，然后导入微信文件系统相关代码。
@@ -65,8 +67,8 @@ IEnumerator InitPackage()
     var decryptionServices = new WebDecryption();
     
     // 小游戏缓存根目录
-    // 注意：如果有子目录，请修改此处！
-    string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE"; 
+    // 注意：此处代码根据微信插件配置来填写！
+    string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"; 
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();
@@ -102,18 +104,19 @@ private class WebDecryption : IWebDecryptionServices
 **其它注意事项**
 
 - 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
-
 - URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle 双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
 
-**参考教程**
+**微信插件配置**
 
-微信小游戏的配置教程：https://www.bilibili.com/read/cv24995199/
+假设CDN地址为：http://127.0.0.1/CDN/WebGL/yoo/ (该目录下存储的是热更文件)
 
-微信小游戏插件官方文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
+根据下图配置，则初始化代码PackageRoot设置为：**$"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"**
 
 ![image](./Image/Solution-img2.png)
 
-![image](./Image/Solution-img3.jpg)
+**参考教程**
+
+微信官方文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
 
 
 
@@ -163,6 +166,8 @@ IEnumerator InitPackage()
 **其它注意事项**
 
 - 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
+
+![image](./Image/Solution-img3.jpg)
 
 
 

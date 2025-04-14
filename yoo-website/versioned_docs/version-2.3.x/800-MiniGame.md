@@ -68,7 +68,8 @@ IEnumerator InitPackage()
     
     // 小游戏缓存根目录
     // 注意：此处代码根据微信插件配置来填写！
-    string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"; 
+    string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo";
+    //string pacakgeRoot = $"{WeChatWASM.WX.PluginCachePath}/yoo";
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();
@@ -113,7 +114,8 @@ private class WebDecryption : IWebDecryptionServices
 根据下图配置，则初始化代码PackageRoot设置为
 
 ```csharp
-string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}yoo"
+string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
+//string pacakgeRoot = $"{WeChatWASM.WX.PluginCachePath}/yoo";
 ```
 
 ![image](./Image/Solution-img2.png)

@@ -96,7 +96,7 @@
 - LoadFromMemory 通过文件内存来解密加载。
 - LoadFromStream 通过文件流来解密加载。
 
-参考：[加密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/TestEncryption.cs)
+参考：[加密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
 
 ### 补丁包
 

@@ -24,7 +24,7 @@ IEnumerator Start()
 // 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
 private IEnumerator UnloadUnusedAssets()
 {
-    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    var package = YooAssets.GetPackage("DefaultPackage");
     var operation = package.UnloadUnusedAssetsAsync();
     yield return operation;
 }
@@ -33,7 +33,7 @@ private IEnumerator UnloadUnusedAssets()
 // 注意：Package在销毁的时候也会自动调用该方法。
 private void ForceUnloadAllAssets()
 {
-    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    var package = YooAssets.GetPackage("DefaultPackage");
     var operation = package.UnloadAllAssetsAsync();
     yield return operation;
 }
@@ -42,7 +42,7 @@ private void ForceUnloadAllAssets()
 // 注意：如果该资源还在被使用，该方法会无效。
 private void TryUnloadUnusedAsset()
 {
-    var package = YooAssets.GetAssetsPackage("DefaultPackage");
+    var package = YooAssets.GetPackage("DefaultPackage");
     package.TryUnloadUnusedAsset("Assets/GameRes/Panel/login.prefab");
 }
 ````

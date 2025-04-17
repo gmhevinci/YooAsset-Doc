@@ -186,6 +186,80 @@ public IEnumerator Start()
 }
 ```
 
+### 图集丢失变白块的解决方案
+
+在使用YooAsset2.3x版本的时候，会遇到运行时精灵图片变白块的问题。
+
+这是因为Bundle文件的依赖加载是以资源对象的实际依赖为准，如果面板未显示对SpriteAtlas图集建立引用关系，那么在运行时会遇到白块问题。
+
+1. 首先确保SpriteAtlas检视面板勾选了Include In Build选项。
+
+2. 运行时动态加载图集的Bundle文件（方案1）[参考代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/SpriteAtlasLoader)。
+
+   ```csharp
+   // 方案1可选
+   // 完整代码请参考：Extension Sample/Runtime/SpriteAtlasLoader目录脚本！
+   public class SpriteAtlasLoader : MonoBehaviour
+   {
+       public void Awake()
+       {
+           SpriteAtlasManager.atlasRequested += RequestAtlas;
+       }
+       private void RequestAtlas(string atlasName, Action<SpriteAtlas> callback)
+       {
+           var package = YooAssets.GetPackage("DefaultPackage");
+           var loadHandle = package.LoadAssetSync<SpriteAtlas>(atlasName);
+           callback.Invoke(loadHandle.AssetObject as SpriteAtlas);
+       }
+   }
+   ```
+
+3. 编辑器下显示添加图集依赖（方案2）[参考代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/PandelMonitor)。
+
+   **注意：**在导入相关脚本后，需要配置相关文件夹的GUID，可以在对应的meta文件里获取！
+
+   ```csharp
+       /// <summary>
+       /// 面板文件夹GUID
+       /// </summary>
+       private const string UIPanelDirectoryGUID = "12d33f33f3a55224c9c747d7bffa1c68";
+   
+       /// <summary>
+       /// 精灵文件夹GUID
+       /// </summary>
+       private const string UISpriteDirectoryGUID = "935d7f20c085cc141a3daf9cacfabfae";
+   
+       /// <summary>
+       /// 图集文件夹GUID
+       /// </summary>
+       private const string UIAtlasDirectoryGUID = "c355c783476322b4cacac98c5e1b46d8";
+   ```
+
+   ```csharp
+   // 方案2可选
+   // 完整代码请参考：Extension Sample/Runtime/PandelMonitor目录脚本！
+   public class PanelManifest : MonoBehaviour
+   {
+   	/// <summary>
+   	/// 面板自动引用的图集
+   	/// </summary>
+   	public List<SpriteAtlas> ReferencesAtlas = new List<SpriteAtlas>();
+   }
+   public class UIPanelMonitor : UnityEditor.Editor
+   {
+       [InitializeOnLoadMethod]
+       static void StartInitializeOnLoadMethod()
+       {
+           PrefabStage.prefabSaving += OnPrefabSaving;
+       }
+       static void OnPrefabSaving(GameObject go)
+       {
+           // 扫描预制体所有Image组件，找到对应的图集对象并建立引用关系
+           ......
+       }
+   }
+   ```
+
 ### 弱联网环境解决方案
 
 对于偏单机但是也有资源热更需求的项目。当玩家在无网络的时候，我们又不希望玩家卡在资源更新步骤而不能正常游戏。所以当玩家本地网络有问题的时候，我们可以跳过资源更新的步骤。

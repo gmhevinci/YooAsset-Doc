@@ -194,11 +194,12 @@ public IEnumerator Start()
 
 1. 首先确保SpriteAtlas检视面板勾选了Include In Build选项。
 
-2. 运行时动态加载图集的Bundle文件（方案1）[参考代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/SpriteAtlasLoader)。
+2. 运行时动态加载图集的Bundle文件（方案1）。
+
+   完整代码请参考：[Extension Sample/Runtime/SpriteAtlasLoader](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/SpriteAtlasLoader)目录脚本！
 
    ```csharp
    // 方案1可选
-   // 完整代码请参考：Extension Sample/Runtime/SpriteAtlasLoader目录脚本！
    public class SpriteAtlasLoader : MonoBehaviour
    {
        public void Awake()
@@ -214,9 +215,11 @@ public IEnumerator Start()
    }
    ```
 
-3. 编辑器下显示添加图集依赖（方案2）[参考代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/PandelMonitor)。
+3. 编辑器下显示添加图集依赖（方案2）。
 
-   **注意：**在导入相关脚本后，需要配置相关文件夹的GUID，可以在对应的meta文件里获取！
+   完整代码请参考：[Extension Sample/Runtime/PandelMonitor](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/PandelMonitor)目录脚本！
+
+   **注意** : 在导入相关脚本后，需要配置相关文件夹的GUID，可以在对应的meta文件里获取！
 
    ```csharp
        /// <summary>
@@ -237,7 +240,6 @@ public IEnumerator Start()
 
    ```csharp
    // 方案2可选
-   // 完整代码请参考：Extension Sample/Runtime/PandelMonitor目录脚本！
    public class PanelManifest : MonoBehaviour
    {
    	/// <summary>

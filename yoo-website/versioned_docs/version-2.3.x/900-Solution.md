@@ -217,7 +217,7 @@ public IEnumerator Start()
 
 3. 编辑器下显示添加图集依赖（方案2）。
 
-   完整代码请参考：[Extension Sample/Runtime/PandelMonitor](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/PandelMonitor)目录脚本！
+   完整代码请参考：[Extension Sample/Runtime/PanelMonitor](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/PanelMonitor)目录脚本！
 
    **注意** : 在导入相关脚本后，需要配置相关文件夹的GUID，可以在对应的meta文件里获取！
 

@@ -51,3 +51,5 @@ public static void CollectSVC()
 // 命令行调用
 %Projects_UnityEngine_Path% -batchmode -projectPath %Projects_UnityProject_Path% -executeMethod ET.CIHelper.CollectSVC -logFile %Projects_UnityProject_Path%/Logs/CIBuildSVC.log
 ```
+
+**注意：**命令行里不要添加 -quit，上面的执行脚本在完成任务后，会自动退出编辑器。

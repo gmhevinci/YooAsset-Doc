@@ -53,6 +53,11 @@ IEnumerator InitPackage()
 1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
 2. 视频文件通过微信插件来加载播放，视频文件不做资源版本控制。
 
+**其它注意事项**
+
+- 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
+- URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle 双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
+
 **文件系统初始化**
 
 ````csharp
@@ -101,11 +106,6 @@ private class WebDecryption : IWebDecryptionServices
     }
 }
 ````
-
-**其它注意事项**
-
-- 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
-- URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle 双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
 
 **微信插件配置**
 

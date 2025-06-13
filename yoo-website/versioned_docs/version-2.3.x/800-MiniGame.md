@@ -113,6 +113,8 @@ private class WebDecryption : IWebDecryptionServices
 
 根据下图配置，则初始化代码PackageRoot设置为
 
+注意：如果缓存总是失败，可以尝试把yoo替换为StreamingAssets
+
 ```csharp
 string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 //string pacakgeRoot = $"{WeChatWASM.WX.PluginCachePath}/yoo";

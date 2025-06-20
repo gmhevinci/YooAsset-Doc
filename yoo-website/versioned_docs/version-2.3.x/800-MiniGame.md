@@ -39,7 +39,7 @@ IEnumerator InitPackage()
 
 首先安装WX-WASM-SDK-V2 Unity插件，然后导入微信文件系统相关代码。
 
-微信文件系统相关代码在扩展工程内：Extension Sample --> Runtime --> ExtensionFileSystem --> [WechatFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionFileSystem/WechatFileSystem)
+微信文件系统相关代码在扩展工程内：Mini Game --> Runtime --> [WechatFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionFileSystem/WechatFileSystem)
 
 **文件系统注意事项**
 
@@ -132,7 +132,7 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 
 首先安装字节小游戏相关的Unity插件，然后导入抖音文件系统相关代码。
 
-抖音文件系统相关代码在扩展工程内：Extension Sample --> Runtime --> ExtensionFileSystem--> [TiktokFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionFileSystem/TiktokFileSystem)
+抖音文件系统相关代码在扩展工程内：Mini Game --> Runtime --> [TiktokFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionFileSystem/TiktokFileSystem)
 
 **文件系统注意事项**
 

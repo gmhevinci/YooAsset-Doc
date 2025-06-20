@@ -50,9 +50,13 @@
 
   <u>当开启此项的时候，会极大提高构建速度！</u>
 
-- **Encryption**
+- **Encryption Services**
 
-  加密类列表。
+  资源包加密类列表。
+
+- **Manifest Services**
+
+  清单处理类列表。
 
 - **Compression**
 
@@ -86,9 +90,11 @@
 
   点击构建按钮会开始构建流程，构建流程分为多个节点顺序执行，如果某个节点发生错误，会导致构建失败。错误信息可以在控制台查看。
 
-### 加密方法
+### 资源加密
 
 在Editor目录下实现一个继承IEncryptionServices接口的类。
+
+构建页面选择资源加密服务类。
 
 加密支持三种方式：
 
@@ -97,6 +103,12 @@
 - LoadFromStream 通过文件流来解密加载。
 
 参考：[加密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
+
+### 清单加密
+
+在Editor目录下实现一个继承IManifestServices接口的类。
+
+构建页面选择清单加密服务类。
 
 ### 补丁包
 

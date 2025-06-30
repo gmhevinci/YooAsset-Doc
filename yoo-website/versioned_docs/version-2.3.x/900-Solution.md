@@ -60,6 +60,101 @@ private IEnumerator Start()
 }
 ```
 
+### 本地资源拷贝定制解决方案
+
+在安卓平台加载包体内的加密文件或原生文件，会先把文件拷贝到沙盒内在做后续处理。
+
+如果使用同步方法加载资源，默认的文件系统会通过UnityWebRequest类去下载内置文件到沙盒目录下。
+
+因为涉及同步行为，代码里会使用While循环内部监测下载行为，直到下载结束，期间会挂起主线程。
+
+目前发现团结引擎发布的安卓程序在某些机型里会出现偶现卡死的现象[issue:585](https://github.com/tuyoogame/YooAsset/issues/585)，为了规避这个问题，YOO提供了本地文件拷贝服务类接口。
+
+```csharp
+/// <summary>
+/// 本地文件拷贝服务类
+/// </summary>
+public interface ICopyLocalFileServices
+{
+    void CopyFile(LocalFileInfo sourceFileInfo, string destFilePath);
+}
+```
+
+本地文件拷贝服务类的扩展示例
+
+注意：包体内文件拷贝，沙盒内文件导入都会触发该服务！
+
+```csharp
+using System;
+using System.IO;
+using YooAsset;
+
+public class CopyLocalFileServices : ICopyLocalFileServices
+{
+    private class AndroidWrapper
+    {
+        public static void CopyAssetFile(string assetPath, string destPath)
+        {
+            // 注意：请实现安卓平台拷贝内置文件的原生接口
+            ......
+        }
+    }
+
+    public void CopyFile(LocalFileInfo sourceFileInfo, string destFilePath)
+    {
+#if UNITY_ANDROID
+    	// 安卓平台包体内文件的拷贝走安卓原生方法
+        if (IsBuildinSourceFile(sourceFileInfo.SourceFileURL))
+        {
+            // SourceFileURL示例 jar:file:///apk_path!/assets/yoo/DefaultPackage/xxxxxx.bundle
+            AndroidWrapper.CopyAssetFile(sourceFileInfo.SourceFileURL, destFilePath);
+        }
+        else
+        {
+            string sourceFilePath = ConvertFileUriToPath(sourceFileInfo.SourceFileURL);
+            File.Copy(sourceFilePath, destFilePath);
+        }
+#else
+    	// 其它平台本地文件拷贝走正常方法
+        string sourceFilePath = ConvertFileUriToPath(sourceFileInfo.SourceFileURL);
+        File.Copy(sourceFilePath, destFilePath);
+#endif
+    }
+
+    // 检测本地文件URL地址是否为安卓内包体文件
+    private bool IsBuildinSourceFile(string fileURL)
+    {
+        if (string.IsNullOrEmpty(fileURL))
+            return false;
+
+        // 判断是否包含APK路径特征
+        return fileURL.StartsWith("jar:file://", StringComparison.OrdinalIgnoreCase) && fileURL.Contains("!/assets/");
+    }
+
+    // 本地文件URL地址转换为标准文件路径
+    public static string ConvertFileUriToPath(string uri)
+    {
+        if (string.IsNullOrEmpty(uri))
+            return uri;
+
+        // 处理标准 file:// URL
+        if (uri.StartsWith("file://", StringComparison.Ordinal))
+        {
+            // 去除 file:// 前缀
+            string path = uri.Substring(7);
+
+            // 处理 Android 特殊格式 (file:/// 后跟绝对路径)
+            if (path.StartsWith("//"))
+                return path.Substring(1);
+            else
+                return path;
+        }
+
+        return uri;
+    }
+}
+```
+
 ### 资源自定义分发解决方案
 
 希望将所有热更资源压缩到一个ZIP包里。玩家第一次启动游戏去下载ZIP包，下载完成后解压到沙盒目录下。

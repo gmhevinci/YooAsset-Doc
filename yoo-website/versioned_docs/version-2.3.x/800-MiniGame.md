@@ -128,6 +128,8 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 
 ![image](./Image/Solution-img4.png)
 
+
+
 ### 抖音小游戏
 
 首先安装字节小游戏相关的Unity插件，然后导入抖音文件系统相关代码。
@@ -252,6 +254,30 @@ private void GameLogic()
     // 业务代码可以用同步加载方法
     var assetHandle = package.LoadAssetSync("prefab_location");
     var go = assetHandle.InstantiateSync();
+}
+```
+
+
+
+### 关于解决小游戏纯异步加载导致的实例化过慢的办法
+
+由于WebGL平台对多线程的限制，团结引擎对LoadAssetAsync等资源加载异步方法加了分帧处理策略，目前策略是每帧只处理一个异步操作请求。
+
+这就会导致游戏画面每一帧最多只会显示加载的一个资源对象，为了解决这个问题，YooAsset提供了以下解决方案。
+
+```csharp
+IEnumerator InitPackage()
+{
+    // 设置异步处理单帧消耗最大时间切片（单位：毫秒）
+    YooAssets.SetOperationSystemMaxTimeSlice(100); //防止单帧加载过多游戏对象导致卡顿
+    
+    // 创建初始化参数
+    var createParameters = new WebPlayModeParameters();
+    ......
+    createParameters.WebGLForceSyncLoadAsset = true; //开启资源加载异步转同步
+    
+    // 初始化ResourcePackage
+    yield reurn package.InitializeAsync(createParameters);
 }
 ```
 

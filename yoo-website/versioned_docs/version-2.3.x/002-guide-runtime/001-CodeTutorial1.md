@@ -203,17 +203,29 @@ private IEnumerator InitPackage()
 }
 ```
 
-### 解密方法
+### 资源文件解密方法
 
-实现一个继承IDecryptionServices接口的类，参考代码：[单元测试工程](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
-
-FileSystemParameters.cs类里有各个默认的文件系统的初始化方法。
+实现一个继承IDecryptionServices接口的类，参考代码：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
 
 ```csharp
 // 初始化资源包
 var initParams = new OfflinePlayModeParameters();
-var decryption = new FileStreamDecryption();
-initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption, packageRoot);
+var decryption = new TestFileStreamDecryption();
+initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption);
+var initializeOp = package.InitializeAsync(initParams);
+yield return initializeOp;
+```
+
+### 资源清单解密方法
+
+实现一个继承IManifestServices接口的类，参考代码：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestProcessManifest.cs)
+
+```csharp
+// 初始化资源包
+var initParams = new OfflinePlayModeParameters();
+var decryption = new TestProcessManifest();
+initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+initParams.BuildinFileSystemParameters.AddParameter(FileSystemParametersDefine.MANIFEST_SERVICES, decryption);
 var initializeOp = package.InitializeAsync(initParams);
 yield return initializeOp;
 ```

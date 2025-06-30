@@ -6,11 +6,15 @@
 
 #### 示例内容
 
-**Space Shooter** 太空战机DEMO，包含资源热更和加载的示例。
+**Space Shooter** 太空战机DEMO，包含完整资源热更流程演示。
+
+**Mini Game** 小游戏平台的文件系统扩展库。
 
 **Extension Sample** 包含编辑器扩展代码的示例和着色器变种收集器。
 
 **UniTask Sample** 包含支持UniTask代码的示例。
+
+**Test Sample** 单元测试用例。
 
 #### 导入流程注意事项
 

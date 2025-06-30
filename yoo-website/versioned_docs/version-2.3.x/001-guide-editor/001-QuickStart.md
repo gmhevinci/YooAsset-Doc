@@ -19,7 +19,7 @@
    
    打开管理界面 **Edit/Windows/Package Manager**
    
-   ![image](./Image/QuickStart-img2.jpg)
+   ![image](./Image/QuickStart-img2.png)
    
 2. **通过Packages清单安装**
 

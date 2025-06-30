@@ -90,7 +90,7 @@
 
   点击构建按钮会开始构建流程，构建流程分为多个节点顺序执行，如果某个节点发生错误，会导致构建失败。错误信息可以在控制台查看。
 
-### 资源加密
+### 资源文件加密
 
 在Editor目录下实现一个继承IEncryptionServices接口的类。
 
@@ -102,13 +102,15 @@
 - LoadFromMemory 通过文件内存来解密加载。
 - LoadFromStream 通过文件流来解密加载。
 
-参考：[加密示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
+参考：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
 
-### 清单加密
+### 资源清单加密
 
 在Editor目录下实现一个继承IManifestServices接口的类。
 
 构建页面选择清单加密服务类。
+
+参考：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestProcessManifest.cs)
 
 ### 补丁包
 

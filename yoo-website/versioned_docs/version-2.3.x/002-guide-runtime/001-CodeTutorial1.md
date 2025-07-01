@@ -230,6 +230,24 @@ var initializeOp = package.InitializeAsync(initParams);
 yield return initializeOp;
 ```
 
+### 注意事项
+
+如果指定内置文件系统的根目录为沙盒目录，是一件十分危险的行为。
+
+1. 内置文件系统类并不会在初始化的时候去校验内置文件。
+2. 内置文件系统类没有处理加载资源文件失败的Fallback机制。
+3. 要想解决上面的问题，需要开发者扩展默认的内置文件系统类。
+
+```csharp
+string packageRoot = Application.persistentDataPath + "/buildin"; //沙盒目录
+FileSystemParameters.CreateDefaultBuildinFileSystemParameters(null, packageRoot);
+```
+
+另外的正确处理方法是，对下载的ZIP包解压后，可以通过导入器将解压的资源文件拷贝到YOO的缓存目录下。
+
+1. 缓存文件系统类在初始化的时候会自动校验缓存文件。
+2. 缓存文件系统类有完备的资源文件加载失败的Fallback机制。
+
 ### 源代码解析
 
 Package.InitializeAsync()方法解析。

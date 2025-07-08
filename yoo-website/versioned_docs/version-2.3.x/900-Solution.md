@@ -114,6 +114,9 @@ public class CopyLocalFileServices : ICopyLocalFileServices
             string sourceFilePath = ConvertFileUriToPath(sourceFileInfo.SourceFileURL);
             File.Copy(sourceFilePath, destFilePath);
         }
+#elif UNITY_OPENHARMONY
+    	// 鸿蒙平台处理方式
+    	......
 #else
     	// 其它平台本地文件拷贝走正常方法
         string sourceFilePath = ConvertFileUriToPath(sourceFileInfo.SourceFileURL);

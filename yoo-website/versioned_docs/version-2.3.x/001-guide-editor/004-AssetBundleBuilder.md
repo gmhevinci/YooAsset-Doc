@@ -54,9 +54,13 @@
 
   资源包加密类列表。
 
-- **Manifest Services**
+- **Manifest Process Services**
 
-  清单处理类列表。
+  资源清单加密或压缩类列表。
+
+- **Manifest Restore Services**
+
+  资源清单解密或解压类列表。
 
 - **Compression**
 
@@ -102,15 +106,15 @@
 - LoadFromMemory 通过文件内存来解密加载。
 - LoadFromStream 通过文件流来解密加载。
 
-参考：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
+参考：[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/CryptoSample)
 
 ### 资源清单加密
 
 在Editor目录下实现一个继承IManifestServices接口的类。
 
-构建页面选择清单加密服务类。
+构建页面选择清单加密服务类和清单解密服务类。
 
-参考：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestProcessManifest.cs)
+参考：[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/CryptoSample)
 
 ### 补丁包
 
@@ -210,9 +214,11 @@ private static string GetBuildPackageName()
 }
 ````
 
-SBP构建管线注意事项
+### 注意事项
 
-请务必设置内置着色器资源包名称，且和自动收集的着色器资源包名保持一致！
+#### SBP构建管线注意事项
+
+如果自行编码构建逻辑，请务必设置内置着色器资源包名称，且和自动收集的着色器资源包名保持一致！
 
 ```csharp
 private static void BuildInternal(BuildTarget buildTarget)
@@ -235,6 +241,14 @@ private string GetBuiltinShaderBundleName()
 }
 ```
 
+#### 内置资源自行处理注意事项
+
+如果自行编码或手动拷贝资源包文件到StreamingAssets目录下，请遵循默认规则。
+
+默认规则如下：StreamingAssets/yoo/PackageName/内置资产
+
+需要导入Catalog文件生成脚本到项目内：Samples/Extension Sample/Editor/PreprocessBuild（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PreprocessBuild)）
+
 ### 重要概念
 
 - **增量构建**
@@ -248,3 +262,15 @@ private string GetBuiltinShaderBundleName()
 - **补丁包**
 
   无论是通过增量构建还是强制构建，在构建完成后都会生成一个以包裹版本（PackageVersion）命名的文件夹，我们把这个文件夹统称为补丁包。补丁包里包含了游戏运行需要的所有资源，我们可以无脑的将补丁包内容覆盖到CDN目录下，也可以通过编写差异分析工具，来筛选出和线上最新版本之间的差异文件，然后将差异文件上传到CDN目录里。
+  
+- **Catalog文件**
+
+  如果通过YOO的构建页面打包，并配置了CopyBuildinFileOption导入内置文件，会通过TaskCreateCatalog任务节点自动生成Catalog文件。
+
+  Catalog文件记录了资源包裹在StreamingAssets目录下的内置文件查询列表，它是默认的内置文件系统（DefaultBuildinFileSystem）依赖的关键文件。
+
+  如果自行编码或手动拷贝资源包文件到StreamingAssets目录下，需要在触发构建APP前自动生成Catalog文件，请参考上方的注意事项里的解决方案。
+
+  
+
+  

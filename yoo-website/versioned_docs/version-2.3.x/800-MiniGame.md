@@ -43,10 +43,11 @@ IEnumerator InitPackage()
 
 **文件系统注意事项**
 
-1. 不支持同步加载。
-2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
-3. 不支持原生文件构建管线。
+1. 不支持同步加载！
+2. ~~不支持资源加密~~。（v2.3.x版本开始支持加密！）
+3. 不支持原生文件构建管线！
 4. 构建的Bundle文件名称不要带有中文！
+5. StreamingAssets目录不需要放置任何资产！
 
 **原生文件解决办法**
 
@@ -57,6 +58,8 @@ IEnumerator InitPackage()
 
 - 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
 - URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle 双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
+- URL地址里不要包含windows的斜杠，例如：@"\\" 或者 "\\\\"
+- URL地址里不要带端口信息，例如：http://127.0.0.1:80
 
 **文件系统初始化**
 
@@ -68,9 +71,6 @@ IEnumerator InitPackage()
     string fallbackHostServer = GetHostServerURL();
     var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
     
-    // 创建解密服务类
-    var decryptionServices = new WebDecryption();
-    
     // 小游戏缓存根目录
     // 注意：此处代码根据微信插件配置来填写！
     string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo";
@@ -78,32 +78,10 @@ IEnumerator InitPackage()
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();
-    createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, decryptionServices);
+    createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, null);
     
     // 初始化ResourcePackage
     yield reurn package.InitializeAsync(createParameters);
-}
-
-// 解密服务类
-private class WebDecryption : IWebDecryptionServices
-{
-    public WebDecryptResult LoadAssetBundle(WebDecryptFileInfo fileInfo)
-    {
-        // 安全起见可以拷贝一份原始数据
-        byte[] copyData = new byte[fileInfo.FileData.Length];
-        Buffer.BlockCopy(fileInfo.FileData, 0, copyData, 0, fileInfo.FileData.Length);
-
-        // 实现你的解密算法
-        for (int i = 0; i < copyData.Length; i++)
-        {
-            ......
-        }
-
-        // 从内存中加载AssetBundle
-        WebDecryptResult decryptResult = new WebDecryptResult();
-        decryptResult.Result = AssetBundle.LoadFromMemory(copyData);
-        return decryptResult;
-    }
 }
 ````
 
@@ -112,8 +90,6 @@ private class WebDecryption : IWebDecryptionServices
 假设CDN地址为：http://127.0.0.1/CDN/WebGL/yoo/ (该目录下存储的是热更文件)
 
 根据下图配置，则初始化代码PackageRoot设置为
-
-注意：如果缓存总是失败，可以尝试把yoo替换为StreamingAssets
 
 ```csharp
 string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
@@ -160,9 +136,8 @@ IEnumerator InitPackage()
     // 创建解密服务类
     var decryptionServices = new WebDecryption();
     
-    // 小游戏缓存根目录
-    // 注意：如果有子目录，请修改此处！
-    string packageRoot = $"xxx"; 
+    // 随意填写
+    string packageRoot = "yoo"; 
     
     // 创建初始化参数
     var createParameters = new WebPlayModeParameters();

@@ -205,13 +205,28 @@ private IEnumerator InitPackage()
 
 ### 资源文件解密方法
 
-实现一个继承IDecryptionServices接口的类，参考代码：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/T2_TestBuldinFileSystem/TestBundleEncryption.cs)
+实现一个继承IDecryptionServices接口的类，参考代码：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/CryptoSample/TestFileStreamEncryption.cs)
 
 ```csharp
 // 初始化资源包
-var initParams = new OfflinePlayModeParameters();
 var decryption = new TestFileStreamDecryption();
+var initParams = new OfflinePlayModeParameters();
 initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption);
+var initializeOp = package.InitializeAsync(initParams);
+yield return initializeOp;
+```
+
+### WebGL平台解密方法
+
+注：2.3x版本开始支持WebGL和小游戏平台加密。
+
+实现一个继承IWebDecryptionServices接口的类，参考代码：[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Test%20Sample/Runtime/CryptoSample/TestFileStreamEncryption.cs)
+
+```csharp
+// 初始化资源包
+var decryption = new TestWebFileMemoryDecryption();
+var initParams = new WebPlayModeParameters();
+initParams.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters(decryption);
 var initializeOp = package.InitializeAsync(initParams);
 yield return initializeOp;
 ```

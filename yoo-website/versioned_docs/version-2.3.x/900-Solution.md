@@ -181,6 +181,30 @@ public class CopyLocalFileServices : ICopyLocalFileServices
 public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int importerMaxNumber, int failedTryAgain)
 ```
 
+### 移动端后台下载解决方案
+
+后台下载就是玩家在退出游戏后，让资源下载继续在后台进行。
+
+主要是借助Unity官方的插件：https://github.com/Unity-Technologies/BackgroundDownload
+
+该插件的使用教程大家自行学习，这里不再累述。
+
+解决方案的思路和上面的 [资源自定义分发解决方案] 类似。
+
+1. 后台下载资源文件到沙盒的固定目录下。
+2. 下次游戏启动的时候，优先通过资源导入器导入后台下载的资源文件。
+
+```csharp
+/// <summary>
+/// 创建资源导入器
+/// 注意：资源文件名称必须和资源服务器部署的文件名称一致！
+/// </summary>
+/// <param name="filePaths">资源路径列表</param>
+/// <param name="importerMaxNumber">同时导入的最大文件数</param>
+/// <param name="failedTryAgain">导入失败的重试次数</param>
+public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int importerMaxNumber, int failedTryAgain)
+```
+
 ### 首包资源定制解决方案
 
 YooAsset默认支持通过Tag来指定首包资源，开发者也可以灵活定制自己的首包方案。
@@ -363,6 +387,8 @@ public IEnumerator Start()
 ### 弱联网环境解决方案
 
 对于偏单机但是也有资源热更需求的项目。当玩家在无网络的时候，我们又不希望玩家卡在资源更新步骤而不能正常游戏。所以当玩家本地网络有问题的时候，我们可以跳过资源更新的步骤。
+
+关于获取包体内资源版本的[示例代码](https://github.com/tuyoogame/YooAsset/blob/dev/Assets/YooAsset/Samples~/Extension%20Sample/Runtime/ExtensionOperation/GetBuildinPackageVersionOperation.cs)
 
 ````csharp
 private IEnumerator Start()

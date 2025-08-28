@@ -22,16 +22,19 @@ IEnumerator Start()
 ````csharp
 // 卸载所有引用计数为零的资源包。
 // 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
+// 备注：支持同步操作。
 private IEnumerator UnloadUnusedAssets()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
     var operation = package.UnloadUnusedAssetsAsync();
+    operation.WaitForAsyncComplete(); //支持同步操作
     yield return operation;
 }
 
 // 强制卸载所有资源包，该方法请在合适的时机调用。
 // 注意：Package在销毁的时候也会自动调用该方法。
-private void ForceUnloadAllAssets()
+// 备注：不支持同步操作。
+private IEnumerator ForceUnloadAllAssets()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
     var operation = package.UnloadAllAssetsAsync();

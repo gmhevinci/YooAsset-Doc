@@ -58,10 +58,12 @@ private IEnumerator InitPackage()
 {  
     var buildResult = EditorSimulateModeHelper.SimulateBuild("DefaultPackage");    
     var packageRoot = buildResult.PackageRootDirectory;
-    var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
-    var initParameters = new EditorSimulateModeParameters();
-    initParameters.EditorFileSystemParameters = editorFileSystemParams;
-    var initOperation = package.InitializeAsync(initParameters);
+    var fileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
+    
+    var createParameters = new EditorSimulateModeParameters();
+    createParameters.EditorFileSystemParameters = fileSystemParams;
+    
+    var initOperation = package.InitializeAsync(createParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -80,10 +82,12 @@ private IEnumerator InitPackage()
 ````csharp
 private IEnumerator InitPackage()
 {
-    var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
-    var initParameters = new OfflinePlayModeParameters();
-    initParameters.BuildinFileSystemParameters = buildinFileSystemParams;
-    var initOperation = package.InitializeAsync(initParameters);
+    var fileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+    
+    var createParameters = new OfflinePlayModeParameters();
+    createParameters.BuildinFileSystemParameters = fileSystemParams;
+    
+    var initOperation = package.InitializeAsync(createParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -108,10 +112,11 @@ private IEnumerator InitPackage()
     var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
     var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();   
     
-    var initParameters = new HostPlayModeParameters();
-    initParameters.BuildinFileSystemParameters = buildinFileSystemParams; 
-    initParameters.CacheFileSystemParameters = cacheFileSystemParams;
-    var initOperation = package.InitializeAsync(initParameters);
+    var createParameters = new HostPlayModeParameters();
+    createParameters.BuildinFileSystemParameters = buildinFileSystemParams; 
+    createParameters.CacheFileSystemParameters = cacheFileSystemParams;
+    
+    var initOperation = package.InitializeAsync(createParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -162,11 +167,11 @@ private IEnumerator InitPackage()
     var webServerFileSystemParams = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
     var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //支持跨域下载
     
-    var initParameters = new WebPlayModeParameters();
-    initParameters.WebServerFileSystemParameters = webServerFileSystemParams;
-    initParameters.WebRemoteFileSystemParameters = webRemoteFileSystemParams;
+    var createParameters = new WebPlayModeParameters();
+    createParameters.WebServerFileSystemParameters = webServerFileSystemParams;
+    createParameters.WebRemoteFileSystemParameters = webRemoteFileSystemParams;
     
-    var initOperation = package.InitializeAsync(initParameters);
+    var initOperation = package.InitializeAsync(createParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -188,12 +193,12 @@ private IEnumerator InitPackage()
     // 配置各个文件系统参数
     ......
     
-    var initParameters = new CustomPlayModeParameters();
-    initParameters.FileSystemParameterList.Add(FileSystemParamsA);
-    initParameters.FileSystemParameterList.Add(FileSystemParamsB);
-    initParameters.FileSystemParameterList.Add(FileSystemParamsC);
+    var createParameters = new CustomPlayModeParameters();
+    createParameters.FileSystemParameterList.Add(FileSystemParamsA);
+    createParameters.FileSystemParameterList.Add(FileSystemParamsB);
+    createParameters.FileSystemParameterList.Add(FileSystemParamsC);
     
-    var initOperation = package.InitializeAsync(initParameters);
+    var initOperation = package.InitializeAsync(createParameters);
     yield return initOperation;
     
     if(initOperation.Status == EOperationStatus.Succeed)
@@ -210,9 +215,10 @@ private IEnumerator InitPackage()
 ```csharp
 // 初始化资源包
 var decryption = new TestFileStreamDecryption();
-var initParams = new OfflinePlayModeParameters();
-initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption);
-var initializeOp = package.InitializeAsync(initParams);
+var createParameters = new OfflinePlayModeParameters();
+createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryption);
+
+var initializeOp = package.InitializeAsync(createParameters);
 yield return initializeOp;
 ```
 
@@ -225,9 +231,10 @@ yield return initializeOp;
 ```csharp
 // 初始化资源包
 var decryption = new TestWebFileMemoryDecryption();
-var initParams = new WebPlayModeParameters();
-initParams.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters(decryption);
-var initializeOp = package.InitializeAsync(initParams);
+var createParameters = new WebPlayModeParameters();
+createParameters.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters(decryption);
+
+var initializeOp = package.InitializeAsync(createParameters);
 yield return initializeOp;
 ```
 
@@ -237,11 +244,12 @@ yield return initializeOp;
 
 ```csharp
 // 初始化资源包
-var initParams = new OfflinePlayModeParameters();
+var createParameters = new OfflinePlayModeParameters();
 var decryption = new TestProcessManifest();
-initParams.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
-initParams.BuildinFileSystemParameters.AddParameter(FileSystemParametersDefine.MANIFEST_SERVICES, decryption);
-var initializeOp = package.InitializeAsync(initParams);
+createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+createParameters.BuildinFileSystemParameters.AddParameter(FileSystemParametersDefine.MANIFEST_SERVICES, decryption);
+
+var initializeOp = package.InitializeAsync(createParameters);
 yield return initializeOp;
 ```
 

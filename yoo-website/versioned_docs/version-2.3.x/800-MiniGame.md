@@ -46,15 +46,11 @@ IEnumerator InitPackage()
 1. 不支持同步加载！
 2. ~~不支持资源加密~~。（v2.3.x版本开始支持加密！）
 3. 不支持原生文件构建管线！
-4. 构建的Bundle文件名称不要带有中文！
-5. StreamingAssets目录不需要放置任何资产！
-
-**原生文件解决办法**
-
-1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
-2. 视频文件通过微信插件来加载播放，视频文件不做资源版本控制。
 
 **其它注意事项**
+
+- 构建的Bundle文件名称不要带有中文！
+- StreamingAssets目录不需要放置任何资产！
 
 - 一定要禁止对资源清单版本文件进行缓存（文件名称样例：yourPackageName.version）
 - URL地址里不要包含双反斜杠，例如：www.cdn.com/v1.0/android//xxx.bundle 双反斜杠会导致微信插件加载文件失败，但网络请求又不返回失败！
@@ -118,11 +114,6 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
 3. 不支持原生文件构建管线。
 
-**原生文件解决办法**
-
-1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
-2. 视频文件通过抖音插件来加载播放，视频文件不做资源版本控制。
-
 **文件系统初始化**
 
 ````csharp
@@ -158,9 +149,11 @@ IEnumerator InitPackage()
 
 ### 支付宝小游戏
 
-由于官方在文件系统层面支持不足，[官方文档介绍](https://opendocs.alipay.com/mini-game/0ftleg)
+首先安装支付宝小游戏相关的Unity插件，然后导入支付宝文件系统相关代码。
 
-目前的技术方案走WebGL网页平台的文件系统。
+支付宝文件系统相关代码在扩展工程内：Mini Game --> Runtime --> [AlipayFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Mini%20Game/Runtime)
+
+注意：支付宝小游戏插件目前还未公开（2025.9.10），可以联系支付宝团队索取插件库。
 
 **文件系统注意事项**
 
@@ -173,23 +166,53 @@ IEnumerator InitPackage()
 ```csharp
 IEnumerator InitPackage()
 {
-    // 创建远程服务类
-    string defaultHostServer = GetHostServerURL();
-    string fallbackHostServer = GetHostServerURL();
-    var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
-    
-    // 创建解密服务类
-    var decryptionServices = new WebDecryption();
+    ... //省略！参考字节小游戏初始化代码
     
     // 创建初始化参数
-    bool disableUnityWebCache = true; //注意：一定要禁用引擎的缓存机制！！！
     var createParameters = new WebPlayModeParameters();
-    createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices, decryptionServices, disableUnityWebCache);
+    createParameters.WebServerFileSystemParameters = AlipayFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, decryptionServices);
     
     // 初始化ResourcePackage
     yield reurn package.InitializeAsync(createParameters);
 }
 ```
+
+
+
+### Taptap小游戏
+
+首先安装Taptap小游戏相关的Unity插件，然后导入Taptap文件系统相关代码。
+
+Taptap文件系统相关代码在扩展工程内：Mini Game --> Runtime -->[TaptapFileSystem](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Mini%20Game/Runtime)
+
+**文件系统注意事项**
+
+1. 不支持同步加载。
+2. ~~不支持资源加密~~。（v2.2.12版本开始支持加密！）
+3. 不支持原生文件构建管线。
+
+**文件系统初始化**
+
+```csharp
+IEnumerator InitPackage()
+{
+    ... //省略！参考字节小游戏初始化代码
+    
+    // 创建初始化参数
+    var createParameters = new WebPlayModeParameters();
+    createParameters.WebServerFileSystemParameters = TaptapFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, decryptionServices);
+    
+    // 初始化ResourcePackage
+    yield reurn package.InitializeAsync(createParameters);
+}
+```
+
+
+
+### 原生文件解决方案
+
+1. 修改Unity引擎无法识别的文件的后缀名为.bytes。
+2. 视频文件通过微信插件来加载播放，视频文件不做资源版本控制。
 
 
 

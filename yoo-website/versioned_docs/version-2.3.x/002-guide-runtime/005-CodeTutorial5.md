@@ -17,6 +17,26 @@ IEnumerator Start()
 }
 ````
 
+### 弱引用资源句柄
+
+弱引用资源句柄不需要主动释放，在资源句柄类被GC后，资源句柄会失效！
+
+**注意：**
+
+弱引用资源句柄模式下，在资源句柄被GC回收后，YOO的调试窗口显示的资源引用计数不会自动降低！
+
+在玩家主动调用资源卸载方法的时候，调试窗口的引用计数才会更新！
+
+```csharp
+private IEnumerator InitPackage()
+{
+    var fileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
+    var createParameters = new OfflinePlayModeParameters();
+    createParameters.BuildinFileSystemParameters = fileSystemParams;
+    createParameters.UseWeakReferenceHandle = true; //启用弱引用资源句柄
+}
+```
+
 ### 资源卸载范例
 
 ````csharp

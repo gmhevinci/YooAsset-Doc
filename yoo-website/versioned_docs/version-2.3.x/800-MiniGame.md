@@ -68,7 +68,7 @@ IEnumerator InitPackage()
 
 **UOS CDN**
 
-UOS CDN（又名ADN Asset Delivery Network）是 Unity 官方推出的资源更新服务，可以帮助开发者轻松部署和管理远程资源包。官方文档：https://uos.unity.cn/
+UOS CDN 是 Unity 官方推出的资源更新服务，可以帮助开发者轻松部署和管理远程资源包。官方文档：https://uos.unity.cn/
 
 小游戏宿主和UOS CDN做了深度融合，在使用的时候注意事项如下：
 

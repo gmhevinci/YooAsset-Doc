@@ -2,7 +2,7 @@
 
 了解如何使用YooAsset接入小游戏平台。
 
-### 网页小游戏
+### 网页游戏
 
 **文件系统注意事项**
 
@@ -32,6 +32,62 @@ IEnumerator InitPackage()
     yield reurn package.InitializeAsync(createParameters);
 }
 ````
+
+
+
+### 小游戏宿主
+
+Unity 小游戏宿主是融合了客户端 SDK、服务端 API 以及管理后台的一体化综合性小游戏运行平台。该平台最大亮点在于全平台的覆盖，全面支持 Android 和 iOS 系统，无论用户使用何种设备，都能获得流畅的游戏体验。
+
+小游戏宿主的安装以及配置教程，请参考官方文档：https://minihost.tuanjie.cn/help/docs/welcome
+
+**文件系统注意事项**
+
+1. 不支持同步加载。
+2. 不支持原生文件构建管线。
+3. 不支持下载器。
+
+**文件系统初始化**
+
+````csharp
+IEnumerator InitPackage()
+{
+    // 创建远程服务类
+    string defaultHostServer = GetHostServerURL();
+    string fallbackHostServer = GetHostServerURL();
+    var remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+    
+    // 创建初始化参数
+    var createParameters = new WebPlayModeParameters();
+    createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices);
+    
+    // 初始化ResourcePackage
+    yield reurn package.InitializeAsync(createParameters);
+}
+````
+
+**UOS CDN**
+
+UOS CDN（又名ADN Asset Delivery Network）是 Unity 官方推出的资源更新服务，可以帮助开发者轻松部署和管理远程资源包。官方文档：https://uos.unity.cn/
+
+小游戏宿主和UOS CDN做了深度融合，在使用的时候注意事项如下：
+
+```csharp
+private string GetHostServerURL()
+{
+    // 可以通过官方接口直接获取配置的CDN根目录
+    string cdn = minihost.TJ.GetDataCDN();
+    return cdn;
+}
+
+IEnumerator InitPackage()
+{
+    // 请求资源版本
+    bool appendTimeTicks = false; //注意：UOS CDN需要关闭URL尾部自动添加的时间戳!
+    var operation = package.RequestPackageVersionAsync(appendTimeTicks);
+    yield return operation;  
+}
+```
 
 
 
@@ -92,13 +148,13 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 //string pacakgeRoot = $"{WeChatWASM.WX.PluginCachePath}/yoo";
 ```
 
-![image](./Image/Solution-img2.png)
+<img src="./Image/Solution-img2.png"  width="800" />
 
-**参考教程**
+**微信官方文档**
 
-微信官方文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
+文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
 
-![image](./Image/Solution-img4.png)
+<img src="./Image/Solution-img4.png"  width="800" />
 
 
 

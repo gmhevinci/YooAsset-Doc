@@ -331,7 +331,7 @@ IEnumerator InitPackage()
     createParameters.WebGLForceSyncLoadAsset = true; //开启资源加载异步转同步
     
     // 初始化ResourcePackage
-    yield reurn package.InitializeAsync(createParameters);
+    yield return package.InitializeAsync(createParameters);
 }
 ```
 

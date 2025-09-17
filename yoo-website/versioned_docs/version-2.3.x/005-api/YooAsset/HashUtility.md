@@ -199,6 +199,23 @@ public static string StringCRC32(string str)
 |:--- |:--- |
 | `System.String` | *str* |
 
+### StringCRC32Value(string)
+
+
+```csharp title="Declaration"
+public static uint StringCRC32Value(string str)
+```
+
+##### Returns
+
+`System.UInt32`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *str* |
+
 ### FileCRC32(string)
 获取文件的CRC32
 
@@ -209,6 +226,23 @@ public static string FileCRC32(string filePath)
 ##### Returns
 
 `System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *filePath* |
+
+### FileCRC32Value(string)
+
+
+```csharp title="Declaration"
+public static uint FileCRC32Value(string filePath)
+```
+
+##### Returns
+
+`System.UInt32`
 
 ##### Parameters
 
@@ -233,6 +267,23 @@ public static string FileCRC32Safely(string filePath)
 |:--- |:--- |
 | `System.String` | *filePath* |
 
+### FileCRC32ValueSafely(string)
+
+
+```csharp title="Declaration"
+public static uint FileCRC32ValueSafely(string filePath)
+```
+
+##### Returns
+
+`System.UInt32`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *filePath* |
+
 ### StreamCRC32(Stream)
 获取数据流的CRC32
 
@@ -250,6 +301,23 @@ public static string StreamCRC32(Stream stream)
 |:--- |:--- |
 | `System.IO.Stream` | *stream* |
 
+### StreamCRC32Value(Stream)
+
+
+```csharp title="Declaration"
+public static uint StreamCRC32Value(Stream stream)
+```
+
+##### Returns
+
+`System.UInt32`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.IO.Stream` | *stream* |
+
 ### BytesCRC32(byte[])
 获取字节数组的CRC32
 
@@ -260,6 +328,23 @@ public static string BytesCRC32(byte[] buffer)
 ##### Returns
 
 `System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.Byte[]` | *buffer* |
+
+### BytesCRC32Value(byte[])
+
+
+```csharp title="Declaration"
+public static uint BytesCRC32Value(byte[] buffer)
+```
+
+##### Returns
+
+`System.UInt32`
 
 ##### Parameters
 

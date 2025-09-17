@@ -29,6 +29,12 @@ public ScanReport Report { get; }
 ```csharp title="Declaration"
 public string ErrorInfo { get; }
 ```
+### ErrorStack
+错误堆栈
+
+```csharp title="Declaration"
+public string ErrorStack { get; }
+```
 ### Succeed
 是否成功
 

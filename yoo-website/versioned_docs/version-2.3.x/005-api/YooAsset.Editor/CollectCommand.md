@@ -27,7 +27,13 @@ public IIgnoreRule IgnoreRule { get; }
 模拟构建模式
 
 ```csharp title="Declaration"
-public bool SimulateBuild { get; set; }
+public bool SimulateBuild { set; }
+```
+### CollectFlags
+窗口收集模式
+
+```csharp title="Declaration"
+public int CollectFlags { get; set; }
 ```
 ### UniqueBundleName
 资源包名唯一化
@@ -46,6 +52,12 @@ public bool UseAssetDependencyDB { get; set; }
 
 ```csharp title="Declaration"
 public bool EnableAddressable { get; set; }
+```
+### SupportExtensionless
+支持无后缀名的资源定位地址
+
+```csharp title="Declaration"
+public bool SupportExtensionless { get; set; }
 ```
 ### LocationToLower
 资源定位地址大小写不敏感
@@ -71,3 +83,35 @@ public bool AutoCollectShaders { get; set; }
 ```csharp title="Declaration"
 public AssetDependencyCache AssetDependency { get; }
 ```
+## Methods
+### SetFlag(ECollectFlags, bool)
+设置标记位
+
+```csharp title="Declaration"
+public void SetFlag(ECollectFlags flag, bool isOn)
+```
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.ECollectFlags](../YooAsset.Editor/ECollectFlags.md) | *flag* |
+| `System.Boolean` | *isOn* |
+
+### IsFlagSet(ECollectFlags)
+查询标记位
+
+```csharp title="Declaration"
+public bool IsFlagSet(ECollectFlags flag)
+```
+
+##### Returns
+
+`System.Boolean`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| [YooAsset.Editor.ECollectFlags](../YooAsset.Editor/ECollectFlags.md) | *flag* |
+

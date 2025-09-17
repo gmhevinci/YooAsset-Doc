@@ -24,6 +24,12 @@ public CollectCommand Command { get; set; }
 public Dictionary<string, BuildBundleInfo>.ValueCollection Collection { get; }
 ```
 ## Fields
+### SpriteAtlasAssetList
+图集资源集合
+
+```csharp title="Declaration"
+public readonly List<BuildAssetInfo> SpriteAtlasAssetList
+```
 ### IndependAssets
 未被依赖的资源列表
 

@@ -11,9 +11,17 @@ description: "资源过滤规则接口"
 ```csharp title="Declaration"
 public interface IFilterRule
 ```
+## Properties
+### FindAssetType
+搜寻的资源类型
+说明：使用引擎方法搜索获取所有资源列表
+
+```csharp title="Declaration"
+string FindAssetType { get; }
+```
 ## Methods
 ### IsCollectAsset(FilterRuleData)
-是否为收集资源
+验证搜寻的资源是否为收集资源
 
 ```csharp title="Declaration"
 bool IsCollectAsset(FilterRuleData data)

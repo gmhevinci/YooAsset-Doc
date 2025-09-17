@@ -84,6 +84,63 @@ public static object InvokePublicStaticMethod(Type type, string method, params o
 | `System.String` | *method* | 类里要调用的方法名 |
 | `System.Object[]` | *parameters* | 调用方法传入的参数 |
 
+### GetAttribute&lt;T&gt;(Type)
+
+
+```csharp title="Declaration"
+public static T GetAttribute<T>(Type type) where T : Attribute
+```
+
+##### Returns
+
+`<T>`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.Type` | *type* |
+
+##### Type Parameters
+* `T`
+### GetAttribute&lt;T&gt;(MethodInfo)
+
+
+```csharp title="Declaration"
+public static T GetAttribute<T>(MethodInfo methodInfo) where T : Attribute
+```
+
+##### Returns
+
+`<T>`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.Reflection.MethodInfo` | *methodInfo* |
+
+##### Type Parameters
+* `T`
+### GetAttribute&lt;T&gt;(FieldInfo)
+
+
+```csharp title="Declaration"
+public static T GetAttribute<T>(FieldInfo field) where T : Attribute
+```
+
+##### Returns
+
+`<T>`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.Reflection.FieldInfo` | *field* |
+
+##### Type Parameters
+* `T`
 ### GetPackageManagerYooVersion()
 
 
@@ -126,6 +183,40 @@ public static string[] FindAssets(EAssetSearchType searchType, string searchInFo
 | Type | Name | Description |
 |:--- |:--- |:--- |
 | [YooAsset.Editor.EAssetSearchType](../YooAsset.Editor/EAssetSearchType.md) | *searchType* | 搜集的资源类型 |
+| `System.String` | *searchInFolder* | 指定搜索的文件夹 |
+
+### FindAssets(string, string[])
+搜集资源
+
+```csharp title="Declaration"
+public static string[] FindAssets(string searchType, string[] searchInFolders)
+```
+
+##### Returns
+
+`System.String[]`: 返回搜集到的资源路径列表
+##### Parameters
+
+| Type | Name | Description |
+|:--- |:--- |:--- |
+| `System.String` | *searchType* | 搜集的资源类型 |
+| `System.String[]` | *searchInFolders* | 指定搜索的文件夹列表 |
+
+### FindAssets(string, string)
+搜集资源
+
+```csharp title="Declaration"
+public static string[] FindAssets(string searchType, string searchInFolder)
+```
+
+##### Returns
+
+`System.String[]`: 返回搜集到的资源路径列表
+##### Parameters
+
+| Type | Name | Description |
+|:--- |:--- |:--- |
+| `System.String` | *searchType* | 搜集的资源类型 |
 | `System.String` | *searchInFolder* | 指定搜索的文件夹 |
 
 ### OpenFolderPanel(string, string, string)

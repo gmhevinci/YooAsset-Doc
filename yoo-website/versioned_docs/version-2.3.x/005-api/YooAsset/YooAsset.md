@@ -44,6 +44,8 @@
 离线运行模式的初始化参数
 ### [PackageDetails](../YooAsset/PackageDetails.md)
 
+### [PackageInvokeBuilder](../YooAsset/PackageInvokeBuilder.md)
+
 ### [PackageInvokeBuildParam](../YooAsset/PackageInvokeBuildParam.md)
 
 ### [PackageInvokeBuildResult](../YooAsset/PackageInvokeBuildResult.md)
@@ -103,17 +105,28 @@ WebGL运行模式的初始化参数
 
 ### [EncryptResult](../YooAsset/EncryptResult.md)
 
+### [ImportFileInfo](../YooAsset/ImportFileInfo.md)
+导入文件的信息
+### [LocalFileInfo](../YooAsset/LocalFileInfo.md)
+
 ### [WebDecryptFileInfo](../YooAsset/WebDecryptFileInfo.md)
 
 ### [WebDecryptResult](../YooAsset/WebDecryptResult.md)
 
 ## Interfaces
+### [ICopyLocalFileServices](../YooAsset/ICopyLocalFileServices.md)
+本地文件拷贝服务类
+备注：包体内文件拷贝，沙盒内文件导入都会触发该服务！
 ### [IDecryptionServices](../YooAsset/IDecryptionServices.md)
 
 ### [IEncryptionServices](../YooAsset/IEncryptionServices.md)
 
 ### [ILogger](../YooAsset/ILogger.md)
 自定义日志处理
+### [IManifestProcessServices](../YooAsset/IManifestProcessServices.md)
+资源清单文件处理服务接口
+### [IManifestRestoreServices](../YooAsset/IManifestRestoreServices.md)
+资源清单文件处理服务接口
 ### [IRemoteServices](../YooAsset/IRemoteServices.md)
 
 ### [IWebDecryptionServices](../YooAsset/IWebDecryptionServices.md)
@@ -123,6 +136,8 @@ WebGL运行模式的初始化参数
 
 ### [EFileClearMode](../YooAsset/EFileClearMode.md)
 文件清理方式
+### [EFileNameStyle](../YooAsset/EFileNameStyle.md)
+
 ### [EFileVerifyLevel](../YooAsset/EFileVerifyLevel.md)
 文件校验等级
 ### [EOperationStatus](../YooAsset/EOperationStatus.md)

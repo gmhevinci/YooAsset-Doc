@@ -17,6 +17,12 @@ public class BuiltinBuildParameters : BuildParameters
 ```csharp title="Declaration"
 public ECompressOption CompressOption
 ```
+### StripUnityVersion
+从文件头里剥离Unity版本信息
+
+```csharp title="Declaration"
+public bool StripUnityVersion
+```
 ### DisableWriteTypeTree
 禁止写入类型树结构（可以降低包体和内存并提高加载效率）
 

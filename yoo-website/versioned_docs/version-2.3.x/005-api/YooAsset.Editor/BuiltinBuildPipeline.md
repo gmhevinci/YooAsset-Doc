@@ -12,7 +12,7 @@ public class BuiltinBuildPipeline : IBuildPipeline
 ```
 ## Methods
 ### Run(BuildParameters, bool)
-
+运行构建任务
 
 ```csharp title="Declaration"
 public BuildResult Run(BuildParameters buildParameters, bool enableLog)

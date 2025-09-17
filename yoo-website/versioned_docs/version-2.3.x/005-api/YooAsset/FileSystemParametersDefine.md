@@ -17,6 +17,12 @@ public class FileSystemParametersDefine
 ```csharp title="Declaration"
 public const string FILE_VERIFY_LEVEL = "FILE_VERIFY_LEVEL"
 ```
+### FILE_VERIFY_MAX_CONCURRENCY
+
+
+```csharp title="Declaration"
+public const string FILE_VERIFY_MAX_CONCURRENCY = "FILE_VERIFY_MAX_CONCURRENCY"
+```
 ### INSTALL_CLEAR_MODE
 
 
@@ -34,6 +40,12 @@ public const string REMOTE_SERVICES = "REMOTE_SERVICES"
 
 ```csharp title="Declaration"
 public const string DECRYPTION_SERVICES = "DECRYPTION_SERVICES"
+```
+### MANIFEST_SERVICES
+
+
+```csharp title="Declaration"
+public const string MANIFEST_SERVICES = "MANIFEST_SERVICES"
 ```
 ### APPEND_FILE_EXTENSION
 
@@ -53,6 +65,12 @@ public const string DISABLE_CATALOG_FILE = "DISABLE_CATALOG_FILE"
 ```csharp title="Declaration"
 public const string DISABLE_UNITY_WEB_CACHE = "DISABLE_UNITY_WEB_CACHE"
 ```
+### DISABLE_ONDEMAND_DOWNLOAD
+
+
+```csharp title="Declaration"
+public const string DISABLE_ONDEMAND_DOWNLOAD = "DISABLE_ONDEMAND_DOWNLOAD"
+```
 ### DOWNLOAD_MAX_CONCURRENCY
 
 
@@ -65,6 +83,12 @@ public const string DOWNLOAD_MAX_CONCURRENCY = "DOWNLOAD_MAX_CONCURRENCY"
 ```csharp title="Declaration"
 public const string DOWNLOAD_MAX_REQUEST_PER_FRAME = "DOWNLOAD_MAX_REQUEST_PER_FRAME"
 ```
+### DOWNLOAD_WATCH_DOG_TIME
+
+
+```csharp title="Declaration"
+public const string DOWNLOAD_WATCH_DOG_TIME = "DOWNLOAD_WATCH_DOG_TIME"
+```
 ### RESUME_DOWNLOAD_MINMUM_SIZE
 
 
@@ -76,6 +100,24 @@ public const string RESUME_DOWNLOAD_MINMUM_SIZE = "RESUME_DOWNLOAD_MINMUM_SIZE"
 
 ```csharp title="Declaration"
 public const string RESUME_DOWNLOAD_RESPONSE_CODES = "RESUME_DOWNLOAD_RESPONSE_CODES"
+```
+### VIRTUAL_WEBGL_MODE
+
+
+```csharp title="Declaration"
+public const string VIRTUAL_WEBGL_MODE = "VIRTUAL_WEBGL_MODE"
+```
+### VIRTUAL_DOWNLOAD_MODE
+
+
+```csharp title="Declaration"
+public const string VIRTUAL_DOWNLOAD_MODE = "VIRTUAL_DOWNLOAD_MODE"
+```
+### VIRTUAL_DOWNLOAD_SPEED
+
+
+```csharp title="Declaration"
+public const string VIRTUAL_DOWNLOAD_SPEED = "VIRTUAL_DOWNLOAD_SPEED"
 ```
 ### ASYNC_SIMULATE_MIN_FRAME
 
@@ -100,4 +142,10 @@ public const string COPY_BUILDIN_PACKAGE_MANIFEST = "COPY_BUILDIN_PACKAGE_MANIFE
 
 ```csharp title="Declaration"
 public const string COPY_BUILDIN_PACKAGE_MANIFEST_DEST_ROOT = "COPY_BUILDIN_PACKAGE_MANIFEST_DEST_ROOT"
+```
+### COPY_LOCAL_FILE_SERVICES
+
+
+```csharp title="Declaration"
+public const string COPY_LOCAL_FILE_SERVICES = "COPY_LOCAL_FILE_SERVICES"
 ```

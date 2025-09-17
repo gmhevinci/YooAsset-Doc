@@ -69,12 +69,12 @@ protected override string GetBundleFileHash(BuildBundleInfo bundleInfo, BuildPar
 
 
 ```csharp title="Declaration"
-protected override string GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
+protected override uint GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
 ```
 
 ##### Returns
 
-`System.String`
+`System.UInt32`
 
 ##### Parameters
 

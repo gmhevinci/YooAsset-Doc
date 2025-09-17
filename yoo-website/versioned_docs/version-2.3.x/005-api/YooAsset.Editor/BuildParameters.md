@@ -116,6 +116,18 @@ public string BuildinFileCopyParams
 ```csharp title="Declaration"
 public IEncryptionServices EncryptionServices
 ```
+### ManifestProcessServices
+资源清单加密服务类
+
+```csharp title="Declaration"
+public IManifestProcessServices ManifestProcessServices
+```
+### ManifestRestoreServices
+资源清单解密服务类
+
+```csharp title="Declaration"
+public IManifestRestoreServices ManifestRestoreServices
+```
 ## Methods
 ### CheckBuildParameters()
 检测构建参数是否合法

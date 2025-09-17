@@ -18,3 +18,9 @@ public abstract class InitializeParameters
 ```csharp title="Declaration"
 public int BundleLoadingMaxConcurrency
 ```
+### WebGLForceSyncLoadAsset
+WebGL平台强制同步加载资源对象
+
+```csharp title="Declaration"
+public bool WebGLForceSyncLoadAsset
+```

@@ -110,7 +110,7 @@ public PreDownloadContentOperation PreDownloadContentAsync(string packageVersion
 | Type | Name | Description |
 |:--- |:--- |:--- |
 | `System.String` | *packageVersion* | 包裹版本 |
-| `System.Int32` | *timeout* | 超时时间（默认值：60秒） |
+| `System.Int32` | *timeout* | 资源清单下载的超时时间（默认值：60秒） |
 
 ### ClearCacheFilesAsync(EFileClearMode, object)
 清理缓存文件
@@ -223,12 +223,12 @@ public UnloadUnusedAssetsOperation UnloadUnusedAssetsAsync(int loopCount = 10)
 |:--- |:--- |:--- |
 | `System.Int32` | *loopCount* | 循环迭代次数 |
 
-### TryUnloadUnusedAsset(string)
+### TryUnloadUnusedAsset(string, int)
 资源回收
 说明：尝试卸载指定的资源
 
 ```csharp title="Declaration"
-public void TryUnloadUnusedAsset(string location)
+public void TryUnloadUnusedAsset(string location, int loopCount = 10)
 ```
 
 ##### Parameters
@@ -236,13 +236,14 @@ public void TryUnloadUnusedAsset(string location)
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *location* |
+| `System.Int32` | *loopCount* |
 
-### TryUnloadUnusedAsset(AssetInfo)
+### TryUnloadUnusedAsset(AssetInfo, int)
 资源回收
 说明：尝试卸载指定的资源
 
 ```csharp title="Declaration"
-public void TryUnloadUnusedAsset(AssetInfo assetInfo)
+public void TryUnloadUnusedAsset(AssetInfo assetInfo, int loopCount = 10)
 ```
 
 ##### Parameters
@@ -250,6 +251,7 @@ public void TryUnloadUnusedAsset(AssetInfo assetInfo)
 | Type | Name |
 |:--- |:--- |
 | [YooAsset.AssetInfo](../YooAsset/AssetInfo.md) | *assetInfo* |
+| `System.Int32` | *loopCount* |
 
 ### IsNeedDownloadFromRemote(string)
 是否需要从远端更新下载
@@ -1016,11 +1018,11 @@ public AllAssetsHandle LoadAllAssetsAsync(string location, uint priority = 0)
 | `System.String` | *location* | 资源的定位地址 |
 | `System.UInt32` | *priority* | 加载的优先级 |
 
-### CreateResourceDownloader(int, int, int)
+### CreateResourceDownloader(int, int)
 创建资源下载器，用于下载当前资源版本所有的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1033,13 +1035,12 @@ public ResourceDownloaderOperation CreateResourceDownloader(int downloadingMaxNu
 |:--- |:--- |:--- |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateResourceDownloader(string, int, int, int)
+### CreateResourceDownloader(string, int, int)
 创建资源下载器，用于下载指定的资源标签关联的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(string tag, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1053,13 +1054,12 @@ public ResourceDownloaderOperation CreateResourceDownloader(string tag, int down
 | `System.String` | *tag* | 资源标签 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateResourceDownloader(string[], int, int, int)
+### CreateResourceDownloader(string[], int, int)
 创建资源下载器，用于下载指定的资源标签列表关联的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1073,13 +1073,12 @@ public ResourceDownloaderOperation CreateResourceDownloader(string[] tags, int d
 | `System.String[]` | *tags* | 资源标签列表 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(string, bool, int, int, int)
+### CreateBundleDownloader(string, bool, int, int)
 创建资源下载器，用于下载指定的资源依赖的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(string location, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string location, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1094,13 +1093,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(string location, bool 
 | `System.Boolean` | *recursiveDownload* | 下载资源对象所属资源包内所有资源对象依赖的资源包 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(string, int, int, int)
+### CreateBundleDownloader(string, int, int)
 
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(string location, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string location, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1114,13 +1112,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(string location, int d
 | `System.String` | *location* |
 | `System.Int32` | *downloadingMaxNumber* |
 | `System.Int32` | *failedTryAgain* |
-| `System.Int32` | *timeout* |
 
-### CreateBundleDownloader(string[], bool, int, int, int)
+### CreateBundleDownloader(string[], bool, int, int)
 创建资源下载器，用于下载指定的资源列表依赖的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1135,13 +1132,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, bo
 | `System.Boolean` | *recursiveDownload* | 下载资源对象所属资源包内所有资源对象依赖的资源包 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(string[], int, int, int)
+### CreateBundleDownloader(string[], int, int)
 
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1155,13 +1151,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(string[] locations, in
 | `System.String[]` | *locations* |
 | `System.Int32` | *downloadingMaxNumber* |
 | `System.Int32` | *failedTryAgain* |
-| `System.Int32` | *timeout* |
 
-### CreateBundleDownloader(AssetInfo, bool, int, int, int)
+### CreateBundleDownloader(AssetInfo, bool, int, int)
 创建资源下载器，用于下载指定的资源依赖的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1176,13 +1171,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, b
 | `System.Boolean` | *recursiveDownload* | 下载资源对象所属资源包内所有资源对象依赖的资源包 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(AssetInfo, int, int, int)
+### CreateBundleDownloader(AssetInfo, int, int)
 
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1196,13 +1190,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo assetInfo, i
 | [YooAsset.AssetInfo](../YooAsset/AssetInfo.md) | *assetInfo* |
 | `System.Int32` | *downloadingMaxNumber* |
 | `System.Int32` | *failedTryAgain* |
-| `System.Int32` | *timeout* |
 
-### CreateBundleDownloader(AssetInfo[], bool, int, int, int)
+### CreateBundleDownloader(AssetInfo[], bool, int, int)
 创建资源下载器，用于下载指定的资源列表依赖的资源包文件
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos, bool recursiveDownload, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1217,13 +1210,12 @@ public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos
 | `System.Boolean` | *recursiveDownload* | 下载资源对象所属资源包内所有资源对象依赖的资源包 |
 | `System.Int32` | *downloadingMaxNumber* | 同时下载的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 下载失败的重试次数 |
-| `System.Int32` | *timeout* | 超时时间 |
 
-### CreateBundleDownloader(AssetInfo[], int, int, int)
+### CreateBundleDownloader(AssetInfo[], int, int)
 
 
 ```csharp title="Declaration"
-public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos, int downloadingMaxNumber, int failedTryAgain, int timeout = 60)
+public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos, int downloadingMaxNumber, int failedTryAgain)
 ```
 
 ##### Returns
@@ -1237,7 +1229,6 @@ public ResourceDownloaderOperation CreateBundleDownloader(AssetInfo[] assetInfos
 | `YooAsset.AssetInfo[]` | *assetInfos* |
 | `System.Int32` | *downloadingMaxNumber* |
 | `System.Int32` | *failedTryAgain* |
-| `System.Int32` | *timeout* |
 
 ### CreateResourceUnpacker(int, int)
 创建内置资源解压器，用于解压当前资源版本所有的资源包文件
@@ -1312,6 +1303,26 @@ public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int 
 | Type | Name | Description |
 |:--- |:--- |:--- |
 | `System.String[]` | *filePaths* | 资源路径列表 |
+| `System.Int32` | *importerMaxNumber* | 同时导入的最大文件数 |
+| `System.Int32` | *failedTryAgain* | 导入失败的重试次数 |
+
+### CreateResourceImporter(ImportFileInfo[], int, int)
+创建资源导入器
+注意：资源信息里需要指定BundleName或BundleGUID！
+
+```csharp title="Declaration"
+public ResourceImporterOperation CreateResourceImporter(ImportFileInfo[] fileInfos, int importerMaxNumber, int failedTryAgain)
+```
+
+##### Returns
+
+[YooAsset.ResourceImporterOperation](../YooAsset/ResourceImporterOperation.md)
+
+##### Parameters
+
+| Type | Name | Description |
+|:--- |:--- |:--- |
+| `YooAsset.ImportFileInfo[]` | *fileInfos* | 资源信息列表 |
 | `System.Int32` | *importerMaxNumber* | 同时导入的最大文件数 |
 | `System.Int32` | *failedTryAgain* | 导入失败的重试次数 |
 

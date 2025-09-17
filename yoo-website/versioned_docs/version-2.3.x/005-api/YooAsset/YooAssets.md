@@ -31,6 +31,12 @@ public static void Initialize(ILogger logger = null)
 |:--- |:--- |:--- |
 | [YooAsset.ILogger](../YooAsset/ILogger.md) | *logger* | 自定义日志处理 |
 
+### Destroy()
+销毁资源系统
+
+```csharp title="Declaration"
+public static void Destroy()
+```
 ### CreatePackage(string)
 创建资源包裹
 

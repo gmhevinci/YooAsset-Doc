@@ -15,12 +15,12 @@ public static class AssetBundleBuilderSetting
 
 
 ```csharp title="Declaration"
-public static EBuildPipeline GetPackageBuildPipeline(string packageName)
+public static string GetPackageBuildPipeline(string packageName)
 ```
 
 ##### Returns
 
-[YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md)
+`System.String`
 
 ##### Parameters
 
@@ -28,11 +28,11 @@ public static EBuildPipeline GetPackageBuildPipeline(string packageName)
 |:--- |:--- |
 | `System.String` | *packageName* |
 
-### SetPackageBuildPipeline(string, EBuildPipeline)
+### SetPackageBuildPipeline(string, string)
 
 
 ```csharp title="Declaration"
-public static void SetPackageBuildPipeline(string packageName, EBuildPipeline buildPipeline)
+public static void SetPackageBuildPipeline(string packageName, string buildPipeline)
 ```
 
 ##### Parameters
@@ -40,13 +40,13 @@ public static void SetPackageBuildPipeline(string packageName, EBuildPipeline bu
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### GetPackageCompressOption(string, EBuildPipeline)
+### GetPackageCompressOption(string, string)
 
 
 ```csharp title="Declaration"
-public static ECompressOption GetPackageCompressOption(string packageName, EBuildPipeline buildPipeline)
+public static ECompressOption GetPackageCompressOption(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -58,13 +58,13 @@ public static ECompressOption GetPackageCompressOption(string packageName, EBuil
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageCompressOption(string, EBuildPipeline, ECompressOption)
+### SetPackageCompressOption(string, string, ECompressOption)
 
 
 ```csharp title="Declaration"
-public static void SetPackageCompressOption(string packageName, EBuildPipeline buildPipeline, ECompressOption compressOption)
+public static void SetPackageCompressOption(string packageName, string buildPipeline, ECompressOption compressOption)
 ```
 
 ##### Parameters
@@ -72,32 +72,32 @@ public static void SetPackageCompressOption(string packageName, EBuildPipeline b
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | [YooAsset.Editor.ECompressOption](../YooAsset.Editor/ECompressOption.md) | *compressOption* |
 
-### GetPackageFileNameStyle(string, EBuildPipeline)
+### GetPackageFileNameStyle(string, string)
 
 
 ```csharp title="Declaration"
-public static EFileNameStyle GetPackageFileNameStyle(string packageName, EBuildPipeline buildPipeline)
+public static EFileNameStyle GetPackageFileNameStyle(string packageName, string buildPipeline)
 ```
 
 ##### Returns
 
-[YooAsset.Editor.EFileNameStyle](../YooAsset.Editor/EFileNameStyle.md)
+[YooAsset.EFileNameStyle](../YooAsset/EFileNameStyle.md)
 
 ##### Parameters
 
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageFileNameStyle(string, EBuildPipeline, EFileNameStyle)
+### SetPackageFileNameStyle(string, string, EFileNameStyle)
 
 
 ```csharp title="Declaration"
-public static void SetPackageFileNameStyle(string packageName, EBuildPipeline buildPipeline, EFileNameStyle fileNameStyle)
+public static void SetPackageFileNameStyle(string packageName, string buildPipeline, EFileNameStyle fileNameStyle)
 ```
 
 ##### Parameters
@@ -105,14 +105,14 @@ public static void SetPackageFileNameStyle(string packageName, EBuildPipeline bu
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
-| [YooAsset.Editor.EFileNameStyle](../YooAsset.Editor/EFileNameStyle.md) | *fileNameStyle* |
+| `System.String` | *buildPipeline* |
+| [YooAsset.EFileNameStyle](../YooAsset/EFileNameStyle.md) | *fileNameStyle* |
 
-### GetPackageBuildinFileCopyOption(string, EBuildPipeline)
+### GetPackageBuildinFileCopyOption(string, string)
 
 
 ```csharp title="Declaration"
-public static EBuildinFileCopyOption GetPackageBuildinFileCopyOption(string packageName, EBuildPipeline buildPipeline)
+public static EBuildinFileCopyOption GetPackageBuildinFileCopyOption(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -124,13 +124,13 @@ public static EBuildinFileCopyOption GetPackageBuildinFileCopyOption(string pack
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageBuildinFileCopyOption(string, EBuildPipeline, EBuildinFileCopyOption)
+### SetPackageBuildinFileCopyOption(string, string, EBuildinFileCopyOption)
 
 
 ```csharp title="Declaration"
-public static void SetPackageBuildinFileCopyOption(string packageName, EBuildPipeline buildPipeline, EBuildinFileCopyOption buildinFileCopyOption)
+public static void SetPackageBuildinFileCopyOption(string packageName, string buildPipeline, EBuildinFileCopyOption buildinFileCopyOption)
 ```
 
 ##### Parameters
@@ -138,14 +138,14 @@ public static void SetPackageBuildinFileCopyOption(string packageName, EBuildPip
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | [YooAsset.Editor.EBuildinFileCopyOption](../YooAsset.Editor/EBuildinFileCopyOption.md) | *buildinFileCopyOption* |
 
-### GetPackageBuildinFileCopyParams(string, EBuildPipeline)
+### GetPackageBuildinFileCopyParams(string, string)
 
 
 ```csharp title="Declaration"
-public static string GetPackageBuildinFileCopyParams(string packageName, EBuildPipeline buildPipeline)
+public static string GetPackageBuildinFileCopyParams(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -157,13 +157,13 @@ public static string GetPackageBuildinFileCopyParams(string packageName, EBuildP
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageBuildinFileCopyParams(string, EBuildPipeline, string)
+### SetPackageBuildinFileCopyParams(string, string, string)
 
 
 ```csharp title="Declaration"
-public static void SetPackageBuildinFileCopyParams(string packageName, EBuildPipeline buildPipeline, string buildinFileCopyParams)
+public static void SetPackageBuildinFileCopyParams(string packageName, string buildPipeline, string buildinFileCopyParams)
 ```
 
 ##### Parameters
@@ -171,14 +171,14 @@ public static void SetPackageBuildinFileCopyParams(string packageName, EBuildPip
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | `System.String` | *buildinFileCopyParams* |
 
-### GetPackageEncyptionClassName(string, EBuildPipeline)
+### GetPackageEncyptionServicesClassName(string, string)
 
 
 ```csharp title="Declaration"
-public static string GetPackageEncyptionClassName(string packageName, EBuildPipeline buildPipeline)
+public static string GetPackageEncyptionServicesClassName(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -190,13 +190,13 @@ public static string GetPackageEncyptionClassName(string packageName, EBuildPipe
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageEncyptionClassName(string, EBuildPipeline, string)
+### SetPackageEncyptionServicesClassName(string, string, string)
 
 
 ```csharp title="Declaration"
-public static void SetPackageEncyptionClassName(string packageName, EBuildPipeline buildPipeline, string encyptionClassName)
+public static void SetPackageEncyptionServicesClassName(string packageName, string buildPipeline, string encyptionClassName)
 ```
 
 ##### Parameters
@@ -204,14 +204,80 @@ public static void SetPackageEncyptionClassName(string packageName, EBuildPipeli
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | `System.String` | *encyptionClassName* |
 
-### GetPackageClearBuildCache(string, EBuildPipeline)
+### GetPackageManifestProcessServicesClassName(string, string)
 
 
 ```csharp title="Declaration"
-public static bool GetPackageClearBuildCache(string packageName, EBuildPipeline buildPipeline)
+public static string GetPackageManifestProcessServicesClassName(string packageName, string buildPipeline)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *packageName* |
+| `System.String` | *buildPipeline* |
+
+### SetPackageManifestProcessServicesClassName(string, string, string)
+
+
+```csharp title="Declaration"
+public static void SetPackageManifestProcessServicesClassName(string packageName, string buildPipeline, string encyptionClassName)
+```
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *packageName* |
+| `System.String` | *buildPipeline* |
+| `System.String` | *encyptionClassName* |
+
+### GetPackageManifestRestoreServicesClassName(string, string)
+
+
+```csharp title="Declaration"
+public static string GetPackageManifestRestoreServicesClassName(string packageName, string buildPipeline)
+```
+
+##### Returns
+
+`System.String`
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *packageName* |
+| `System.String` | *buildPipeline* |
+
+### SetPackageManifestRestoreServicesClassName(string, string, string)
+
+
+```csharp title="Declaration"
+public static void SetPackageManifestRestoreServicesClassName(string packageName, string buildPipeline, string encyptionClassName)
+```
+
+##### Parameters
+
+| Type | Name |
+|:--- |:--- |
+| `System.String` | *packageName* |
+| `System.String` | *buildPipeline* |
+| `System.String` | *encyptionClassName* |
+
+### GetPackageClearBuildCache(string, string)
+
+
+```csharp title="Declaration"
+public static bool GetPackageClearBuildCache(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -223,13 +289,13 @@ public static bool GetPackageClearBuildCache(string packageName, EBuildPipeline 
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageClearBuildCache(string, EBuildPipeline, bool)
+### SetPackageClearBuildCache(string, string, bool)
 
 
 ```csharp title="Declaration"
-public static void SetPackageClearBuildCache(string packageName, EBuildPipeline buildPipeline, bool clearBuildCache)
+public static void SetPackageClearBuildCache(string packageName, string buildPipeline, bool clearBuildCache)
 ```
 
 ##### Parameters
@@ -237,14 +303,14 @@ public static void SetPackageClearBuildCache(string packageName, EBuildPipeline 
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | `System.Boolean` | *clearBuildCache* |
 
-### GetPackageUseAssetDependencyDB(string, EBuildPipeline)
+### GetPackageUseAssetDependencyDB(string, string)
 
 
 ```csharp title="Declaration"
-public static bool GetPackageUseAssetDependencyDB(string packageName, EBuildPipeline buildPipeline)
+public static bool GetPackageUseAssetDependencyDB(string packageName, string buildPipeline)
 ```
 
 ##### Returns
@@ -256,13 +322,13 @@ public static bool GetPackageUseAssetDependencyDB(string packageName, EBuildPipe
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 
-### SetPackageUseAssetDependencyDB(string, EBuildPipeline, bool)
+### SetPackageUseAssetDependencyDB(string, string, bool)
 
 
 ```csharp title="Declaration"
-public static void SetPackageUseAssetDependencyDB(string packageName, EBuildPipeline buildPipeline, bool useAssetDependencyDB)
+public static void SetPackageUseAssetDependencyDB(string packageName, string buildPipeline, bool useAssetDependencyDB)
 ```
 
 ##### Parameters
@@ -270,6 +336,6 @@ public static void SetPackageUseAssetDependencyDB(string packageName, EBuildPipe
 | Type | Name |
 |:--- |:--- |
 | `System.String` | *packageName* |
-| [YooAsset.Editor.EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md) | *buildPipeline* |
+| `System.String` | *buildPipeline* |
 | `System.Boolean` | *useAssetDependencyDB* |
 

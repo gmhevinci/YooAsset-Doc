@@ -34,7 +34,7 @@ public string FileHash
 文件校验码
 
 ```csharp title="Declaration"
-public string FileCRC
+public uint FileCRC
 ```
 ### FileSize
 文件大小（字节数）

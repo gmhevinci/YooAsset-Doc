@@ -15,7 +15,7 @@ public class AssetBundleCollectorConfig
 
 
 ```csharp title="Declaration"
-public const string ConfigVersion = "v2.1"
+public const string ConfigVersion = "v2025.8.28"
 ```
 ### XmlVersion
 
@@ -70,6 +70,12 @@ public const string XmlPackageDesc = "PackageDesc"
 
 ```csharp title="Declaration"
 public const string XmlEnableAddressable = "AutoAddressable"
+```
+### XmlSupportExtensionless
+
+
+```csharp title="Declaration"
+public const string XmlSupportExtensionless = "SupportExtensionless"
 ```
 ### XmlLocationToLower
 

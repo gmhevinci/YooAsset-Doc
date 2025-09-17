@@ -24,10 +24,16 @@ public const string AssetBundleFileExtension = "bundle"
 public const string RawFileExtension = "rawfile"
 ```
 ### ShadersBundleName
-Unity着色器资源包名称
+默认的Unity着色器资源包名称
 
 ```csharp title="Declaration"
 public const string ShadersBundleName = "unityshaders"
+```
+### MonosBundleName
+默认的Unity脚本资源包名称
+
+```csharp title="Declaration"
+public const string MonosBundleName = "unitymonos"
 ```
 ## Methods
 ### CreateShadersPackRuleResult()
@@ -35,6 +41,16 @@ public const string ShadersBundleName = "unityshaders"
 
 ```csharp title="Declaration"
 public static PackRuleResult CreateShadersPackRuleResult()
+```
+
+##### Returns
+
+[YooAsset.Editor.PackRuleResult](../YooAsset.Editor/PackRuleResult.md)
+### CreateMonosPackRuleResult()
+
+
+```csharp title="Declaration"
+public static PackRuleResult CreateMonosPackRuleResult()
 ```
 
 ##### Returns

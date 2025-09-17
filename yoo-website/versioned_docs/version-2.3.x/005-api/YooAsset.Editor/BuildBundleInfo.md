@@ -33,7 +33,7 @@ public string PackageFileHash { get; set; }
 文件哈希值
 
 ```csharp title="Declaration"
-public string PackageFileCRC { get; set; }
+public uint PackageFileCRC { get; set; }
 ```
 ### PackageFileSize
 文件哈希值

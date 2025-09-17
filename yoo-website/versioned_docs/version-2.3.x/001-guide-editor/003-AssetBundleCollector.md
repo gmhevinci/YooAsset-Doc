@@ -169,11 +169,16 @@
 
   ````csharp
   //自定义扩展范例
-  public class CollectScene : IFilterRule
+  public class CollectPrefab : IFilterRule
   {
+      public string FindAssetType
+      {
+          get { return EAssetSearchType.Prefab.ToString(); }
+      }
+      
       public bool IsCollectAsset(FilterRuleData data)
       {
-          return Path.GetExtension(data.AssetPath) == ".unity";
+          return Path.GetExtension(data.AssetPath) == ".prefab";
       }
   }
   ````

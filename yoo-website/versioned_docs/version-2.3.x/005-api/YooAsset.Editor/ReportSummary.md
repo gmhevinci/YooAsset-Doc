@@ -84,6 +84,12 @@ public bool UniqueBundleName
 ```csharp title="Declaration"
 public bool EnableAddressable
 ```
+### SupportExtensionless
+
+
+```csharp title="Declaration"
+public bool SupportExtensionless
+```
 ### LocationToLower
 
 
@@ -132,11 +138,23 @@ public bool EnableSharePackRule
 ```csharp title="Declaration"
 public bool SingleReferencedPackAlone
 ```
-### EncryptionClassName
+### EncryptionServicesClassName
 
 
 ```csharp title="Declaration"
-public string EncryptionClassName
+public string EncryptionServicesClassName
+```
+### ManifestProcessServicesClassName
+
+
+```csharp title="Declaration"
+public string ManifestProcessServicesClassName
+```
+### ManifestRestoreServicesClassName
+
+
+```csharp title="Declaration"
+public string ManifestRestoreServicesClassName
 ```
 ### FileNameStyle
 

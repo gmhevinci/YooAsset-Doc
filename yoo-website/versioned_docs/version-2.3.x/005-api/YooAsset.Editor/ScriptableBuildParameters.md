@@ -17,6 +17,12 @@ public class ScriptableBuildParameters : BuildParameters
 ```csharp title="Declaration"
 public ECompressOption CompressOption
 ```
+### StripUnityVersion
+从文件头里剥离Unity版本信息
+
+```csharp title="Declaration"
+public bool StripUnityVersion
+```
 ### DisableWriteTypeTree
 禁止写入类型树结构（可以降低包体和内存并提高加载效率）
 
@@ -24,10 +30,16 @@ public ECompressOption CompressOption
 public bool DisableWriteTypeTree
 ```
 ### IgnoreTypeTreeChanges
-忽略类型树变化
+忽略类型树变化（无效参数）
 
 ```csharp title="Declaration"
 public bool IgnoreTypeTreeChanges
+```
+### TrackSpriteAtlasDependencies
+自动建立资源对象对图集的依赖关系
+
+```csharp title="Declaration"
+public bool TrackSpriteAtlasDependencies
 ```
 ### WriteLinkXML
 生成代码防裁剪配置

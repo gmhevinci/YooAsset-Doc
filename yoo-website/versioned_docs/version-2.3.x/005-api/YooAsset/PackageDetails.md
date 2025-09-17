@@ -23,6 +23,12 @@ public string FileVersion
 ```csharp title="Declaration"
 public bool EnableAddressable
 ```
+### SupportExtensionless
+支持无后缀名的资源定位地址
+
+```csharp title="Declaration"
+public bool SupportExtensionless
+```
 ### LocationToLower
 资源定位地址大小写不敏感
 

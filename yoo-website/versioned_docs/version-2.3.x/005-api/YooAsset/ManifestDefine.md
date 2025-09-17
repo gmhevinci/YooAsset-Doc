@@ -27,5 +27,5 @@ public const uint FileSign = 5853007
 文件格式版本
 
 ```csharp title="Declaration"
-public const string FileVersion = "2.3.1"
+public const string FileVersion = "2025.8.28"
 ```

@@ -108,9 +108,15 @@ Sprite = 14
 ```csharp title="Declaration"
 Texture = 15
 ```
+### RenderTexture
+
+
+```csharp title="Declaration"
+RenderTexture = 16
+```
 ### VideoClip
 
 
 ```csharp title="Declaration"
-VideoClip = 16
+VideoClip = 17
 ```

@@ -48,6 +48,16 @@ public bool IsShaderAsset()
 ##### Returns
 
 `System.Boolean`
+### IsSpriteAtlas()
+是否为图集资源
+
+```csharp title="Declaration"
+public bool IsSpriteAtlas()
+```
+
+##### Returns
+
+`System.Boolean`
 ### CompareTo(AssetInfo)
 
 

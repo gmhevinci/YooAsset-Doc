@@ -30,6 +30,12 @@ public string FailedTask
 ```csharp title="Declaration"
 public string ErrorInfo
 ```
+### ErrorStack
+构建失败的堆栈
+
+```csharp title="Declaration"
+public string ErrorStack
+```
 ### OutputPackageDirectory
 输出的补丁包目录
 

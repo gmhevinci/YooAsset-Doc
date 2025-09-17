@@ -62,6 +62,8 @@
 构建参数
 ### [BuildParametersContext](../YooAsset.Editor/BuildParametersContext.md)
 
+### [BuildPipelineAttribute](../YooAsset.Editor/BuildPipelineAttribute.md)
+
 ### [BuildReport](../YooAsset.Editor/BuildReport.md)
 构建报告
 ### [BuildResult](../YooAsset.Editor/BuildResult.md)
@@ -115,6 +117,10 @@
 ### [MacroProcessor](../YooAsset.Editor/MacroProcessor.md)
 
 ### [ManifestContext](../YooAsset.Editor/ManifestContext.md)
+
+### [ManifestProcessNone](../YooAsset.Editor/ManifestProcessNone.md)
+
+### [ManifestRestoreNone](../YooAsset.Editor/ManifestRestoreNone.md)
 
 ### [NormalIgnoreRule](../YooAsset.Editor/NormalIgnoreRule.md)
 适配常规的资源构建管线
@@ -320,6 +326,8 @@
 首包资源文件的拷贝方式
 ### [EBuildPipeline](../YooAsset.Editor/EBuildPipeline.md)
 构建管线类型
+### [ECollectFlags](../YooAsset.Editor/ECollectFlags.md)
+
 ### [ECollectorType](../YooAsset.Editor/ECollectorType.md)
 
 ### [ECompressOption](../YooAsset.Editor/ECompressOption.md)

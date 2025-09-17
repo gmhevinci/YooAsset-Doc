@@ -82,12 +82,12 @@ protected abstract string GetBundleFileHash(BuildBundleInfo bundleInfo, BuildPar
 
 
 ```csharp title="Declaration"
-protected abstract string GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
+protected abstract uint GetBundleFileCRC(BuildBundleInfo bundleInfo, BuildParametersContext buildParametersContext)
 ```
 
 ##### Returns
 
-`System.String`
+`System.UInt32`
 
 ##### Parameters
 

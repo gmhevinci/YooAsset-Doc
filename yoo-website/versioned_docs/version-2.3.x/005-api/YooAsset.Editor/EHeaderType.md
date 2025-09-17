@@ -17,21 +17,27 @@ public enum EHeaderType
 ```csharp title="Declaration"
 AssetPath = 0
 ```
+### AssetObject
+资源对象
+
+```csharp title="Declaration"
+AssetObject = 1
+```
 ### StringValue
 字符串
 
 ```csharp title="Declaration"
-StringValue = 1
+StringValue = 2
 ```
 ### LongValue
 整数数值
 
 ```csharp title="Declaration"
-LongValue = 2
+LongValue = 3
 ```
 ### DoubleValue
 浮点数数值
 
 ```csharp title="Declaration"
-DoubleValue = 3
+DoubleValue = 4
 ```

@@ -148,13 +148,13 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 //string pacakgeRoot = $"{WeChatWASM.WX.PluginCachePath}/yoo";
 ```
 
-<img src="./Image/Solution-img2.png"  width="800" />
+![image](./Image/Solution-img2.png)
 
 **微信官方文档**
 
 文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
 
-<img src="./Image/Solution-img4.png"  width="800" />
+![image](./Image/Solution-img4.png)
 
 
 

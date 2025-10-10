@@ -162,6 +162,8 @@
 
 下面是使用内置构建管线来构建资源包的代码。
 
+注意：可编程构建管线可以参考[源码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Editor/AssetBundleBuilder/VisualViewers/ScriptableBuildPipeline);
+
 ````csharp
 private static void BuildInternal(BuildTarget buildTarget)
 {
@@ -247,7 +249,13 @@ private string GetBuiltinShaderBundleName()
 
 默认规则如下：StreamingAssets/yoo/PackageName/内置资产
 
-需要导入Catalog文件生成脚本到项目内：Samples/Extension Sample/Editor/PreprocessBuild（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PreprocessBuild)）
+1. 构建APP的时候自动处理
+
+​	需要导入脚本到项目内：Samples/Extension Sample/Editor/PreprocessBuild（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PreprocessBuild)）
+
+2. 手动人工生成
+
+   需要导入脚本到项目内：Samples/Extension Sample/Editor/CreateBuildinCatalog（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/CreateBuildinCatalog)）
 
 ### 重要概念
 

@@ -251,7 +251,7 @@ private string GetBuiltinShaderBundleName()
 
 1. 构建APP的时候自动处理
 
-​	需要导入脚本到项目内：Samples/Extension Sample/Editor/PreprocessBuild（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PreprocessBuild)）
+   需要导入脚本到项目内：Samples/Extension Sample/Editor/PreprocessBuild（[示例代码](https://github.com/tuyoogame/YooAsset/tree/dev/Assets/YooAsset/Samples~/Extension%20Sample/Editor/PreprocessBuild)）
 
 2. 手动人工生成
 

@@ -265,6 +265,16 @@ IEnumerator InitPackage()
 
 
 
+### 安卓分包方案
+
+建议使用InstallTime模式，解压后会自动存放在assets/assetpack/目录下。
+
+YOO的根目录默认为yoo，所以内置资产默认存放在assets/yoo/目录下。
+
+可以修改YOO的配置，修改根目录名称为assetpack，保持和InstallTime一致的目录！
+
+
+
 ### 原生文件解决方案
 
 1. 修改Unity引擎无法识别的文件的后缀名为.bytes。

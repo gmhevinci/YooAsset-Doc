@@ -181,6 +181,30 @@ public class CopyLocalFileServices : ICopyLocalFileServices
 public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int importerMaxNumber, int failedTryAgain)
 ```
 
+### 预下载后续版本内容解决方案
+
+把后续版本的内容上传到CDN，注意：不要上传Version版本文件。
+
+游戏内使用ResourcePackage.PreDownloadContentAsync(string packageVersion)方法。
+
+```csharp
+public IEnumerator Start()
+{
+    var package = YooAssets.GetPackage("DefaultPackage");
+	var preDownloadContentOp = package.PreDownloadContentAsync("next_version");
+    yield return preDownloadContentOp;
+    
+    var downloader = preDownloadContentOp.CreateResourceDownloader(); //有多种参数可适配各类需求
+    downloader.BeginDownload();
+}
+```
+
+**注意：**
+
+在调用Package.ClearCacheFilesAsync的时候，小心把预下载的内容清除了！
+
+需要采用额外的策略，避免此行为发生。
+
 ### 移动端后台下载解决方案
 
 后台下载就是玩家在退出游戏后，让资源下载继续在后台进行。

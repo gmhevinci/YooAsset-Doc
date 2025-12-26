@@ -156,7 +156,15 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 
 ![image](./Image/Solution-img4.png)
 
+**常见问题**
 
+1. WXUnload a bundle not loaded by WXAssetBundle
+
+   一般是由于CDN填写地址和实际提供的下载地址不一致导致的。
+
+2. MethodAcessException: Attemp to access method 'YooAsset.IFileSystem.RequestPackageVersionAsync' on type ' ' failed.
+
+   查看日志里是否包含其它异常日志，例如：Exception: RemoteServices returned URL contains double slashes.
 
 ### 抖音小游戏
 

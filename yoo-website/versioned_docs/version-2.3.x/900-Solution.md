@@ -191,7 +191,7 @@ public ResourceImporterOperation CreateResourceImporter(string[] filePaths, int 
 public IEnumerator Start()
 {
     var package = YooAssets.GetPackage("DefaultPackage");
-	var preDownloadContentOp = package.PreDownloadContentAsync("next_version");
+    var preDownloadContentOp = package.PreDownloadContentAsync("next_version");
     yield return preDownloadContentOp;
     
     var downloader = preDownloadContentOp.CreateResourceDownloader(); //有多种参数可适配各类需求

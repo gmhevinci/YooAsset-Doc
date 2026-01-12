@@ -14,6 +14,83 @@ YooAsset的内部类型和接口全部做了internal修饰符，要想访问或�
 
 ![image](./Image/Solution-img1.png)
 
+### 启动画面热更方案
+
+如果希望启动页面也可以热更，可以将启动页面的内容单独作为一个package构建，这里暂且命名为BootPackage，后续的游戏内容暂且命名为GamePackage。
+
+注意：构建APP的时候，保证包体里包含完整的BootPackage内容。
+
+注意：启动流程结束后，记得优先销毁BootPackage
+
+关于BootPackage内容的更新可以放在游戏内，后台运行更新。
+
+```csharp
+// 联网模式
+private IEnumerator InitHostPlayMode()
+{
+    // 初始化BootPackage
+    // 注意：这里使用HostPlayMode模式
+    var package = YooAssets.CreatePackage("BootPackage");
+    ...（省略初始化参数）
+    var initParameters = new HostPlayModeParameters();
+    initParameters.BuildinFileSystemParameters = buildinFileSystemParams;
+    initParameters.CacheFileSystemParameters = cacheFileSystemParams;
+    var initializationOperation = package.InitializeAsync(initParameters);
+    yield return initializationOperation;
+    
+    // 获取记录的版本号
+    var bootVersion = PlayerPrefs.GetString("BOOT_VERSION", string.Empty);
+    
+   	// 加载缓存的资源清单文件
+    // 注意：如果本地缓存清单不存在，这里会去远端请求
+    // 注意：如果本地缓存清单被损坏，这里会返回失败
+    var manifestOp = package.UpdatePackageManifestAsync(bootVersion);
+	yield return manifestOp;
+    if (manifestOp.Status != EOperationStatus.Succeed)
+    {
+        //加载本地资源清单文件失败，走离线模式！
+        yield break;
+    }
+    
+    // 验证该版本清单内容的完整性。
+    var downloader = package.CreateResourceDownloader(1, 1, 60);
+    if (downloader.TotalDownloadCount > 0)   
+    {
+        //资源内容本地并不完整，走离线模式！
+        yield break;
+    }
+    
+    // 初始化完成，可以加载启动页面了
+}
+
+// 离线模式
+private IEnumerator InitOfflinePlayMode()
+{
+    // 先销毁旧的Package
+    if (YooAssets.ContainsPackage("BootPackage"))
+    {
+        var oldPackage = YooAssets.GetPackage("BootPackage");
+        var destroyOldPackage = oldPackage.DestroyAsync();
+        yield return destroyOldPackage;
+    }
+
+    // 初始化BootPackage
+    // 注意：这里使用OfflinePlayMode模式
+    var package = YooAssets.CreatePackage("BootPackage");
+    ...（省略初始化参数）
+    var initParameters = new OfflinePlayModeParameters();
+    initParameters.BuildinFileSystemParameters = buildinFileSystemParams;
+    var initializationOperation = package.InitializeAsync(initParameters);
+    yield return initializationOperation;
+    
+   	// 这里是正常的更新流程
+    var packageVersionOp = package.RequestPackageVersion();
+    yield return packageVersionOp;
+    
+    ...（省略其它步骤）
+}
+```
+
 ### 分布式构建解决方案
 
 对于一些超大项目，一般会采取美术工程和游戏工程分开的方案。
@@ -421,7 +498,7 @@ public IEnumerator Start()
       var streamingAssetsRoot = AssetBundleBuilderHelper.GetStreamingAssetsRoot();
   
       // 构建参数
-      BuiltinBuildParameters buildParameters = new BuiltinBuildParameters();
+      var buildParameters = new ScriptableBuildParameters();
       buildParameters.BuildOutputRoot = buildoutputRoot;
       buildParameters.BuildinFileRoot = streamingAssetsRoot;
       buildParameters.TrackSpriteAtlasDependencies = true; //自动建立资源对象对图集的依赖关系

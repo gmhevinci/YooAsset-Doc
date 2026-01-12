@@ -154,6 +154,8 @@ string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE/yoo"
 
 文档：https://wechat-miniprogram.github.io/minigame-unity-webgl-transform/Design/FileCache.html
 
+文档：https://gitee.com/wechat-minigame/minigame-unity-webgl-transform/blob/main/Design/FileCache.md
+
 ![image](./Image/Solution-img4.png)
 
 **常见问题**

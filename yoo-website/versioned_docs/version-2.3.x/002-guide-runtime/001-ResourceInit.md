@@ -70,6 +70,12 @@ private IEnumerator InitPackage()
         Debug.Log("资源包初始化成功！");
     else 
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    
+    //获取资源版本
+    ...(代码省略，见下文)
+    
+    //更新资源清单
+    ...(代码省略，见下文)
 }
 ````
 
@@ -94,6 +100,12 @@ private IEnumerator InitPackage()
         Debug.Log("资源包初始化成功！");
     else 
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    
+    //获取资源版本
+    ...(代码省略，见下文)
+
+    //更新资源清单
+    ...(代码省略，见下文)
 }
 ````
 
@@ -123,6 +135,12 @@ private IEnumerator InitPackage()
         Debug.Log("资源包初始化成功！");
     else 
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    
+    //获取资源版本
+    ...(代码省略，见下文)
+    
+    //更新资源清单
+    ...(代码省略，见下文)    
 }
 ````
 
@@ -178,8 +196,66 @@ private IEnumerator InitPackage()
         Debug.Log("资源包初始化成功！");
     else 
         Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+    
+    //获取资源版本
+    ...(代码省略，见下文)
+    
+    //更新资源清单
+    ...(代码省略，见下文)    
 }
 ```
+
+### 获取资源版本（初始化必须步骤）
+
+资源包在初始化成功之后，需要获取包裹版本
+
+说明：RequestPackageVersionAsync()方法通常用于获取Package.version文件内容。
+
+说明：开发者也可以自行管理资源版本，不使用RequestPackageVersionAsync()方法。例如通过HTTP协议请求服务器下发的版本号。
+
+````csharp
+private IEnumerator RequestPackageVersion()
+{
+    var package = YooAssets.GetPackage("DefaultPackage");
+    var operation = package.RequestPackageVersionAsync();
+    yield return operation;
+
+    if (operation.Status == EOperationStatus.Succeed)
+    {
+        //更新成功
+        string packageVersion = operation.PackageVersion;
+        Debug.Log($"Request package Version : {packageVersion}");
+    }
+    else
+    {
+        //更新失败
+        Debug.LogError(operation.Error);
+    }
+}
+````
+
+### 更新资源清单（初始化必须步骤）
+
+在获取到资源版本号之后，就可以更新资源清单了。
+
+````csharp
+private IEnumerator UpdatePackageManifest()
+{
+    var package = YooAssets.GetPackage("DefaultPackage");
+    var operation = package.UpdatePackageManifestAsync(packageVersion);
+    yield return operation;
+
+    if (operation.Status == EOperationStatus.Succeed)
+    {
+        //更新成功
+    }
+    else
+    {
+        //更新失败
+        Debug.LogError(operation.Error);
+    }
+}
+````
 
 ### 自定义运行模式  (CustomPlayMode)
 

@@ -2,54 +2,6 @@
 
 学习如何进行资源文件的更新。
 
-### 获取资源版本
-
-资源包在初始化成功之后，需要获取包裹版本
-
-````csharp
-private IEnumerator RequestPackageVersion()
-{
-    var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.RequestPackageVersionAsync();
-    yield return operation;
-
-    if (operation.Status == EOperationStatus.Succeed)
-    {
-        //更新成功
-        string packageVersion = operation.PackageVersion;
-        Debug.Log($"Request package Version : {packageVersion}");
-    }
-    else
-    {
-        //更新失败
-        Debug.LogError(operation.Error);
-    }
-}
-````
-
-### 更新资源清单
-
-在获取到资源版本号之后，就可以更新资源清单了。
-
-````csharp
-private IEnumerator UpdatePackageManifest()
-{
-    var package = YooAssets.GetPackage("DefaultPackage");
-    var operation = package.UpdatePackageManifestAsync(packageVersion);
-    yield return operation;
-
-    if (operation.Status == EOperationStatus.Succeed)
-    {
-        //更新成功
-    }
-    else
-    {
-        //更新失败
-        Debug.LogError(operation.Error);
-    }
-}
-````
-
 ### 资源包下载
 
 在补丁清单更新完毕后，就可以更新资源文件了。
